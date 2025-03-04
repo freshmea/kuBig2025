@@ -23,4 +23,11 @@
 - 6교시
   - 온도 예제 작성 celcius2fahr.c
 - 7교시
+  - makefile 작성
+  - make 실행
+  - char 설명 및 예제 작성 charNumber.c
+- 8교시
+  - 복습 및 정리
+
+
 
