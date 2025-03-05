@@ -1,4 +1,4 @@
-TARGET = infinit limit celsius2fahr fahr2celsius charNumber triangle triangle2
+TARGET = infinit limit celsius2fahr fahr2celsius charNumber triangle triangle2 arithmetics
 
 all : ${TARGET}
 
@@ -9,6 +9,7 @@ fahr2celsius : $@
 charNumber : $@
 triangle : $@
 triangle2 : $@
+arithmetics : $@
 
 clean :
 	rm ${TARGET}
