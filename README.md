@@ -52,14 +52,18 @@
     - 복합 대입연산자
   - 리터럴 상수
 - 4교시
+  - 리터럴 상수 예제 - literal.c
 - 5교시
   - 연산자
     - 관계 연산자
     - 논리 연산자
     - 비트 연산자
 - 6교시
+  - 연산자 예제 작성 - genderRatio compare compare2 sizeof oddeven
 - 7교시
+  - 비트 연산자 예제 - fourBIt.c
 - 8교시
+  - 정리
 
 ---
 
@@ -79,6 +83,13 @@
 - 4교시
   - main argument 설명 argc, argv
 - 5교시
+  - 분기문 예제 - absolute leafYear passFail grade grade2 posZeroNeg bigLetter
 - 6교시
+  - for 문 설명
+  - for 문 예제 - one2Ten.c, one2TenSum.c
 - 7교시
+  - 구구단 출력하기
+  - 이중 for 문 예제 - start.c
 - 8교시
+  - 정리
+
