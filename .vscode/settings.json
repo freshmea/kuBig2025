@@ -4,6 +4,8 @@
         "*.repos": "yaml",
         "*.world": "xml",
         "*.xacro": "xml",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "random": "c",
+        "stdbool.h": "c"
     }
 }
