@@ -6,6 +6,7 @@
         "*.xacro": "xml",
         "stdio.h": "c",
         "random": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "string": "c"
     }
 }
