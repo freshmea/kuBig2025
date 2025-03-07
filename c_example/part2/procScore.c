@@ -1,6 +1,6 @@
 // n(MAX) 개의 숫자를 배열로 만들어서[랜덤] MAXC 까지 평균을 수소점 2자리까지 출력
 
-// VLA(variable length array)
+// VLA(variable length array) 는 왠만 하면 쓰지 마세요.
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
