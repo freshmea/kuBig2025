@@ -9,6 +9,6 @@ int main(void)
     double rand1;
     srand((unsigned int)time(NULL));
     rand1 = rand() / (double)RAND_MAX * 100;
-    printf("0 ~ 100 사이의 랜덤한 숫자: %f", rand1);
+    printf("0 ~ 100 사이의 랜덤한 숫자: %f\n", rand1);
     return 0;
 }
