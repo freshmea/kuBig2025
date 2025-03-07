@@ -1,4 +1,4 @@
-TARGET = absolute leafYear passFail grade grade2 posZeroNeg bigLetter one2Ten one2TenSum multiplyTable ascii star one2TenWhile one2TenDoWhile randomTwoInt
+TARGET = absolute leafYear passFail grade grade2 posZeroNeg bigLetter one2Ten one2TenSum multiplyTable ascii star one2TenWhile one2TenDoWhile randomTwoInt staticLocalVariable
 all : ${TARGET}
 
 absolute : $@
@@ -16,6 +16,7 @@ star : $@
 one2TenWhile : $@
 one2TenDoWhile : $@
 randomTwoInt : $@
+staticLocalVariable : $@
 
 clean :
 	rm ${TARGET}

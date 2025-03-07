@@ -14,7 +14,7 @@ int main(void)
         i++;
         srand((unsigned int)time(NULL) + i); // random 셋
         rand1 = rand() / (double)RAND_MAX * 10;
-        srand((unsigned int)time(NULL) + i + 10000); // random 셋
+        srand((unsigned int)time(NULL) + 10000); // random 셋
         rand2 = rand() / (double)RAND_MAX * 10;
 
         a = rand1;
