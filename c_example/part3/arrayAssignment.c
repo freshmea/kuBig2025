@@ -12,9 +12,9 @@ int main(void)
     }
     printf("nums1 의 주소값 %p", nums1);
     printf("nums2 의 주소값 %p", nums2);
-    // 서로 독립적인 메모리이다.
+    // nums1 과 nums2 는 서로 독립적인 메모리이다.
     nums2[3] = 14;
-    // shallow copy
+    // shallow copy nums1 과 nums3 은 메모리를 공유한다.
     int *nums3;
     nums3 = nums1;
     printf("nums3 의 주소값 %p", nums3);
