@@ -26,7 +26,7 @@ int main()
     {
         question[2] = rand() % 10;
     } while (question[0] == question[2] || question[1] == question[2]);
-    printf("%d %d %d\n", question[0], question[1], question[2]);
+    // printf("%d %d %d\n", question[0], question[1], question[2]);
 
     int count = 0;
     while (true)
