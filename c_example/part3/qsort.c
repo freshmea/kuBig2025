@@ -21,7 +21,7 @@ int main(void)
         printf("%d, ", nums[i]);
     printf("\n");
 
-    // bubble sorting
+    // sorting
     qsort(nums, 20, sizeof(nums[0]), compare);
 
     for (int i = 0; i < 20; ++i)
