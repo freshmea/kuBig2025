@@ -93,3 +93,44 @@
 - 8교시
   - 정리
 
+---
+
+## 2025-03-07
+
+---
+
+- 1교시
+  - 복습
+  - 반복문
+- 2교시
+  - while 문 설명
+  - while 문 예제 - one2TenSumWhile.c
+- 3교시
+- 4교시
+  - do while 문 설명
+  - do while 문 예제 - one2TenSumDoWhile.c
+- 5교시
+  - 함수
+  - 전역변수, 지역변수, 정적지역변수
+- 6교시
+  - break, continue 설명
+  - break, continue 예제 - break.c, continue.c
+  - 배열
+- 7교시
+  - 배열 예제 - dice.c, sumArray.c
+  - 이중 배열
+  - 이중 배열 예제 - sumMatrix.c findValueArray.c
+- 8교시
+  - baseball 게임 설명
+
+---
+
+## 2025-03-10
+
+---
+
+- 1교시
+  - 복습
+  - baseball 게임 - 정답 풀이 
+- 2교시
+- 3교시
