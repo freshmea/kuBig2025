@@ -147,5 +147,7 @@
 - 6교시
   - 배열 과 포인터 예제
 - 7교시
-  - 
+  - 함수에서 포인터를 쓰는 예제 - swapFunction sumArrayFunction sumMatrixFunction
 - 8교시
+  - sumMatrixFunction2 - 일차원 배열로 변경 해서 넘기기
+  - 함수 에서 포인터가 쓰이는 종류 정리
