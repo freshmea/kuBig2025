@@ -8,5 +8,6 @@
         "random": "c",
         "stdbool.h": "c",
         "string": "c"
-    }
+    },
+    "ros.distro": "humble"
 }
