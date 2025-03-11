@@ -1,7 +1,7 @@
 // 현대 차의 자동차 번호를 출력하는 프로그램
-// extern int count;
 // int count = 0;
-#include "serial.h"
+// #include "serial.h"
+// extern int count;
 
 int getSerialNumber(void)
 {
