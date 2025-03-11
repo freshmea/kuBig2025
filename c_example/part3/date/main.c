@@ -16,7 +16,7 @@ int main(void)
         .temp = {1, 2, 3, 4, 5, 6}};
 
     Date today;
-    today = d;
+    today = d; // 배열 이 복사 됨.
     printDate(&today);
     today.temp[0] = 10;
     printDate(&d);
