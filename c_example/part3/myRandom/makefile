@@ -12,4 +12,4 @@ myRandom.o : myRandom.c
 	cc -c myRandom.c
 
 clean :
-	rm ${TARGET} main.o myrandom.o
+	rm ${TARGET} main.o myRandom.o
