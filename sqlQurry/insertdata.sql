@@ -1,3 +1,5 @@
+-- 데이터 추가
+use mydb;
 INSERT INTO Book
 VALUES(1, '축구의 역사', '굿스포츠', 7000);
 INSERT INTO Book
@@ -18,3 +20,7 @@ INSERT INTO Book
 VALUES(9, '올림픽 이야기', '삼성당', 7500);
 INSERT INTO Book
 VALUES(10, 'Olympic Champions', 'Pearson', 13000);
+-- 데이터 확인
+use mydb;
+select *
+from Book;
