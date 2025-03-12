@@ -13,19 +13,18 @@ typedef struct
     int price;
 } Book;
 
+void fetch_books(MYSQL *conn);
+void add_books(MYSQL *conn);
+
 int main(void)
 {
     MYSQL *conn;
-    MYSQL_RES *res;
-    MYSQL_ROW row;
     char *host = "localhost";
     char *user = "myuser";
     char *pass = "0000";
     char *db = "mydb";
-    char query[255];
     int port = 3306;
-
-    strcpy(query, "select * from Book");
+    int choice;
 
     // 연결
     conn = mysql_init(NULL); // DB 연결 요청 준비
@@ -36,14 +35,49 @@ int main(void)
         printf("MySQL 연결 실패\n");
         return 1;
     }
+    while (true)
+    {
+        printf("1 , 2 번 고르세요!");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            fetch_books(conn);
+            break;
+        case 2:
+            add_books(conn);
+            break;
+        }
+    }
+
+    mysql_close(conn);
+
+    return 0;
+}
+void add_books(MYSQL *conn)
+{
+    return;
+}
+
+void fetch_books(MYSQL *conn)
+{
+    MYSQL_RES *res;
+    MYSQL_ROW row;
+    char query[255];
+    strcpy(query, "select * from Book");
 
     // 쿼리 요청
     if (mysql_query(conn, query))
     {
         printf("쿼리 실패");
-        return 1;
+        return;
     }
     res = mysql_store_result(conn);
+    if (!res)
+    {
+        printf("가져오기 실패!\n");
+        return;
+    }
     Book book[100]; // 동적 할당이 좋지만 일단... 스택에 만들자.
     int i = 0;
     // 데이터 베이스의 정보를 구조체에 저장 - ORM
@@ -61,7 +95,4 @@ int main(void)
                book[j].bookid, book[j].bookname,
                book[j].publisher, book[j].price);
     }
-    mysql_close(conn);
-
-    return 0;
 }
