@@ -56,6 +56,13 @@ int main(void)
 }
 void add_books(MYSQL *conn)
 {
+    printf("--- 도서 추가 ---\n");
+    Book newbook;
+    char query[255];
+    // 정보 입력 scanf
+    // query 문 작성 strcpy... "insert ....."
+    // sprintf(query, "insert into Book values (%d, '%s', '%s', %d)", newbook.bookid, .....);
+    // query 요청 mysql_query();
     return;
 }
 

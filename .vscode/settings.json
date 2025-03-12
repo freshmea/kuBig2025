@@ -11,5 +11,5 @@
         "mysql.h": "c"
     },
     "ros.distro": "humble",
-    "cmake.sourceDirectory": "/home/aa/kuBig2025/sqlQuerry"
+    "cmake.sourceDirectory": "/home/aa/kuBig2025"
 }
