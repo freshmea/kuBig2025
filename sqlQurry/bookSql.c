@@ -5,6 +5,14 @@
 // dpkg -L libmysqlclient-dev | grep mysql.h
 // cc -o bookSql bookSql.c -I/usr/include/mysql -L/usr/lib/mysql -lmysqlclient
 // libmysqlclient.so libmysqlclient.a
+typedef struct
+{
+    int bookid;
+    char bookname[40];
+    char publisher[40];
+    int price;
+} Book;
+
 int main(void)
 {
     MYSQL *conn;
@@ -36,13 +44,23 @@ int main(void)
         return 1;
     }
     res = mysql_store_result(conn);
+    Book book[100]; // 동적 할당이 좋지만 일단... 스택에 만들자.
+    int i = 0;
+    // 데이터 베이스의 정보를 구조체에 저장 - ORM
     while (row = mysql_fetch_row(res))
     {
-        printf("%s\t", row[0]);
-        printf("%s\t", row[1]);
-        printf("%s\t", row[2]);
-        printf("%d\t\n", atoi(row[3]));
+        book[i].bookid = atoi(row[0]);
+        strcpy(book[i].bookname, row[1]);
+        strcpy(book[i].publisher, row[2]);
+        book[i].price = atoi(row[3]);
+        ++i;
     };
+    for (int j = 0; j < i; ++j)
+    {
+        printf("%d \t%s \t%s \t%d \n",
+               book[j].bookid, book[j].bookname,
+               book[j].publisher, book[j].price);
+    }
     mysql_close(conn);
 
     return 0;
