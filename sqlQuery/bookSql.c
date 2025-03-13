@@ -87,7 +87,7 @@ int main(void)
 
 void print_menu(void)
 {
-    // system("clear");
+    system("clear");
     printf("=== 도서 관리 시스템 ===\n");
     printf("0. 도서 조회\n");
     printf("1. 도서 추가\n");
@@ -182,13 +182,9 @@ void query_books(MYSQL *conn)
     MYSQL_RES *res;
     MYSQL_ROW row;
     char query[255];
-    char query_string[255];
     printf("실행할 쿼리를 넣어 주세요: ");
-    fgets(query_string, sizeof(query_string), stdin);
-    printf("쿼리 : %s\n", query_string);
-    query_string[strcspn(query_string, "\n")] = 0; // Remove newline character
-    sprintf(query, "%s", query_string);
-    printf("쿼리 : %s\n", query);
+    fgets(query, sizeof(query), stdin);
+    query[strcspn(query, "\n")] = 0;
 
     if (mysql_query(conn, query))
     {
@@ -267,6 +263,9 @@ void waitEnter(void)
 void stdinFlush(void)
 {
     int c;
+    // 버퍼 확인
+
+    // 입력 버퍼 비우기
     while ((c = getchar()) != '\n' && c != EOF)
         ;
 }
