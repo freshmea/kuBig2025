@@ -118,8 +118,21 @@ void add_books(MYSQL *conn)
 }
 void delete_books(MYSQL *conn)
 {
-    // index 번호 받기scanf
-    // 지우는 쿼리
+    int bookid;
+    printf("삭제할 도서명 : ");
+    scanf("%d", &bookid);
+    char query[255];
+    sprintf(query, "delete from Book where bookid = %d", bookid);
+
+    if (mysql_query(conn, query))
+    {
+        printf("쿼리 실패 : %s", mysql_error(conn));
+    }
+    else
+    {
+        my_ulonglong affected_row = mysql_affected_rows(conn);
+        printf("삭제 성공 : %lu 개", affected_row);
+    }
 }
 void update_books(MYSQL *conn)
 {
