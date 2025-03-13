@@ -125,8 +125,7 @@ void delete_books(MYSQL *conn)
 {
     int bookid;
     printf("삭제할 도서명 : ");
-    scanf("%d", &bookid);
-    stdinFlush();
+    scanf("%d%*c", &bookid);
     char query[255];
     sprintf(query, "delete from Book where bookid = %d", bookid);
 
@@ -171,7 +170,7 @@ void update_books(MYSQL *conn)
 void query_books(MYSQL *conn)
 {
     MYSQL_RES *res;
-    MYSQL_ROW row;
+    char **row; // MYSQL_ROW row;
     char query[255];
     printf("실행할 쿼리를 넣어 주세요: ");
     fgets(query, sizeof(query), stdin);

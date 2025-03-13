@@ -8,7 +8,10 @@
         "random": "c",
         "stdbool.h": "c",
         "string": "c",
-        "mysql.h": "c"
+        "mysql.h": "c",
+        "*.ipp": "c",
+        "*.tcc": "c",
+        "istream": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"

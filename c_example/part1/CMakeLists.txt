@@ -20,7 +20,9 @@ project(part1)
 #     c_example/part1/fourBit.c
 #     c_example/part1/fourBit2.c
 # )
-file(GLOB EXECUTABLES "c_example/part1/*.c")
+set(src_dir ${CMAKE_CURRENT_LIST_DIR})
+
+file(GLOB EXECUTABLES "${src_dir}/*.c")
 
 foreach(EXECUTABLE ${EXECUTABLES})
     get_filename_component(EXE_NAME ${EXECUTABLE} NAME_WE)
