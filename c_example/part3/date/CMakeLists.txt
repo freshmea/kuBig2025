@@ -1,14 +1,11 @@
-cmake_minimum_required(VERSION 3.00)
+cmake_minimum_required(VERSION 3.10)
 project(date)
-
-# 현재 CMakeLists.txt가 위치한 디렉토리 경로 설정
-set(date_src_dir ${CMAKE_CURRENT_LIST_DIR})
 
 # 소스 파일 설정
 set(SOURCES
-    ${date_src_dir}/main.c
-    ${date_src_dir}/date.c
+    main.c
+    date.c
 )
 
-include_directories(${date_src_dir})
+include_directories(${CMAKE_CURRENT_LIST_DIR})
 add_executable(date ${SOURCES})

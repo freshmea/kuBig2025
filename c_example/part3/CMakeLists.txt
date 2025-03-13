@@ -9,7 +9,8 @@ foreach(EXECUTABLE ${EXECUTABLES})
     add_executable(${EXE_NAME} ${EXECUTABLE})
 endforeach()
 
-include(${src_dir}/carSerial/CMakeLists.txt)
-include(${src_dir}/date/CMakeLists.txt)
-include(${src_dir}/myRandom/CMakeLists.txt)
-include(${src_dir}/string/CMakeLists.txt)
+# include 대신 add_subdirectory 사용
+add_subdirectory(carSerial)
+add_subdirectory(date)
+add_subdirectory(myRandom)
+add_subdirectory(string)
