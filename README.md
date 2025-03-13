@@ -204,8 +204,10 @@
   - bookSql.c 작성 - mysql 연결, 데이터베이스 선택, 쿼리 실행
 - 7교시
   - CMake 설명 및 예제
+  - cmake 설치 - sudo apt install cmake build-essential gdb gcc ( 반드시 build-essential 설치 )
   - CMakeLists.txt 작성
-  - 디버깅 사용 방법
+  - 디버깅 사용 방법 - c89 Vscode 에서의 cmake kit 설정 문제가 있음
+    -> /home/aa/.local/share/CMakeTools/cmake-tools-kits.json 내용 변경.
 - 8교시
   - 정리
   - [과제] bookSql.c 에 함수 추가 - insertBook
