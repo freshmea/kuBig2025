@@ -102,21 +102,24 @@ void fetch_books(MYSQL *conn)
         printf("가져오기 실패!\n");
         return;
     }
-    Book book[100]; // 동적 할당이 좋지만 일단... 스택에 만들자.
+    Book *pBook;
+    pBook = (Book *)malloc(sizeof(Book));
     int i = 0;
     // 데이터 베이스의 정보를 구조체에 저장 - ORM
     while (row = mysql_fetch_row(res))
     {
-        book[i].bookid = atoi(row[0]);
-        strcpy(book[i].bookname, row[1]);
-        strcpy(book[i].publisher, row[2]);
-        book[i].price = atoi(row[3]);
+        (pBook + i)->bookid = atoi(row[0]);
+        strcpy((pBook + i)->bookname, row[1]);
+        strcpy((pBook + i)->publisher, row[2]);
+        (pBook + i)->price = atoi(row[3]);
         ++i;
+        pBook = realloc(pBook, i);
     };
     for (int j = 0; j < i; ++j)
     {
         printf("%d \t%s \t%s \t%d \n",
-               book[j].bookid, book[j].bookname,
-               book[j].publisher, book[j].price);
+               (pBook + j)->bookid, (pBook + j)->bookname,
+               (pBook + j)->publisher, (pBook + j)->price);
     }
+    free(pBook);
 }
