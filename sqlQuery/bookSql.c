@@ -162,7 +162,7 @@ void fetch_books(MYSQL *conn)
         strcpy((pBook + i)->publisher, row[2]);
         (pBook + i)->price = atoi(row[3]);
         ++i;
-        pBook = realloc(pBook, i + 1);
+        pBook = realloc(pBook, sizeof(Book) * (i + 1));
     };
     for (int j = 0; j < i; ++j)
     {
@@ -172,6 +172,7 @@ void fetch_books(MYSQL *conn)
     }
     free(pBook);
     // TODO: 여기 엔터만 쳐도 넘어가게 변경
-    int temp;
-    scanf("%d", &temp);
+    char temp;
+    getchar();
+    scanf("%c", &temp);
 }
