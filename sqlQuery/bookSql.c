@@ -123,7 +123,7 @@ void delete_books(MYSQL *conn)
 }
 void update_books(MYSQL *conn)
 {
-    // 모든 번호 받기scanf
+    // 모든 정보 받기scanf
     // 변경하는 쿼리
 }
 void query_books(MYSQL *conn)

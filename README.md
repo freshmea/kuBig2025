@@ -180,7 +180,6 @@
   - myString.h
 - 8교시
 
-
 ---
 
 ## 2025-03-12
@@ -195,10 +194,47 @@
   - 권한 설정, DB 생성, TABLE 생성
   - MySQL 종료
 - 3교시
-  - libmysqlclient 설치 (sudo apt install libmysql++*)
+  - root 계정으로 user 생성, 데이터베이스 생성, 테이블 생성
+  - Book 테이블 생성 후 insert 로 데이터 입력
 - 4교시
+  - libmysqlclient 설치 (sudo apt install libmysql++*)
 - 5교시
+  - ip 해석 및 포트포워딩과 포트오픈 실습실의 상황 설명
 - 6교시
+  - bookSql.c 작성 - mysql 연결, 데이터베이스 선택, 쿼리 실행
 - 7교시
+  - CMake 설명 및 예제
+  - CMakeLists.txt 작성
+  - 디버깅 사용 방법
+- 8교시
+  - 정리
+  - [과제] bookSql.c 에 함수 추가 - insertBook
+
+---
+
+## 2025-03-13
+
+---
+
+- 1교시
+  - 복습
+  - CMake VsCode 설정 - 디버깅
+- 2교시
+  - cmake 프로젝트의 subdirectory 설정
+  - c89 Vscode 에서의 cmake kit 설정 문제가 있음
+    -> /home/aa/.local/share/CMakeTools/cmake-tools-kits.json 내용 변경.
+  - 동적 할당 설명 - malloc, calloc, realloc, free
+- 3교시
+  - 동적 할당 예제
+  - 공용체, 열거형 설명 - union, enum
+- 4교시
+  - 공용체, 열거형 예제 - unionExample.c enumExample.c
+- 5교시
+  - bookSql 에 enum, 동적할당 적용
+- 6교시
+  - sql 예제 - bookSql.c
+  - [과제]함수 추가 - deleteBook, updateBook, queryBook
+- 7교시
+  - 과제 수행
 - 8교시
   - 정리
