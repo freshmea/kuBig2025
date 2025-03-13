@@ -136,8 +136,32 @@ void delete_books(MYSQL *conn)
 }
 void update_books(MYSQL *conn)
 {
-    // 모든 정보 받기scanf
-    // 변경하는 쿼리
+    printf("--- 도서 변경 ---\n");
+    Book newbook;
+    char query[255];
+    // 정보 입력 scanf
+    printf("변경할 도서 ID: ");
+    scanf("%d", &newbook.bookid);
+    printf("도서 명: ");
+    scanf("%s", newbook.bookname);
+    printf("출판사: ");
+    scanf("%s", newbook.publisher);
+    printf("가격: ");
+    scanf("%d", &newbook.price);
+
+    sprintf(query, "update Book set bookname = '%s', publisher = '%s', price = %d where bookid = %d", newbook.bookname, newbook.publisher, newbook.price, newbook.bookid);
+    // query 요청 mysql_query();
+    if (mysql_query(conn, query))
+    {
+        printf("데이터 변경 실패: %s\n", mysql_error(conn));
+    }
+    else
+    {
+        printf("변경 성공\n");
+    }
+    int temp;
+    getchar();
+    scanf("%d", &temp);
 }
 void query_books(MYSQL *conn)
 {
