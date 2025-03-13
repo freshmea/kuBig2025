@@ -179,3 +179,26 @@
   - 문자열 라이브러리 작성
   - myString.h
 - 8교시
+
+
+---
+
+## 2025-03-12
+
+---
+
+- 1교시
+  - 복습
+  - MySQL 설명
+- 2교시
+  - MySQL 설치
+  - 권한 설정, DB 생성, TABLE 생성
+  - MySQL 종료
+- 3교시
+  - libmysqlclient 설치 (sudo apt install libmysql++*)
+- 4교시
+- 5교시
+- 6교시
+- 7교시
+- 8교시
+  - 정리
