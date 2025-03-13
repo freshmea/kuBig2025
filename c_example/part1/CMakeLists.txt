@@ -1,11 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(part1)
 
-set(CMAKE_C_COMPILER "/usr/bin/gcc")
-
-set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_STANDARD_REQUIRED ON)
-
 # set(EXECUTABLES
 #     c_example/part1/infinit.c
 #     c_example/part1/limit.c
