@@ -240,3 +240,20 @@
   - 과제 수행
 - 8교시
   - 정리
+
+---
+
+## 2025-03-14
+
+---
+
+- 1교시
+  - 복습
+  - CMakeLists.txt sub_directory 추가
+- 2교시
+  - [과제]함수 추가 - deleteBook, updateBook, queryBook
+- 3교시
+  - 표준 입력 함수 - scanf, sscanf, fscanf, getchar, gets, fgetc, fgets
+- 4교시
+  - 표준 출력 함수 - printf, sprintf, fprintf, putchar, puts, fputc, fputs
+  - fflush() 예제
