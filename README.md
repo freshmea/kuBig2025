@@ -257,3 +257,12 @@
 - 4교시
   - 표준 출력 함수 - printf, sprintf, fprintf, putchar, puts, fputc, fputs
   - fflush() 예제
+- 5교시
+  - Sql 분할 컴파일
+- 6교시
+  - 교재 살펴보기
+- 7교시
+  - 교재 살펴보기
+  - 볼링 게임 안내 [C 언어] 메인 과제
+- 8교시
+  - 정리
