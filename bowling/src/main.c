@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> // string.h 추가
 
 // 운영체제 확인을 위한 매크로 추가
 #ifdef _WIN32
@@ -46,7 +47,7 @@ void runGame(MySQLConnection *mysql)
 
     printf("볼링 게임을 시작합니다!\n");
     printf("플레이어 이름을 입력하세요 (최대 9글자): ");
-    scanf("%9s", name);
+    scanf("%9s%*c", name);
 
     // 점수 초기화
     initScore(&player, name);
@@ -75,10 +76,7 @@ void runGame(MySQLConnection *mysql)
         saveScore(mysql, player.name, player.frameScore[10]);
         updateMonthlyStats(mysql);
     }
-
-    printf("\n아무 키나 누르면 메인 메뉴로 돌아갑니다...");
-    getchar();
-    getchar(); // 입력 버퍼 비우기 위해 두 번 호출
+    waitEnter();
 }
 
 int main()
@@ -93,14 +91,13 @@ int main()
     if (!dbConnected)
     {
         printf("경고: 데이터베이스 연결 실패. 점수가 저장되지 않습니다.\n");
-        printf("계속하려면 아무 키나 누르세요...");
-        getchar();
+        waitEnter();
     }
 
     while (true)
     {
         printMenu();
-        scanf("%d", &choice);
+        scanf("%d%*c", &choice);
 
         switch (choice)
         {
@@ -117,12 +114,10 @@ int main()
             else
             {
                 printf("사용자 이름을 입력하세요: ");
-                scanf("%49s", username);
+                scanf("%49s%*c", username);
                 printUserHistory(&mysql, username);
             }
-            printf("\n아무 키나 누르면 메인 메뉴로 돌아갑니다...");
-            getchar();
-            getchar();
+            waitEnter();
             break;
 
         case TOP_SCORES:
@@ -135,9 +130,7 @@ int main()
             {
                 printTopScores(&mysql, 10); // 상위 10개 점수 표시
             }
-            printf("\n아무 키나 누르면 메인 메뉴로 돌아갑니다...");
-            getchar();
-            getchar();
+            waitEnter();
             break;
 
         case MONTHLY_STATS: // 새 메뉴 옵션 처리 수정
@@ -149,8 +142,6 @@ int main()
             else
             {
                 printf("사용자 이름을 입력하세요 (모든 사용자 통계를 보려면 그냥 Enter): ");
-                getchar(); // 버퍼 비우기
-
                 // 사용자 입력 받기
                 if (fgets(username, sizeof(username), stdin))
                 {
@@ -167,8 +158,7 @@ int main()
                         printMonthlyStats(&mysql, username);
                 }
             }
-            printf("\n아무 키나 누르면 메인 메뉴로 돌아갑니다...");
-            getchar();
+            waitEnter();
             break;
 
         case EXIT:

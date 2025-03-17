@@ -286,3 +286,10 @@ void printMonthlyStats(MySQLConnection *mysql, const char *username)
         mysql_free_result(res);
     }
 }
+
+void waitEnter(void)
+{
+    printf("엔터를 쳐 주세요....\n");
+    while (getchar() != '\n')
+        ;
+}

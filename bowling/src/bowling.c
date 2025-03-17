@@ -71,7 +71,7 @@ int getValidScore(int frame, int bow, int prevScore)
 
     while (1)
     {
-        scanf("%d", &score);
+        scanf("%d%*c", &score);
 
         if (score >= 0 && score <= maxScore)
         {

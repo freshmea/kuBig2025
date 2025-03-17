@@ -39,4 +39,7 @@ void printTopScores(MySQLConnection *mysql, int limit);
 // 사용자 월별 통계 출력 함수 수정 - NULL 전달 시 전체 사용자 표시
 void printMonthlyStats(MySQLConnection *mysql, const char *username);
 
+// 사용자 입력 대기 함수 추가
+void waitEnter(void);
+
 #endif // BOWLINGSQL_H
