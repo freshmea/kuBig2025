@@ -1,3 +1,5 @@
+
+# https://github.com/Isty001/dotenv-c.git 이 깃을 사용하여 dotenv를 사용하였습니다.
 cmake_minimum_required(VERSION 3.10)
 project(bowling)
 
