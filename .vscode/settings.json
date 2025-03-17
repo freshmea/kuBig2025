@@ -31,7 +31,8 @@
         "streambuf": "c",
         "utility": "c",
         "variant": "c",
-        "thread": "c"
+        "thread": "c",
+        "dotenv.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"

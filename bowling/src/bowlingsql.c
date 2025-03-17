@@ -1,14 +1,16 @@
 #include "../include/bowlingsql.h"
+#include <dotenv.h>
 #include <time.h>
 
 bool initMySQL(MySQLConnection *mysql)
 {
+    env_load(".", false);
     // 기본 연결 정보 설정
-    mysql->host = "localhost";
-    mysql->user = "myuser";
-    mysql->pass = "0000";
-    mysql->db = "bowling_db";
-    mysql->port = 3306;
+    mysql->host = getenv("DB_HOST");
+    mysql->user = getenv("DB_USER");
+    mysql->pass = getenv("DB_PASS");
+    mysql->db = getenv("DB_NAME");
+    mysql->port = atoi(getenv("DB_PORT"));
 
     // MySQL 초기화
     mysql->conn = mysql_init(NULL);
