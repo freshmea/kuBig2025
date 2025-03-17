@@ -17,6 +17,7 @@
   - VsCode 를 활용하는 기술을 익히고 디버깅 방법을 익힌다.
   - 최종 프로젝트 - 볼링 게임(MySql 연동)
 - [과정 진행 사항](doc/c_programming.md)
+- 시험 링크 : [구글 설문지](https://forms.gle/xcMTavAxecmgJHL98)
 
 ---
 
