@@ -32,7 +32,8 @@
         "utility": "c",
         "variant": "c",
         "thread": "c",
-        "dotenv.h": "c"
+        "dotenv.h": "c",
+        "io.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"
