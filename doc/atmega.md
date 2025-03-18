@@ -17,3 +17,10 @@
   - platformio 설치
   - 간단한 프로그램 작성 - PORTC 레지스트 변경 및 딜레이
 - 5교시
+  - permission 문제 해결
+    - lsusb -> usb 장치 확인
+    - ls -l /dev/bus/usb/001/009 -> 장치 접근 권한 확인
+    - sudo chmod 666 /dev/bus/usb/001/009 -> 장치 접근 권한 변경
+    - SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}=="2104", MODE="0666"
+
+- 6교시
