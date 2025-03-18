@@ -3,14 +3,28 @@
 
 int main()
 {
+    unsigned char led_data;
+    led_data = 0x01;
+    int direction = 0;
     while (1)
     {
-        DDRC = 0x03;  // 0011 0,1 울 출력 모드로 한다.
-        PORTC = 0x0F; // 1111 0, 1, 2, 3 번을 1(ON)->5V 출력시킴.
-        _delay_ms(500);
+        while (1)
+        {
+            if (led_data >= 0x0f)
+                direction = 0;
+            if (led_data == 0)
+            {
+                direction = 1;
+                led_data = 1;
+            }
 
-        PORTC = 0x00; // 0000 0, 1, 2, 3 번을 0(ㅒㄹㄹ)-> 0V 출력시킴.
-        _delay_ms(500);
+            if (direction)
+                led_data >>= 1;
+            else
+                led_data <<= 1;
+            PORTC = led_data;
+            _delay_ms(500);
+        }
     }
     return 0;
 }
