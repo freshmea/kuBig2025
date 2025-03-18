@@ -1,29 +1,31 @@
-#include "lcd.h"
 #include <avr/io.h>
-#include <stdio.h>
 #include <util/delay.h>
 
 int main()
 {
-    lcdInit();
-    lcdClear();
-    char lcdBuffer[17];
-
-    unsigned char switch_flag = 0;
-    DDRE = 0x00;  // 8개의 핀을 모두 인풋!
-    PORTE = 0x00; // 출력! - 풀업을 설정한다.
-    DDRC = 0x0F;  // 아웃풋!
-    // PINE
+    DDRC = 0x0F;
+    unsigned char led_data;
+    led_data = 0x01;
+    int direction = 1;
     while (1)
     {
-        if (PINE >> 4)
+        while (1)
         {
-            switch_flag = PINE >> 4; // 0b1000 0b0100
+            PORTC = led_data;
+            if (led_data > 0x04)
+                direction = 0;
+            if (led_data == 1)
+            {
+                direction = 1;
+                led_data = 1;
+            }
+
+            if (direction)
+                led_data <<= 1;
+            else
+                led_data >>= 1;
+            _delay_ms(500);
         }
-        PORTC = switch_flag;
-        snprintf(lcdBuffer, sizeof(lcdBuffer), "SW: 0x%02X, %c", switch_flag, '0' + switch_flag);
-        lcdGotoXY(0, 0);
-        lcdPrint(lcdBuffer);
     }
     return 0;
 }
