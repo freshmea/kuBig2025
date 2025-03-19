@@ -15,18 +15,18 @@ int main()
     char lcdBuffer[17];
     while (1)
     {
-        if (PINE)
+        if (PINE & _BV(PE0))
         {
             switchFlag = PINE;
         }
-        if (!(switchFlag & _BV(PC0)))
+        if (!(switchFlag & _BV(PE0)))
             PORTC ^= 0x01; // 1 번 비트 반전
 
         // PORTC ^= 0x01;
         // _delay_ms(500);
         lcdGotoXY(0, 0);
         lcdBuffer[17] = "";
-        sprintf(lcdBuffer, "%d", switchFlag & _BV(PC0));
+        sprintf(lcdBuffer, "%d", switchFlag & _BV(PE0));
         // strcat(lcdBuffer, '0' + PORTC);
         lcdPrint(lcdBuffer);
     }
