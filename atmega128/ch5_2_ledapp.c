@@ -39,14 +39,14 @@ int main()
     return 0;
 }
 
-SIGNAL(INT5_vect)
+ISR(INT5_vect)
 {
     cli(); // sei() 반대 설정 SREG -> I unset -> 0
     shiftFlag = 1;
     sei();
 }
 
-SIGNAL(INT7_vect)
+ISR(INT7_vect)
 {
     cli();
     shiftFlag = 2;
