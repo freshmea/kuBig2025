@@ -33,7 +33,8 @@
         "variant": "c",
         "thread": "c",
         "dotenv.h": "c",
-        "io.h": "c"
+        "io.h": "c",
+        "delay.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"
