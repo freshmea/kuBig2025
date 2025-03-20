@@ -74,7 +74,10 @@
     - stdout, stdin -> FDEV_SETUP_STREAM
 - 3교시
 - 4교시
+  - uart3 실습 파일 스위치 정보 PC 로 전송
+  - uart3 실습 파일 PC 에서 스트링 정보 Atmega128 로 전송
 - 5교시
+  - ADC 실습 - 조도 센서 프린트
 - 6교시
 - 7교시
 - 8교시

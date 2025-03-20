@@ -34,7 +34,8 @@
         "thread": "c",
         "dotenv.h": "c",
         "io.h": "c",
-        "delay.h": "c"
+        "delay.h": "c",
+        "interrupt.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"

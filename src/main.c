@@ -1,3 +1,6 @@
+// uart를 이용해서 시리얼 통신으로 센서 값을 0.1초 간격으로 출력 기능 추가하세요.-
+// --> CDS ADC_data : xxxx
+
 #include "lcd.h"
 #include "uart0.h"
 #include <avr/interrupt.h>
@@ -30,6 +33,7 @@ int main()
         lcdGotoXY(0, 1);
         sprintf(buf, "L: %u", adcResult);
         lcdPrintData(buf, strlen(buf));
+        printf("CDS ADC_data : %u\r\n", adcResult);
         _delay_ms(200);
     }
     return 0;
