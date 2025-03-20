@@ -55,3 +55,9 @@
   - 외부 인터럽트 활용 프로그램 - FND 과제
 - 7교시
 - 8교시
+
+- 1교시
+- 2교시
+  - udev 세팅
+  - sudo udevadm control --reload
+  - sudo udevadm trigger
