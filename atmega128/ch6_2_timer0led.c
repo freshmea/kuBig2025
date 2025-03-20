@@ -3,8 +3,8 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
-volatile uint8_t ledData = 0x00;
-uint8_t timer0Cnt = 0;
+uint8_t ledData = 0x00;
+volatile uint8_t timer0Cnt = 0;
 ISR(TIMER0_OVF_vect);
 
 int main(void)
@@ -17,23 +17,13 @@ int main(void)
     // TIFR |= _BV(TOV0); 없어도 됨
 
     sei();
-    uint8_t direction = 0;
     while (1)
     {
         if (timer0Cnt == 100)
         {
-            if (ledData > 0x04)
-                direction = 0;
-            if (ledData == 1)
-            {
-                direction = 1;
-                ledData = 1;
-            }
-
-            if (direction)
-                ledData <<= 1;
-            else
-                ledData >>= 1;
+            ledData++;
+            if (ledData > 0x0F)
+                ledData = 0;
             timer0Cnt = 0;
         }
         PORTC = ledData;
