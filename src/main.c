@@ -3,10 +3,10 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <stdio.h>
+#include <string.h>
 #include <util/delay.h>
 
-volatile uint8_t intData = '0';
-uint8_t cursor = 0;
+volatile uint16_t adcResult = 0;
 
 int main()
 {
@@ -16,73 +16,28 @@ int main()
     stdin = &INPUT;
     stdout = &OUTPUT;
 
-    DDRE = 0x02; // Rx(입력), TX(출력)1, SW0~3 입력
-
-    EICRB = 0xFF; // 4567 상승 엣지에서 동작 289p.
-    EIMSK = 0xF0; // 4567 허용
-    EIFR = 0xF0;  // 4567 클리어
-
-    sei(); // 전역 인터럽트 허용
-    char cData;
-    char buffer[30];
-    uint8_t count;
-
+    ADMUX = 0x40;   // ADC0 single mode, 0번 채널, 3.3V 외부 기준 전압(AREF)
+    ADCSRA = 0xAF;  // 10101111 ADC 허가, free running mode, Intterrupt en, 128 분주비
+    ADCSRA |= 0x40; // ADC 개시
+    sei();          // 전역 인터럽트 허용
     printf("Hi, I'm Atmega128");
+
     lcdGotoXY(0, 0);
+    lcdPrintData("Light Sensor", 12);
+    char buf[16];
     while (1)
     {
-        if (intData != '0')
-        {
-            printf("\n\r Input Switch : %c", intData);
-            intData = '0';
-        }
-        while (UCSR0A & (1 << RXC0))
-        {
-            // TODO : 4 개 문자 이상 못 받아 오는 문제 버퍼 문제 해결.
-            // scanf("%s", buffer);
-            // lcdPrint(buffer);
-            count++;
-            cData = fgetc(stdin);
-            lcdDataWrite(cData);
-            lcdDataWrite('0' + count);
-            cursor++;
-            cursor++;
-            if (cursor == 16)
-                lcdGotoXY(0, 1);
-            else if (cursor >= 32)
-            {
-                cursor = 0;
-                lcdGotoXY(0, 0);
-            }
-        }
+        lcdGotoXY(0, 1);
+        sprintf(buf, "L: %u", adcResult);
+        lcdPrintData(buf, strlen(buf));
+        _delay_ms(200);
     }
     return 0;
 }
 
-ISR(INT4_vect)
+ISR(ADC_vect)
 {
     cli();
-    intData = '1';
-    sei();
-}
-
-ISR(INT5_vect)
-{
-    cli();
-    intData = '2';
-    sei();
-}
-
-ISR(INT6_vect)
-{
-    cli();
-    intData = '3';
-    sei();
-}
-
-ISR(INT7_vect)
-{
-    cli();
-    intData = '4';
+    adcResult = ADC; // 2^16 -> 0 ~ 1023
     sei();
 }
