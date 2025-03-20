@@ -2,7 +2,7 @@
 
 ---
 
-## 2025-03-17
+## 2025-03-18
 
 ---
 
@@ -34,7 +34,7 @@
 
 ---
 
-## 2025-03-18
+## 2025-03-19
 
 ---
 
@@ -56,8 +56,40 @@
 - 7교시
 - 8교시
 
+---
+
+## 2025-03-20
+
+---
+
 - 1교시
+  - 복습
+  - uart0.h uart1.c 라이브러리 작성
 - 2교시
   - udev 세팅
-  - sudo udevadm control --reload
-  - sudo udevadm trigger
+    - sudo nano /etc/udev/rules.d/99-avrisp.rules
+    - sudo udevadm control --reload
+    - sudo udevadm trigger
+  - stream 설정
+    - stdout, stdin -> FDEV_SETUP_STREAM
+- 3교시
+- 4교시
+- 5교시
+- 6교시
+- 7교시
+- 8교시
+
+---
+
+## 2025-03-21
+
+---
+
+- 1교시
+- 2교시
+- 3교시
+- 4교시
+- 5교시
+- 6교시
+- 7교시
+- 8교시

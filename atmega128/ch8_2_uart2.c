@@ -19,8 +19,6 @@ int main()
     fflush(stdout);
     while (1)
     {
-        printf("Hi, I'm Atmega128");
-        fflush(stdout);
         // rxData = uart0Receive();
         scanf("%c", &rxData);
 

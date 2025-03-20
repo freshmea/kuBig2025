@@ -3,31 +3,59 @@
 #include <avr/io.h>
 #include <stdio.h>
 
-FILE OUTPUT = FDEV_SETUP_STREAM(uart0Transmit, NULL, _FDEV_SETUP_WRITE);
-FILE INPUT = FDEV_SETUP_STREAM(NULL, uart0Receive, _FDEV_SETUP_READ);
+volatile uint8_t intData = '0';
 
 int main()
 {
     uart0Init();
     stdin = &INPUT;
     stdout = &OUTPUT;
-    unsigned char rxData;
-    uint8_t numbers[] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x27, 0x7F, 0x67};
-    DDRA = 0xFF;
+
+    DDRE = 0x02; // Rx(입력), TX(출력)1, SW0~3 입력
+
+    EICRB = 0xFF; // 4567 상승 엣지에서 동작 289p.
+    EIMSK = 0xF0; // 4567 허용
+    EIFR = 0xF0;  // 4567 클리어
+
+    sei(); // 전역 인터럽트 허용
 
     printf("Hi, I'm Atmega128");
-    fflush(stdout);
+
     while (1)
     {
-        printf("Hi, I'm Atmega128");
-        fflush(stdout);
-        // rxData = uart0Receive();
-        scanf("%c", &rxData);
-
-        if ((rxData >= 0x30) && (rxData <= 0x39))
+        if (intData != '0')
         {
-            PORTA = numbers[rxData - 0x30];
+            printf("\n\r Input Switch : %c", intData);
+            intData = '0';
         }
     }
     return 0;
+}
+
+ISR(INT4_vect)
+{
+    cli();
+    intData = '1';
+    sei();
+}
+
+ISR(INT5_vect)
+{
+    cli();
+    intData = '2';
+    sei();
+}
+
+ISR(INT6_vect)
+{
+    cli();
+    intData = '3';
+    sei();
+}
+
+ISR(INT7_vect)
+{
+    cli();
+    intData = '4';
+    sei();
 }
