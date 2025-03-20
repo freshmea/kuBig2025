@@ -1,13 +1,17 @@
+#include "lcd.h"
 #include "uart0.h"
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <stdio.h>
 
 volatile uint8_t intData = '0';
+uint8_t cursor = 0;
 
 int main()
 {
     uart0Init();
+    lcdInit();
+
     stdin = &INPUT;
     stdout = &OUTPUT;
 
@@ -18,6 +22,7 @@ int main()
     EIFR = 0xF0;  // 4567 클리어
 
     sei(); // 전역 인터럽트 허용
+    char cData;
 
     printf("Hi, I'm Atmega128");
 
@@ -27,6 +32,16 @@ int main()
         {
             printf("\n\r Input Switch : %c", intData);
             intData = '0';
+        }
+        cData = fgetc(stdin);
+        lcdDataWrite(cData);
+        cursor++;
+        if (cursor == 16)
+            lcdGotoXY(0, 1);
+        else if (cursor >= 32)
+        {
+            cursor = 0;
+            lcdGotoXY(0, 0);
         }
     }
     return 0;
