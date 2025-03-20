@@ -10,7 +10,7 @@
             "includePath": [
                 "/home/aa/kuBig2025/src",
                 "/home/aa/kuBig2025/lib/lcd",
-                "/home/aa/kuBig2025/lib/uart1",
+                "/home/aa/kuBig2025/lib/uart0",
                 ""
             ],
             "browse": {
@@ -18,7 +18,7 @@
                 "path": [
                     "/home/aa/kuBig2025/src",
                     "/home/aa/kuBig2025/lib/lcd",
-                    "/home/aa/kuBig2025/lib/uart1",
+                    "/home/aa/kuBig2025/lib/uart0",
                     ""
                 ]
             },
