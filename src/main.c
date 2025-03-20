@@ -30,28 +30,28 @@ int main()
     lcdGotoXY(0, 0);
     lcdPrintData("Light Sensor", 12);
     char buf[16];
-    uint8_t onTime, offTime;
+    uint16_t onTime, offTime;
     while (1)
     {
         lcdGotoXY(0, 1);
-        sprintf(buf, "L: %u", adcResult);
-        lcdPrintData(buf, strlen(buf));
-        printf("CDS ADC_data : %u\r\n", adcResult);
+        // sprintf(buf, "L: %u", adcResult);
+        // lcdPrintData(buf, strlen(buf));
+        // printf("CDS ADC_data : %u\r\n", adcResult);
         // 시간 연산
-        onTime = (adcResult - 100) / 35;
+        onTime = (adcResult - 100);
         if (onTime < 0)
             onTime = 0;
-        if (onTime > 20)
-            onTime = 20;
-        offTime = 20 - onTime;
+        if (onTime > 700)
+            onTime = 700;
+        offTime = 700 - onTime;
         PORTC = 0x0F;
         // 켜지는 시간 딜레이
         for (int i = 0; i < onTime; ++i)
-            _delay_ms(1);
+            _delay_us(1);
         PORTC = 0x00;
         // 꺼지는 시간 딜레이
         for (int i = 0; i < offTime; ++i)
-            _delay_ms(1);
+            _delay_us(1);
     }
     return 0;
 }
