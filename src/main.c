@@ -19,6 +19,8 @@ int main()
     stdin = &INPUT;
     stdout = &OUTPUT;
 
+    DDRC = 0x0F; // 1, 2, 3, 4 출력 설정.
+
     ADMUX = 0x40;   // ADC0 single mode, 0번 채널, 3.3V 외부 기준 전압(AREF)
     ADCSRA = 0xAF;  // 10101111 ADC 허가, free running mode, Intterrupt en, 128 분주비
     ADCSRA |= 0x40; // ADC 개시
@@ -28,13 +30,28 @@ int main()
     lcdGotoXY(0, 0);
     lcdPrintData("Light Sensor", 12);
     char buf[16];
+    uint8_t onTime, offTime;
     while (1)
     {
         lcdGotoXY(0, 1);
         sprintf(buf, "L: %u", adcResult);
         lcdPrintData(buf, strlen(buf));
         printf("CDS ADC_data : %u\r\n", adcResult);
-        _delay_ms(200);
+        // 시간 연산
+        onTime = (adcResult - 100) / 35;
+        if (onTime < 0)
+            onTime = 0;
+        if (onTime > 20)
+            onTime = 20;
+        offTime = 20 - onTime;
+        PORTC = 0x0F;
+        // 켜지는 시간 딜레이
+        for (int i = 0; i < onTime; ++i)
+            _delay_ms(1);
+        PORTC = 0x00;
+        // 꺼지는 시간 딜레이
+        for (int i = 0; i < offTime; ++i)
+            _delay_ms(1);
     }
     return 0;
 }
