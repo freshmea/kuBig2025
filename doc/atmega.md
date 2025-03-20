@@ -78,9 +78,13 @@
   - uart3 실습 파일 PC 에서 스트링 정보 Atmega128 로 전송
 - 5교시
   - ADC 실습 - 조도 센서 프린트
+  - timer0 실습 - LED 제거 1초 세팅
 - 6교시
+  - timer2 실습 - TCCR2 설정시 주의  TCCR0 와 다름
 - 7교시
+  - pwm 구현 timer0 비교기 compare output mode 설정
 - 8교시
+  - 정리
 
 ---
 
