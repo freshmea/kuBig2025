@@ -3,22 +3,24 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
-uint8_t ledData = 0x01;
-volatile uint8_t timer2Cnt = 0;
-ISR(TIMER2_OVF_vect);
+volatile uint8_t ledData = 0x00;
+uint8_t timer0Cnt = 0;
+ISR(TIMER0_OVF_vect);
 
 int main(void)
 {
     DDRC = 0x0F;
 
-    TCCR2 = _BV(CS22) | _BV(CS20); // clock select 1024 prescale
-    TIMSK = _BV(TOIE2);            // timer interrupt en.
+    TCCR0 = _BV(CS02) | _BV(CS01) | _BV(CS00); // clock select 1024 prescale
+    // TCNT0 = 112;                               // 114 * 1024 prescale Hz 160000/1024*114 --> 10ms
+    TIMSK = _BV(TOIE0); // timer interrupt en.
+    // TIFR |= _BV(TOV0); 없어도 됨
 
     sei();
     uint8_t direction = 0;
     while (1)
     {
-        if (timer2Cnt == 30)
+        if (timer0Cnt == 100)
         {
             if (ledData > 0x04)
                 direction = 0;
@@ -27,20 +29,21 @@ int main(void)
                 direction = 1;
                 ledData = 1;
             }
+
             if (direction)
                 ledData <<= 1;
             else
                 ledData >>= 1;
-            timer2Cnt = 0;
+            timer0Cnt = 0;
         }
         PORTC = ledData;
     }
 }
 
-ISR(TIMER2_OVF_vect)
+ISR(TIMER0_OVF_vect)
 {
     cli();
-    TCNT2 = 112; // 113, 114 .... 255 .. 144-> 0.0025 초
-    timer2Cnt++;
+    TCNT0 = 112; // 113, 114 .... 255 .. 144-> 0.0025 초
+    timer0Cnt++;
     sei();
 }
