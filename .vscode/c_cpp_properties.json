@@ -9,16 +9,16 @@
             "name": "PlatformIO",
             "includePath": [
                 "/home/aa/kuBig2025/src",
-                "/home/aa/kuBig2025/lib/lcd",
                 "/home/aa/kuBig2025/lib/uart0",
+                "/home/aa/kuBig2025/lib/lcd",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
                     "/home/aa/kuBig2025/src",
-                    "/home/aa/kuBig2025/lib/lcd",
                     "/home/aa/kuBig2025/lib/uart0",
+                    "/home/aa/kuBig2025/lib/lcd",
                     ""
                 ]
             },

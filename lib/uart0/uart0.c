@@ -19,7 +19,7 @@ void uart0Transmit(char data)
 
 unsigned char uart0Receive(void)
 {
-    while ((UCSR0A & _BV(RXC0)) == 0) // 문자 버퍼에 있으면 루프 탈출
+    while (!(UCSR0A & _BV(RXC0))) // 문자 버퍼에 있으면 루프 탈출
         ;
     return UDR0;
 }
