@@ -3,6 +3,7 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <stdio.h>
+#include <util/delay.h>
 
 volatile uint8_t intData = '0';
 uint8_t cursor = 0;
@@ -25,7 +26,7 @@ int main()
     char cData;
 
     printf("Hi, I'm Atmega128");
-
+    lcdGotoXY(0, 0);
     while (1)
     {
         if (intData != '0')
@@ -33,15 +34,19 @@ int main()
             printf("\n\r Input Switch : %c", intData);
             intData = '0';
         }
-        cData = fgetc(stdin);
-        lcdDataWrite(cData);
-        cursor++;
-        if (cursor == 16)
-            lcdGotoXY(0, 1);
-        else if (cursor >= 32)
+        while (UCSR0A & (1 << RXC0))
         {
-            cursor = 0;
-            lcdGotoXY(0, 0);
+            // TODO : 4 개 문자 이상 못 받아 오는 문제 버퍼 문제 해결.
+            cData = fgetc(stdin);
+            lcdDataWrite(cData);
+            cursor++;
+            if (cursor == 16)
+                lcdGotoXY(0, 1);
+            else if (cursor >= 32)
+            {
+                cursor = 0;
+                lcdGotoXY(0, 0);
+            }
         }
     }
     return 0;
