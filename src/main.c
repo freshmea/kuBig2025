@@ -1,46 +1,26 @@
-// timer2 번을 써서 LED 좌우로 움직이는 코드 작성. 0.3초마다 움직이기.
-
 #include <avr/interrupt.h>
 #include <avr/io.h>
-
-uint8_t ledData = 0x01;
-volatile uint8_t timer2Cnt = 0;
-ISR(TIMER2_OVF_vect);
+#include <util/delay.h>
 
 int main(void)
 {
-    DDRC = 0x0F;
+    DDRC = 0x00;
+    DDRB |= _BV(PB4);
 
-    TCCR2 = _BV(CS22) | _BV(CS20); // clock select 1024 prescale
-    TIMSK = _BV(TOIE2);            // timer interrupt en.
+    TCCR0 = _BV(WGM00) | _BV(WGM01) | _BV(COM01) | _BV(CS01); // clock select 1024 prescale
 
-    sei();
-    uint8_t direction = 0;
+    uint8_t brightness = 0;
+    int8_t delta = 1;
+
     while (1)
     {
-        if (timer2Cnt == 30)
+        OCR0 = brightness; // 0~ 255
+        _delay_ms(10);
+        brightness += delta;
+        if (brightness == 0 || brightness == 255)
         {
-            if (ledData > 0x04)
-                direction = 0;
-            if (ledData == 1)
-            {
-                direction = 1;
-                ledData = 1;
-            }
-            if (direction)
-                ledData <<= 1;
-            else
-                ledData >>= 1;
-            timer2Cnt = 0;
+            delta = -delta;
         }
-        PORTC = ledData;
     }
-}
-
-ISR(TIMER2_OVF_vect)
-{
-    cli();
-    TCNT2 = 112; // 113, 114 .... 255 .. 144-> 0.0025 초
-    timer2Cnt++;
-    sei();
+    return 0;
 }
