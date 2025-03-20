@@ -24,7 +24,7 @@ int main()
 
     sei(); // 전역 인터럽트 허용
     char cData;
-    char buffer[30];
+    char buffer[32];
     uint8_t count;
 
     printf("Hi, I'm Atmega128");
