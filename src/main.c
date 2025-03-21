@@ -1,26 +1,36 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
-#include <util/delay.h>
 
-int main(void)
+volatile uint8_t ledData = 0x00;
+volatile uint8_t timer1Cnt = 0;
+
+int main()
 {
-    DDRC = 0x00;
-    DDRB |= _BV(PB4);
+    DDRC = 0x0F; // 1, 2, 3, 4 출력 설정
 
-    TCCR0 = _BV(WGM00) | _BV(WGM01) | _BV(COM01) | _BV(CS01); // clock select 1024 prescale
+    TCCR1A = 0x00;
+    TCCR1B = 0x01; // 분주비 1 16Mhz 16000000/65535 =
 
-    uint8_t brightness = 0;
-    int8_t delta = 1;
+    TIMSK = 0x04;
+
+    sei(); // 전역 인터럽트 허용
 
     while (1)
     {
-        OCR0 = brightness; // 0~ 255
-        _delay_ms(10);
-        brightness += delta;
-        if (brightness == 0 || brightness == 255)
+        if (timer1Cnt == 255)
         {
-            delta = -delta;
+            ledData++;
+            if (ledData > 0x0F)
+                ledData = 0;
+            timer1Cnt = 0;
         }
+        PORTC = ledData;
     }
     return 0;
+}
+
+ISR(TIMER1_OVF_vect)
+{
+    cli();
+    timer1Cnt++;
 }
