@@ -13,8 +13,9 @@ int main()
     TCCR1A = 0x00;
     TCCR1B = 0x05; // 분주비 1024
 
-    OCR1A = 14400; // 1초
-    TIMSK = 0x10;  // compare 인터럽트 Enable
+    OCR1A = 14400;                                  // 65535 / 28800 에서 인터럽트 A
+    OCR1B = 28800;                                  // 65535 / 28800 에서 인터럽트 B
+    TIMSK = _BV(OCIE1A) | _BV(OCIE1B) | _BV(TOIE1); // compare 인터럽트 Enable
     // ETIFR |= _BV(ICF3);
     sei(); // 전역 인터럽트 허용
     PORTA = numbers[0];
@@ -30,7 +31,20 @@ int main()
 ISR(TIMER1_COMPA_vect)
 {
     cli();
-    // OCR1A += 14400;
+    timeS++;
+    sei();
+}
+
+ISR(TIMER1_COMPB_vect)
+{
+    cli();
+    timeS--;
+    sei();
+}
+
+ISR(TIMER1_OVF_vect)
+{
+    cli();
     timeS++;
     sei();
 }
