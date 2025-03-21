@@ -8,13 +8,15 @@ volatile uint8_t fndFlag = 0, edgeFlag = 0;
 int main()
 {
     DDRA = 0xFF; // FND led 출력 설정
+    DDRE = 0x00;
 
     TCCR3A = 0x00;
     TCCR3B = 0x45; // 상승 엣지 캡처 트리거 설정
     // 분주비 1024
-    ETIMSK = _BV(TOIE3); // ! TIMSK --> ETIMSK 주의 사항
-    sei();               // 전역 인터럽트 허용
-
+    ETIMSK = _BV(TICIE3); // ! TIMSK --> ETIMSK 주의 사항
+    ETIFR |= _BV(ICF3);
+    sei(); // 전역 인터럽트 허용
+    PORTA = numbers[0];
     while (1)
     {
         if (fndFlag)
