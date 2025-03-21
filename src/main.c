@@ -1,50 +1,28 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
+#include <util/delay.h>
 
-uint8_t numbers[] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x27, 0x7F, 0x67};
-volatile uint8_t timeS = 0x01;
-volatile uint8_t timer1Cnt;
+uint16_t doReMi[8] = {523, 587, 659, 698, 783, 880, 987, 1046};
+uint8_t piano = 0;
 
 int main()
 {
-    DDRA = 0xFF; // FND led 출력 설정
-    DDRE = 0x00;
+    // PB7 핀 피에조 -> OCR1C
+    DDRB = _BV(PB7); // 7번 출력 설정
 
-    TCCR1A = 0x00;
-    TCCR1B = 0x05; // 분주비 1024
+    TCCR1A = _BV(COM1C1) | _BV(WGM11);            // com 10 -> clear on compare
+    TCCR1B = _BV(WGM13) | _BV(WGM12) | _BV(CS00); // 분주비 1, fast PWM
 
-    OCR1A = 14400;                                  // 65535 / 28800 에서 인터럽트 A
-    OCR1B = 28800;                                  // 65535 / 28800 에서 인터럽트 B
-    TIMSK = _BV(OCIE1A) | _BV(OCIE1B) | _BV(TOIE1); // compare 인터럽트 Enable
-    // ETIFR |= _BV(ICF3);
     sei(); // 전역 인터럽트 허용
-    PORTA = numbers[0];
+
     while (1)
     {
-        PORTA = numbers[timeS];
-        if (timeS > 10)
-            timeS = 0;
+        ICR1 = 14745600 / doReMi[piano]; // 주파수 만큼 duty cycle을 설정 하겠다.
+        OCR1C = ICR1 / 2;                // 절반을 on 시키겠다.
+        piano++;
+        if (piano > 7)
+            piano = 0;
+        _delay_ms(300);
     }
     return 0;
-}
-
-ISR(TIMER1_COMPA_vect)
-{
-    cli();
-    timeS++;
-    sei();
-}
-
-ISR(TIMER1_COMPB_vect)
-{
-    cli();
-    timeS--;
-    sei();
-}
-
-ISR(TIMER1_OVF_vect)
-{
-    cli();
-    timeS++;
-    sei();
 }
