@@ -9,7 +9,7 @@ int main()
     DDRC = 0x0F; // 1, 2, 3, 4 출력 설정
 
     TCCR1A = 0x00;
-    TCCR1B = 0x01; // 분주비 1 16Mhz 16000000/65535 =
+    TCCR1B = 0x01; // 분주비 1 16Mhz 16000000/65535 = 244.144 Hz
 
     TIMSK = 0x04;
 
@@ -17,7 +17,7 @@ int main()
 
     while (1)
     {
-        if (timer1Cnt == 255)
+        if (timer1Cnt == 244)
         {
             ledData++;
             if (ledData > 0x0F)
