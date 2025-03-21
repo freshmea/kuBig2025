@@ -8,7 +8,7 @@
 #include <util/delay.h>
 
 volatile uint8_t ledData = 0x01;
-volatile uint8_t direction = 1;
+volatile uint8_t direction = 0;
 
 int main()
 {
@@ -16,9 +16,9 @@ int main()
 
     TCCR3A = 0x00;
     TCCR3B = _BV(CS32); // 분주비 1 16Mhz 16000000/65536 = 244.144 Hz
-    // 분주비 256 16Mhz 16000000/256 = 62500 Hz  --> 3.33 Hz--> 1950 count 63585
-    TIMSK = _BV(TOIE3);
-    TCNT3 = 63585; // 시작 카운트 숫자
+    // 분주비 256 16Mhz 16000000/256 = 62500 Hz  18750--> 3.33 Hz--> 1950 count 46786
+    ETIMSK = _BV(TOIE3);
+    TCNT3 = 46786; // 시작 카운트 숫자
     sei();         // 전역 인터럽트 허용
 
     while (1)
@@ -29,7 +29,7 @@ int main()
 ISR(TIMER3_OVF_vect)
 {
     cli();
-    TCNT3 = 63585;
+    TCNT3 = 46786;
     if (ledData > 0x04)
         direction = 0;
     if (ledData == 1)
