@@ -1,7 +1,3 @@
-// SHT 5초 마다 한번씩 온습도 측정 - timer0 5초 주기를 계산.
-// 외부 EEPROM  의 주소는 0100-> 온도 0200-> 습도
-// SHT 에서 측정 실패는 error 성공 시에만 EEPROM 에 저장.
-// INT4 번 써서(스위치를 누르면) EEPROM 에 데이터를 읽어서 UART로 출력하기.
 
 #include "SHT2x.h"
 #include "TWI_driver.h"
