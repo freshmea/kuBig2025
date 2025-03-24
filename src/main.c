@@ -1,45 +1,52 @@
+#include "at25160.h"
 #include "lcd.h"
 #include <avr/delay.h>
 #include <avr/io.h>
 
+#define ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))
+
+uint8_t msg1[] = "welcome!!";
+uint8_t msg2[] = "Atmega128-World!!";
+uint8_t msg3[] = "SPI-Flash Example";
+
 int main(void)
 {
-    uint8_t pwmDuty = 60, cntDir = 0;
-    DDRD = _BV(PD4) | _BV(PD5); // M1 출력 설정
-    DDRB = _BV(PB5);            // M1 enable 핀
+    uint8_t i = 0;
+    uint8_t buf1[20] = {0};
+    uint8_t buf2[20] = {0};
+    uint8_t buf3[20] = {0};
 
-    TCCR1A = _BV(COM1A1) | _BV(WGM11);
-    TCCR1B = _BV(CS11) | _BV(WGM12) | _BV(WGM13);
-    // fast pwm 분주비 8 -> 16MHz/8 = 2MHz
-    ICR1 = 800;          // 2MHz : 1 초 == 800 Hz : x 초 ... 2500 Hz
-    OCR1A = 8 * pwmDuty; // 800 카운트 하는데 560 번까지 -> 5V 70 %
+    SPI_Init(); // PB0 1 2 3
+    lcdInit();  // PC4 5 6 7 PG2
 
-    lcdInit();
-    lcdGotoXY(0, 0);
-    lcdPrintData(" Duty: ", 7);
+    at25160_Write_Arry(0x0100, msg1, ARRAY_SIZE(msg1));
+    at25160_Write_Arry(0x0200, msg2, ARRAY_SIZE(msg2));
+    at25160_Write_Arry(0x0300, msg3, ARRAY_SIZE(msg3));
 
-    PORTD |= _BV(PD4); // M1 정회전
-    PORTB |= _BV(PB5); // M1 회전 enable
+    at25160_Read_Arry(0x0100, buf1, ARRAY_SIZE(buf1));
+    at25160_Read_Arry(0x0200, buf2, ARRAY_SIZE(buf2));
+    at25160_Read_Arry(0x0300, buf3, ARRAY_SIZE(buf3));
 
     while (1)
     {
-        if (cntDir)
+        lcdGotoXY(0, 0);
+        for (i = 0; i < ARRAY_SIZE(msg1) - 1; i++)
         {
-            pwmDuty = pwmDuty - 5;
-            if (pwmDuty < 50)
-                cntDir = 0;
+            lcdDataWrite(buf1[i]);
+            _delay_ms(100);
         }
-        else
+        i = 0;
+        lcdGotoXY(0, 1);
+        while (buf2[i])
         {
-            pwmDuty = pwmDuty + 5;
-            if (pwmDuty > 99)
-                cntDir = 1;
+            lcdDataWrite(buf2[i]);
+            ++i;
+            _delay_ms(100);
         }
-        OCR1A = 8 * pwmDuty; // 0~100
-        lcdGotoXY(7, 0);
-        lcdDataWrite((pwmDuty / 10) % 10 + '0');
-        lcdDataWrite((pwmDuty) % 10 + '0');
-        lcdDataWrite('%');
+        lcdGotoXY(0, 0);
+        lcdPrint(buf3);
+        _delay_ms(2000);
+        lcdClear();
     }
 
     return 0;
