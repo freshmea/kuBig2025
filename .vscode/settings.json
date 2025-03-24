@@ -37,7 +37,9 @@
         "delay.h": "c",
         "interrupt.h": "c",
         "arduino.h": "c",
-        "sht2x.h": "c"
+        "sht2x.h": "c",
+        "at25160.h": "c",
+        "uart0.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"

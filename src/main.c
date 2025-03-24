@@ -2,82 +2,78 @@
 // 외부 EEPROM  의 주소는 0100-> 온도 0200-> 습도
 // SHT 에서 측정 실패는 error 성공 시에만 EEPROM 에 저장.
 // INT4 번 써서(스위치를 누르면) EEPROM 에 데이터를 읽어서 UART로 출력하기.
+// 0 ~ 99.9 표현하려면 1 byte 로는 부족하다. ???
 
 #include "SHT2x.h"
-#include "TWI_driver.h"
-#include "lcd.h"
+#include "at25160.h"
+#include "uart0.h"
 #include <avr/interrupt.h>
 #include <avr/io.h>
-#include <util/delay.h>
 
-void printf_2dot1(uint8_t sense, uint16_t sense_temp);
-
-uint16_t temperaturC, humidityRH;
+volatile uint8_t readFlag = 1, txFlag = 0;
+uint16_t timerCount = 0;
+uint16_t temperatureC, humidityRH;
 
 int main(void)
 {
+    SPI_Init();
+
     Init_TWI();
-    lcdInit();
     SHT2x_Init();
-    nt16 sRH;
-    nt16 sT;
-    uint8_t error;
+
+    uart0Init();
+    DDRE = _BV(PE1); // 0x02;
+
+    // interrupt 4 설정
+    EICRB = 0x03; // int 4 상승 엣지
+    EIMSK = 0x10;
+
+    TCCR0 = 0x07; // 1024 분주비
+    TCNT0 = 112;  // 144 세기.. 16M /1024/ 0.1초 ....
+    TIMSK = 0x01; // timer0 ovf enable
+
+    sei();
 
     while (1)
     {
-        error |= SHT2x_MeasureHM(HUMIDITY, &sRH);
-        error |= SHT2x_MeasureHM(TEMP, &sT);
-        temperaturC = SHT2x_CalcTemperatureC(sT.u16) * 10;
-        humidityRH = SHT2x_CalcRH(sRH.u16) * 10;
-        if (error == SUCCESS)
+        if (readFlag)
         {
-            lcdGotoXY(0, 0);
-            printf_2dot1(TEMP, temperaturC);
-            lcdGotoXY(0, 1);
-            printf_2dot1(HUMIDITY, humidityRH);
+            // i2c temp read -> spi eeprom write
+            SHT2x_MeasureHM(TEMP, (nt16 *)&temperatureC);
+            SHT2x_MeasureHM(HUMIDITY, (nt16 *)&humidityRH);
+            temperatureC = SHT2x_CalcTemperatureC(temperatureC);
+            humidityRH = SHT2x_CalcRH(humidityRH);
+            at25160_Write_Arry(0x0100, (uint8_t *)&temperatureC, 2);
+            at25160_Write_Arry(0x0200, (uint8_t *)&humidityRH, 2);
+            readFlag = 0;
         }
-        else
+        if (txFlag)
         {
-            lcdGotoXY(0, 0);
-            lcdPrintData(" Temp: --.-C", 12);
-            lcdGotoXY(0, 1);
-            lcdPrintData(" Humi: --.-%", 12);
+            // eeprom read -> uart printf();
+            at25160_Read_Arry(0x0100, (uint8_t *)&temperatureC, 2);
+            at25160_Read_Arry(0x0200, (uint8_t *)&humidityRH, 2);
+            uart0PrintString("\n\rTemp: ");
+            printf("%u.%u", temperatureC / 10, temperatureC % 10);
+            uart0PrintString("\n\rHumi: ");
+            printf("%u.%u", humidityRH / 10, humidityRH % 10);
+            txFlag = 0;
         }
-        _delay_ms(300);
     }
     return 0;
 }
 
-void printf_2dot1(uint8_t sense, uint16_t sense_temp)
+ISR(TIMER0_OVF_vect)
 {
-    uint8_t s100, s10;
-    if (sense == TEMP)
+    timerCount++;
+    if (timerCount >= 500) // 5초 확인
     {
-        lcdPrintData(" Temp: ", 7);
-
-        s100 = sense_temp / 100; // 100의 자리
-        if (s100 > 0)
-            lcdDataWrite(s100 + '0');
-
-        s10 = sense_temp / 10 - s100 * 10; // 10의 자리
-        if (s10 > 0)
-            lcdDataWrite(s10 + '0');
-        lcdDataWrite('.');                   // . 프린트
-        lcdDataWrite(sense_temp % 10 + '0'); // 1의 자리
-        lcdDataWrite('C');                   // C 프린트
+        timerCount = 0;
+        readFlag = 1;
     }
-    else if (sense == HUMIDITY)
-    {
-        lcdPrintData(" Humi: ", 7);
-        s100 = sense_temp / 100; // 100의 자리
-        if (s100 > 0)
-            lcdDataWrite(s100 + '0');
+    TCNT0 = 112;
+}
 
-        s10 = sense_temp / 10 - s100 * 10; // 10의 자리
-        if (s10 > 0)
-            lcdDataWrite(s10 + '0');
-        lcdDataWrite('.');                   // . 프린트
-        lcdDataWrite(sense_temp % 10 + '0'); // 1의 자리
-        lcdDataWrite('%');                   // % 프린트
-    }
+ISR(INT4_vect)
+{
+    txFlag = 1;
 }
