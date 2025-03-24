@@ -1,45 +1,78 @@
-#include "at25160.h"
+#include "SHT2x.h"
+#include "TWI_driver.h"
 #include "lcd.h"
-#include <avr/delay.h>
+#include <avr/interrupt.h>
 #include <avr/io.h>
+#include <util/delay.h>
 
-#define ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))
+void printf_2dot1(uint8_t sense, uint16_t sense_temp);
+
+uint16_t temperaturC, humidityRH;
 
 int main(void)
 {
-    uint8_t i = 0;
-    uint8_t buf1[20] = {0};
-    uint8_t buf2[20] = {0};
-    uint8_t buf3[20] = {0};
-
-    SPI_Init(); // PB0 1 2 3
-    lcdInit();  // PC4 5 6 7 PG2
-
-    at25160_Read_Arry(0x0100, buf1, ARRAY_SIZE(buf1));
-    at25160_Read_Arry(0x0200, buf2, ARRAY_SIZE(buf2));
-    at25160_Read_Arry(0x0300, buf3, ARRAY_SIZE(buf3));
+    Init_TWI();
+    lcdInit();
+    SHT2x_Init();
+    nt16 sRH;
+    nt16 sT;
+    uint8_t error;
 
     while (1)
     {
-        lcdGotoXY(0, 0);
-        for (i = 0; i < 10 - 1; i++)
+        error |= SHT2x_MeasureHM(HUMIDITY, &sRH);
+        error |= SHT2x_MeasureHM(TEMP, &sT);
+        temperaturC = SHT2x_CalcTemperatureC(sT.u16) * 10;
+        humidityRH = SHT2x_CalcRH(sRH.u16) * 10;
+        if (error == SUCCESS)
         {
-            lcdDataWrite(buf1[i]);
-            _delay_ms(100);
+            lcdGotoXY(0, 0);
+            printf_2dot1(TEMP, temperaturC);
+            lcdGotoXY(0, 1);
+            printf_2dot1(HUMIDITY, humidityRH);
         }
-        i = 0;
-        lcdGotoXY(0, 1);
-        while (buf2[i])
+        else
         {
-            lcdDataWrite(buf2[i]);
-            ++i;
-            _delay_ms(100);
+            lcdGotoXY(0, 0);
+            lcdPrintData(" Temp: --.-C", 12);
+            lcdGotoXY(0, 1);
+            lcdPrintData(" Humi: --.-%", 12);
         }
-        lcdGotoXY(0, 0);
-        lcdPrint(buf3);
-        _delay_ms(2000);
-        lcdClear();
+        _delay_ms(300);
     }
-
     return 0;
+}
+
+void printf_2dot1(uint8_t sense, uint16_t sense_temp)
+{
+    uint8_t s100, s10;
+    if (sense == TEMP)
+    {
+        lcdPrintData(" Temp: ", 7);
+
+        s100 = sense_temp / 100; // 100의 자리
+        if (s100 > 0)
+            lcdDataWrite(s100 + '0');
+
+        s10 = sense_temp / 10 - s100 * 10; // 10의 자리
+        if (s10 > 0)
+            lcdDataWrite(s10 + '0');
+        lcdDataWrite('.');                   // . 프린트
+        lcdDataWrite(sense_temp % 10 + '0'); // 1의 자리
+        lcdDataWrite('C');                   // C 프린트
+    }
+    else if (sense == HUMIDITY)
+    {
+        lcdPrintData(" Humi: ", 7);
+        s100 = sense_temp / 100; // 100의 자리
+        if (s100 > 0)
+            lcdDataWrite(s100 + '0');
+
+        s10 = sense_temp / 10 - s100 * 10; // 10의 자리
+        if (s10 > 0)
+            lcdDataWrite(s10 + '0');
+        lcdDataWrite('.');                   // . 프린트
+        lcdDataWrite(sense_temp % 10 + '0'); // 1의 자리
+        lcdDataWrite('%');                   // % 프린트
+    }
 }
