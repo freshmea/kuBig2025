@@ -133,6 +133,11 @@
   - 메모리 종류(flash, sram, eeprom)와 내부 eeprom
   - ic2 통신 설명
 - 5교시
+  - 라이브러리 리뷰 - TWI.h, TWI.c, sht20.h, sht20.c
+  - ic2 예제 i2c_tempHumi.c
 - 6교시
+  - 최종 예제 eeprom_temp.c(온도센서, eeprom, uart, interrupt)
 - 7교시
+  - 교재 복습
 - 8교시
+  - 시험

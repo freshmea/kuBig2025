@@ -30,3 +30,18 @@
   - Atmega128의 기본적인 사용법을 익히고 이를 이용한 프로젝트를 수행한다.
   - Atmega128의 입출력을 이용한 프로젝트를 수행한다.
 - [과정 진행 사항](doc/atmega128.md)
+- 시험 링크 : [구글 설문지]()
+
+---
+
+## Project 1 - C Programming, Mysql, Atmega128
+
+---
+
+- 프로젝트 목표
+  - C언어를 이용한 프로그램을 작성하고 Mysql과 연동하여 데이터를 저장하고 읽는 방법을 익힌다.
+  - Atmega128을 이용한 프로젝트를 수행하고 이를 Mysql과 연동하여 데이터를 저장하고 읽는 방법을 익힌다.
+- 프로젝트 깃링크
+  - [1조](https://github.com/example/group1)
+  - [2조](https://github.com/example/group2)
+  - [3조](https://github.com/example/group3)
