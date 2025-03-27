@@ -527,50 +527,92 @@ void testServo(int rgb_servo_fd)
     printf("Servo 테스트: Servo1, Servo2 180도에서 0도까지 천천히 회전\n");
 
     // PCA9685 초기화
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x80); // 리셋
-    delay(10);
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x00); // SLEEP = 0
-    delay(10);
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x79); // 50Hz
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x20);    // AI = 1
-    delay(10);
-
-    // 모든 채널 초기화
-    for (int i = 0; i < 16; i += 4)
+    // 1. 리셋
+    int result = wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x80);
+    if (result < 0)
     {
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + i, 0);
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + i + 2, 0);
+        printf("MODE1 리셋 실패: %d\n", result);
+        return 1;
     }
+    delay(10);
+    // 2. SLEEP 비트 해제 및 오실레이터 활성화
+    result = wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x00);
+    if (result < 0)
+    {
+        printf("SLEEP 비트 해제 실패: %d\n", result);
+        return 1;
+    }
+    delay(10); // 오실레이터 안정화 대기
+    // 3. 주파수 설정 (50Hz, PRESCALE = 0x79)
+    result = wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x79);
+    if (result < 0)
+    {
+        printf("PRESCALE 설정 실패: %d\n", result);
+        return 1;
+    }
+    // 4. Auto Increment 활성화 및 정상 모드 설정
+    result = wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x20);
+    if (result < 0)
+    {
+        printf("Auto Increment 설정 실패: %d\n", result);
+        return 1;
+    }
+    delay(10);
 
-    int servo_0 = 102;   // 0도
-    int servo_180 = 512; // 180도
+    // 5. 모든 채널 초기화 (PWM OFF)
+    for (int i = 0; i < 16; i++)
+    {
+        int channel_on = PCA9685_LED0_ON_L + (i * 4);
+        int channel_off = PCA9685_LED0_ON_L + (i * 4) + 2;
+        result = wiringPiI2CWriteReg16(rgb_servo_fd, channel_on, 0);
+        if (result < 0)
+        {
+            printf("채널 %d ON 초기화 실패: %d\n", i, result);
+            return 1;
+        }
+        result = wiringPiI2CWriteReg16(rgb_servo_fd, channel_off, 0);
+        if (result < 0)
+        {
+            printf("채널 %d OFF 초기화 실패: %d\n", i, result);
+            return 1;
+        }
+    }
+    printf("모든 채널 초기화 완료\n");
+
+    // Servo1: CH3, Servo2: CH4
+    int servo1_on = PCA9685_LED0_ON_L + 12;  // CH3 ON_L, ON_H
+    int servo1_off = PCA9685_LED0_ON_L + 14; // CH3 OFF_L, OFF_H
+    int servo2_on = PCA9685_LED0_ON_L + 16;  // CH4 ON_L, ON_H
+    int servo2_off = PCA9685_LED0_ON_L + 18; // CH4 OFF_L, OFF_H
+
+    printf("Servo 테스트 시작: Servo1(CH3), Servo2(CH4)\n");
 
     printf("Servo1, Servo2를 180도로 설정...\n");
-    // Servo1 (CH5, R48)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, servo_180);
-    // Servo2 (CH4, R50)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_180);
+    // Servo1 (CH3)
+    wiringPiI2CWriteReg16(rgb_servo_fd, servo1_on, 0);
+    wiringPiI2CWriteReg16(rgb_servo_fd, servo1_off, servo_180);
+    // Servo2 (CH4)
+    wiringPiI2CWriteReg16(rgb_servo_fd, servo2_on, 0);
+    wiringPiI2CWriteReg16(rgb_servo_fd, servo2_off, servo_180);
     delay(1000);
 
     printf("180도에서 0도까지 이동...\n");
     for (int pulse = servo_180; pulse >= servo_0; pulse -= 1)
     {
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, pulse); // Servo1 (CH5)
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, pulse); // Servo2 (CH4)
+        wiringPiI2CWriteReg16(rgb_servo_fd, servo1_off, pulse); // Servo1 (CH5)
+        wiringPiI2CWriteReg16(rgb_servo_fd, servo2_off, pulse); // Servo2 (CH4)
         delay(20);
     }
 
     // 0도에 도달 후 토크 해제
     printf("0도에 도달, 토크 해제 중...\n");
     // Servo1 (CH4) 토크 해제: PWM 신호 끄기
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, 0); // OFF = 0
+    wiringPiI2CWriteReg16(rgb_servo_fd, servo1_on, 0);
+    wiringPiI2CWriteReg16(rgb_servo_fd, servo1_off, 0);
     // Servo2 (CH5) 토크 해제: PWM 신호 끄기
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, 0); // OFF = 0
-    delay(50);                                                      // 해제 후 대기
+    wiringPiI2CWriteReg16(rgb_servo_fd, servo2_on, 0);
+    wiringPiI2CWriteReg16(rgb_servo_fd, servo2_off, 0);
+    delay(50); // 해제 후 대기
 
     printf("서보 테스트 완료, 토크 해제됨\n");
 }
