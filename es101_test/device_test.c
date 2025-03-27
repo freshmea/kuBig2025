@@ -1,4 +1,4 @@
-// cc -o device_test device_test.c -lwiringPi
+// cc -o device_test device_test.c ssd1306_i2c.c -lwiringPi
 
 #include "ssd1306_i2c.h"
 #include <stdint.h>

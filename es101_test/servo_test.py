@@ -1,7 +1,12 @@
+# Servo Motor Test Code
+# sudo pip3 install adafruit-circuitpython-pca9685
+# sudo pip3 install adafruit-circuitpython-servokit
+
 import time
+
+import adafruit_pca9685
 import board
 import busio
-import adafruit_pca9685
 from adafruit_servokit import ServoKit
 
 # I2C 버스 초기화
