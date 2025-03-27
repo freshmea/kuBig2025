@@ -45,3 +45,13 @@
   - [1조](https://github.com/example/group1)
   - [2조](https://github.com/example/group2)
   - [3조](https://github.com/example/group3)
+
+---
+
+### ES-101 테스트
+
+- wifi-접속
+- 비번 변경 - sudo passwd [사용자이름]
+- 파일 복사 - scp [파일이름] [사용자이름]@[ip주소]:[경로]
+  - `scp -r es101_test/ hotari@192.168.0.43:~/`
+- 

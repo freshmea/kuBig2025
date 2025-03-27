@@ -1,3 +1,6 @@
+// cc -o device_test device_test.c -lwiringPi
+
+#include "ssd1306_i2c.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,11 +52,6 @@
 #define PCA9685_MODE1 0x00
 #define PCA9685_PRESCALE 0xFE
 #define PCA9685_LED0_ON_L 0x06
-
-// SSD1306 명령어 (OLED)
-#define SSD1306_SETCONTRAST 0x81
-#define SSD1306_DISPLAYON 0xAF
-#define SSD1306_NORMALDISPLAY 0xA6
 
 // 숫자별 세그먼트 패턴 (0~9, 공통 cathode 기준, a~g + dp)
 unsigned char fndPatterns[] =
@@ -526,79 +524,76 @@ void testRGB(int rgb_servo_fd)
 
 void testServo(int rgb_servo_fd)
 {
-    printf("Servo 테스트: Servo1, Servo2 0도->90도->180도 회전\n");
+    printf("Servo 테스트: Servo1, Servo2 180도에서 0도까지 천천히 회전\n");
 
-    // 서보 모터 제어 초기화 (PCA9685 이미 초기화되었다고 가정)
+    // PCA9685 초기화
+    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x80); // 리셋
+    delay(10);
+    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x7A); // 50Hz 설정 (정확히)
+    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x20);    // 활성화 + Auto Increment
+    delay(10);
 
-    // 0도 위치 (1ms 펄스)
-    printf("0도 위치로 이동 중...\n");
-    int servo_0 = (int)(4096 * (1.0 / 20.0));
-    // Servo1 (CH4)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_0);
-    // Servo2 (CH5)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 20, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, servo_0);
-    delay(1000);
+    // 서보 펄스 값 계산 (50Hz 기준, 20ms 주기)
+    int servo_180 = (int)(4096 * (2.0 / 20.0)); // 약 409 (180도)
+    int servo_0 = (int)(4096 * (1.0 / 20.0));   // 약 205 (0도)
 
-    // 90도 위치 (1.5ms 펄스)
-    printf("90도 위치로 이동 중...\n");
-    int servo_90 = (int)(4096 * (1.5 / 20.0));
-    // Servo1 (CH4)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_90);
-    // Servo2 (CH5)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 20, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, servo_90);
-    delay(1000);
-
-    // 180도 위치 (2ms 펄스)
-    printf("180도 위치로 이동 중...\n");
-    int servo_180 = (int)(4096 * (2.0 / 20.0));
+    // 초기 위치: 180도
+    printf("180도에서 시작...\n");
     // Servo1 (CH4)
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_180);
     // Servo2 (CH5)
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 20, 0);
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, servo_180);
-    delay(1000);
+    delay(1000); // 초기 위치 유지
 
-    // 초기 위치(90도)로 복귀
-    printf("초기 위치(90도)로 복귀 중...\n");
-    // Servo1 (CH4)
+    // 180도에서 0도까지 천천히 이동
+    printf("180도에서 0도까지 천천히 이동 중...\n");
+    for (int pulse = 200; pulse >= 0; pulse -= 1)
+    {
+        // Servo1 (CH4)
+        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
+        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, pulse);
+        // Servo2 (CH5)
+        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 20, 0);
+        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, pulse);
+        delay(100); // 부드러운 이동을 위한 지연
+    }
+
+    // 0도에 도달 후 토크 해제
+    printf("0도에 도달, 토크 해제 중...\n");
+    // Servo1 (CH4) 토크 해제: PWM 신호 끄기
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_90);
-    // Servo2 (CH5)
+    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, 0); // OFF = 0
+    // Servo2 (CH5) 토크 해제: PWM 신호 끄기
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 20, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, servo_90);
+    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, 0); // OFF = 0
+    delay(500);                                                     // 해제 후 대기
 
-    printf("서보 테스트 완료\n");
+    printf("서보 테스트 완료, 토크 해제됨\n");
 }
+// OLED 초기화 함수
 
 void testOLED(int oled_fd)
 {
-    printf("OLED 테스트: 디스플레이 켜기/끄기\n");
+    ssd1306_begin(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
 
-    // OLED 켜기
-    printf("OLED 켜는 중...\n");
-    wiringPiI2CWriteReg8(oled_fd, 0x00, SSD1306_SETCONTRAST);
-    wiringPiI2CWriteReg8(oled_fd, 0x00, 0x80);
-    wiringPiI2CWriteReg8(oled_fd, 0x00, SSD1306_NORMALDISPLAY);
-    wiringPiI2CWriteReg8(oled_fd, 0x00, SSD1306_DISPLAYON);
-    printf("OLED가 켜졌다면 정상\n");
-    delay(2000);
+    ssd1306_display(); // Adafruit logo is visible
+    ssd1306_clearDisplay();
+    delay(5000);
+    char *text = "This is demo for SSD1306 i2c driver for Raspberry Pi";
+    ssd1306_drawString(text);
+    ssd1306_display();
+    delay(5000);
 
-    // OLED 끄기
-    printf("OLED 끄는 중...\n");
-    wiringPiI2CWriteReg8(oled_fd, 0x00, 0xAE); // DISPLAY OFF
-    printf("OLED가 꺼졌다면 정상\n");
-    delay(1000);
+    ssd1306_dim(1);
+    ssd1306_startscrollright(00, 0xFF);
+    delay(5000);
 
-    // 다시 켜기
-    printf("OLED 다시 켜는 중...\n");
-    wiringPiI2CWriteReg8(oled_fd, 0x00, SSD1306_DISPLAYON);
-
-    printf("OLED 테스트 완료\n");
+    ssd1306_clearDisplay();
+    ssd1306_fillRect(10, 10, 50, 20, WHITE);
+    ssd1306_fillRect(80, 10, 130, 50, WHITE);
+    ssd1306_display();
 }
 
 // void testAll(int touch_fd, int temp_humid_fd, int gyro_fd, int fnd_fd, int rgb_servo_fd, int oled_fd)
