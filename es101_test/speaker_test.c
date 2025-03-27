@@ -1,16 +1,21 @@
-// gcc -o test_audio test_spreaker.c -lasound -lm
+// gcc -o test_audio speaker_test.c -lasound -lm
 // code .asoundrc
 // echo "defaults.pcm.card 2" > ~/.asoundrc
 // echo "defaults.ctl.card 2" >> ~/.asoundrc
 /*
-  647  git clone https://github.com/waveshare/WM8960-Audio-HAT
-  648  cd WM8960-Audio-HAT/
-  649  ls
-  650  sudo ./install.sh
+
+sudo apt-get install libasound2-dev
+
+
 sudo nano /boot/config.txt
 dtparam=audio=off
 dtoverlay=i2s-mmap
 dtoverlay=wm9860-soundcard
+
+git clone https://github.com/waveshare/WM8960-Audio-HAT
+cd WM8960-Audio-HAT/
+ls
+sudo ./install.sh
 
 libcamera-jpeg -o test.jpg
 libcamera-vid -t 10000 -o test.h264

@@ -54,4 +54,12 @@
 - 비번 변경 - sudo passwd [사용자이름]
 - 파일 복사 - scp [파일이름] [사용자이름]@[ip주소]:[경로]
   - `scp -r es101_test/ hotari@192.168.0.43:~/`
-- 
+- I2S 장치 설정
+  - sudo nano /boot/config.txt ->
+    - dtparam=audio=off
+    - dtoverlay=i2s-mmap
+    - dtoverlay=wm9860-soundcard
+  - git clone https://github.com/waveshare/WM8960-Audio-HAT
+  - cd WM8960-Audio-HAT/
+  - sudo ./install.sh
+- sudo apt-get install libasound2-dev
