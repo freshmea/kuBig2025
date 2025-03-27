@@ -81,7 +81,7 @@ void testGyro(int gyro_fd);
 void testRGB(int rgb_servo_fd);
 void testServo(int rgb_servo_fd);
 void testOLED(int oled_fd);
-void testAll(int touch_fd, int temp_humid_fd, int gyro_fd, int fnd_fd, int rgb_servo_fd, int oled_fd);
+void testAll(int touch_fd, int temp_humid_fd, int gyro_fd, int rgb_servo_fd, int oled_fd);
 void displayMenu(void);
 
 int main(void)
@@ -171,9 +171,9 @@ int main(void)
         case 11:
             testOLED(oled_fd);
             break;
-        // case 12:
-        //     testAll(touch_fd, temp_humid_fd, gyro_fd, rgb_servo_fd, oled_fd);
-        //     break;
+        case 12:
+            testAll(touch_fd, temp_humid_fd, gyro_fd, rgb_servo_fd, oled_fd);
+            break;
         default:
             printf("잘못된 선택입니다. 다시 선택해주세요.\n");
             break;
@@ -529,35 +529,37 @@ void testServo(int rgb_servo_fd)
     // PCA9685 초기화
     wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x80); // 리셋
     delay(10);
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x7A); // 50Hz 설정 (정확히)
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x20);    // 활성화 + Auto Increment
+    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x00); // SLEEP = 0
+    delay(10);
+    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x79); // 50Hz
+    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x20);    // AI = 1
     delay(10);
 
-    // 서보 펄스 값 계산 (50Hz 기준, 20ms 주기)
-    int servo_180 = (int)(4096 * (2.0 / 20.0)); // 약 409 (180도)
-    int servo_0 = (int)(4096 * (1.0 / 20.0));   // 약 205 (0도)
+    // 모든 채널 초기화
+    for (int i = 0; i < 16; i += 4)
+    {
+        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + i, 0);
+        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + i + 2, 0);
+    }
 
-    // 초기 위치: 180도
-    printf("180도에서 시작...\n");
-    // Servo1 (CH4)
+    int servo_0 = 102;   // 0도
+    int servo_180 = 512; // 180도
+
+    printf("Servo1, Servo2를 180도로 설정...\n");
+    // Servo1 (CH5, R48)
+    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
+    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, servo_180);
+    // Servo2 (CH4, R50)
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_180);
-    // Servo2 (CH5)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 20, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, servo_180);
-    delay(1000); // 초기 위치 유지
+    delay(1000);
 
-    // 180도에서 0도까지 천천히 이동
-    printf("180도에서 0도까지 천천히 이동 중...\n");
-    for (int pulse = 200; pulse >= 0; pulse -= 1)
+    printf("180도에서 0도까지 이동...\n");
+    for (int pulse = servo_180; pulse >= servo_0; pulse -= 1)
     {
-        // Servo1 (CH4)
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, pulse);
-        // Servo2 (CH5)
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 20, 0);
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, pulse);
-        delay(100); // 부드러운 이동을 위한 지연
+        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, pulse); // Servo1 (CH5)
+        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, pulse); // Servo2 (CH4)
+        delay(20);
     }
 
     // 0도에 도달 후 토크 해제
@@ -566,9 +568,9 @@ void testServo(int rgb_servo_fd)
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, 0); // OFF = 0
     // Servo2 (CH5) 토크 해제: PWM 신호 끄기
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 20, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 22, 0); // OFF = 0
-    delay(500);                                                     // 해제 후 대기
+    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
+    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, 0); // OFF = 0
+    delay(50);                                                      // 해제 후 대기
 
     printf("서보 테스트 완료, 토크 해제됨\n");
 }
@@ -596,51 +598,51 @@ void testOLED(int oled_fd)
     ssd1306_display();
 }
 
-// void testAll(int touch_fd, int temp_humid_fd, int gyro_fd, int fnd_fd, int rgb_servo_fd, int oled_fd)
-// {
-//     printf("모든 장치 테스트를 순차적으로 실행합니다...\n\n");
+void testAll(int touch_fd, int temp_humid_fd, int gyro_fd, int rgb_servo_fd, int oled_fd)
+{
+    printf("모든 장치 테스트를 순차적으로 실행합니다...\n\n");
 
-//     testLED();
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testLED();
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testSwitch();
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testSwitch();
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testPIR();
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testPIR();
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testBuzzer();
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testBuzzer();
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testTouchSensor(touch_fd);
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testTouchSensor(touch_fd);
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testTempHumid(temp_humid_fd);
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testTempHumid(temp_humid_fd);
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testFND(fnd_fd);
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testFND();
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testGyro(gyro_fd);
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testGyro(gyro_fd);
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testRGB(rgb_servo_fd);
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testRGB(rgb_servo_fd);
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testServo(rgb_servo_fd);
-//     printf("\n계속하려면 아무 키나 누르세요...\n");
-//     getchar();
+    testServo(rgb_servo_fd);
+    printf("\n계속하려면 아무 키나 누르세요...\n");
+    getchar();
 
-//     testOLED(oled_fd);
+    testOLED(oled_fd);
 
-//     printf("\n모든 장치 테스트가 완료되었습니다.\n");
-// }
+    printf("\n모든 장치 테스트가 완료되었습니다.\n");
+}

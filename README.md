@@ -63,3 +63,5 @@
   - cd WM8960-Audio-HAT/
   - sudo ./install.sh
 - sudo apt-get install libasound2-dev
+- aplay -l 에서 확인된 채널과 디바이스 번호로 코드를 수정한다. 324번 라인
+- 

@@ -1,4 +1,4 @@
-// gcc -o test_audio speaker_test.c -lasound -lm
+//
 // code .asoundrc
 // echo "defaults.pcm.card 2" > ~/.asoundrc
 // echo "defaults.ctl.card 2" >> ~/.asoundrc
@@ -14,8 +14,9 @@ dtoverlay=wm9860-soundcard
 
 git clone https://github.com/waveshare/WM8960-Audio-HAT
 cd WM8960-Audio-HAT/
-ls
 sudo ./install.sh
+
+gcc -o test_audio speaker_test.c -lasound -lm
 
 libcamera-jpeg -o test.jpg
 libcamera-vid -t 10000 -o test.h264
@@ -322,7 +323,7 @@ int test_microphone(const char *device, const char *output_file)
 
 int main()
 {
-    const char *device = "hw:2,0";
+    const char *device = "hw:3,0";
     const char *output_file = "mic_test.wav";
     const char *alsa_test_file = "/usr/share/sounds/alsa/Front_Center.wav";
 
