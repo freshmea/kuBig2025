@@ -1,9 +1,5 @@
 // sudo dpkg-reconfigure locales
-// sudo locale-gen en_US.UTF-8
-// sudo dpkg-reconfigure locales
 // cc -o device_test device_test.c ssd1306_i2c.c -lwiringPi
-// sudo nano /boot/config.txt
-// dtparam=i2c_arm_baudrate=100000
 
 #include "ssd1306_i2c.h"
 #include <errno.h>
