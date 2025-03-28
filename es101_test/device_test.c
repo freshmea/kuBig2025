@@ -2,16 +2,10 @@
 // cc -o device_test device_test.c ssd1306_i2c.c -lwiringPi
 
 #include "ssd1306_i2c.h"
-#include <errno.h>
-#include <fcntl.h>
-#include <linux/i2c-dev.h>
-#include <linux/i2c.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
 
