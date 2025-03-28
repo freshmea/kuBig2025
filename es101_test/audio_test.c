@@ -15,8 +15,9 @@ dtoverlay=wm9860-soundcard
 git clone https://github.com/waveshare/WM8960-Audio-HAT
 cd WM8960-Audio-HAT/
 sudo ./install.sh
+cd ..
 
-gcc -o test_audio speaker_test.c -lasound -lm
+gcc -o audio_test audio_test.c -lasound -lm
 
 libcamera-jpeg -o test.jpg
 libcamera-vid -t 10000 -o test.h264
