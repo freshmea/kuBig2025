@@ -530,8 +530,9 @@ void testServo(int rgb_servo_fd)
     // PCA9685 초기화
     wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x10); // 리셋
     delay(10);
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x00); // SLEEP = 0
-    delay(10);
+    // wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x00); // SLEEP = 0
+    // delay(10);
+    // 해제를 주파수 설정이 안된다.
     wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x79); // 50Hz
     wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0xA1);    // AI = 1
     delay(10);
