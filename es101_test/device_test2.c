@@ -1,11 +1,21 @@
 // sudo dpkg-reconfigure locales
+// sudo locale-gen en_US.UTF-8
+// sudo dpkg-reconfigure locales
 // cc -o device_test device_test.c ssd1306_i2c.c -lwiringPi
+// sudo nano /boot/config.txt
+// dtparam=i2c_arm_baudrate=100000
 
 #include "ssd1306_i2c.h"
+#include <errno.h>
+#include <fcntl.h>
+#include <linux/i2c-dev.h>
+#include <linux/i2c.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
 
@@ -84,6 +94,52 @@ void testServo(int rgb_servo_fd);
 void testOLED(int oled_fd);
 void testAll(int touch_fd, int temp_humid_fd, int gyro_fd, int rgb_servo_fd, int oled_fd);
 void displayMenu(void);
+
+// I2C에 단일 바이트 쓰기
+int i2cWriteByte(int fd, unsigned char addr, unsigned char reg, unsigned char data)
+{
+    struct i2c_msg messages[1];
+    struct i2c_rdwr_ioctl_data packets;
+    unsigned char buffer[2] = {reg, data};
+
+    messages[0].addr = addr;
+    messages[0].flags = 0; // 쓰기
+    messages[0].len = 2;
+    messages[0].buf = buffer;
+
+    packets.msgs = messages;
+    packets.nmsgs = 1;
+
+    if (ioctl(fd, I2C_RDWR, &packets) < 0)
+    {
+        printf("I2C 쓰기 실패 (reg 0x%02X): %s\n", reg, strerror(errno));
+        return -1;
+    }
+    return 0;
+}
+
+// I2C에 16비트 데이터 쓰기
+int i2cWriteWord(int fd, unsigned char addr, unsigned char reg, unsigned short data)
+{
+    struct i2c_msg messages[1];
+    struct i2c_rdwr_ioctl_data packets;
+    unsigned char buffer[3] = {reg, data & 0xFF, (data >> 8) & 0xFF};
+
+    messages[0].addr = addr;
+    messages[0].flags = 0; // 쓰기
+    messages[0].len = 3;
+    messages[0].buf = buffer;
+
+    packets.msgs = messages;
+    packets.nmsgs = 1;
+
+    if (ioctl(fd, I2C_RDWR, &packets) < 0)
+    {
+        printf("I2C 16비트 쓰기 실패 (reg 0x%02X): %s\n", reg, strerror(errno));
+        return -1;
+    }
+    return 0;
+}
 
 int main(void)
 {
@@ -523,81 +579,140 @@ void testRGB(int rgb_servo_fd)
     printf("RGB LED 테스트 완료\n");
 }
 
+// 서보 테스트 함수
 void testServo(int rgb_servo_fd)
 {
     printf("Servo 테스트: Servo1, Servo2 180도에서 0도까지 천천히 회전\n");
+    int servo_0 = 102;
+    int servo_180 = 512;
 
     // PCA9685 초기화
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x10); // 리셋
-    delay(10);
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x00); // SLEEP = 0
-    delay(10);
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x79); // 50Hz
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0xA1);    // AI = 1
+    // 1. 리셋
+    int result = i2cWriteByte(rgb_servo_fd, RGB_SERVO_I2C_ADDR, PCA9685_MODE1, 0x10);
+    if (result < 0)
+    {
+        printf("MODE1 리셋 실패: %d\n", result);
+        return;
+    }
     delay(10);
 
-    // 모든 채널 초기화
-    for (int i = 0; i < 16; i += 4)
+    // // 2. SLEEP 비트 해제 및 오실레이터 활성화
+    // result = i2cWriteByte(rgb_servo_fd, RGB_SERVO_I2C_ADDR, PCA9685_MODE1, 0x00);
+    // if (result < 0)
+    // {
+    //     printf("SLEEP 비트 해제 실패: %d\n", result);
+    //     return;
+    // }
+    // delay(10); // 오실레이터 안정화 대기
+    // 해제를 주파수 설정이 안된다.
+
+    // 3. 주파수 설정 (50Hz, PRESCALE = 0x79)
+    result = i2cWriteByte(rgb_servo_fd, RGB_SERVO_I2C_ADDR, PCA9685_PRESCALE, 0x79);
+    if (result < 0)
     {
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + i, 0);
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + i + 2, 0);
+        printf("PRESCALE 설정 실패: %d\n", result);
+        return;
     }
 
-    int servo_0 = 102;   // 0도
-    int servo_180 = 512; // 180도
+    // 4. Auto Increment 활성화 및 정상 모드 설정
+    result = i2cWriteByte(rgb_servo_fd, RGB_SERVO_I2C_ADDR, PCA9685_MODE1, 0xA1);
+    if (result < 0)
+    {
+        printf("Auto Increment 설정 실패: %d\n", result);
+        return;
+    }
+    delay(10);
+
+    // 5. 모든 채널 초기화 (PWM OFF)
+    for (int i = 0; i < 16; i++)
+    {
+        int channel_on = PCA9685_LED0_ON_L + (i * 4);
+        int channel_off = PCA9685_LED0_ON_L + (i * 4) + 2;
+        result = i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, channel_on, 0);
+        if (result < 0)
+        {
+            printf("채널 %d ON 초기화 실패: %d\n", i, result);
+            return;
+        }
+        result = i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, channel_off, 0);
+        if (result < 0)
+        {
+            printf("채널 %d OFF 초기화 실패: %d\n", i, result);
+            return;
+        }
+    }
+    printf("모든 채널 초기화 완료\n");
+
+    // Servo1: CH3, Servo2: CH4
+    int servo1_on = PCA9685_LED0_ON_L + 12;  // CH3 ON_L, ON_H
+    int servo1_off = PCA9685_LED0_ON_L + 14; // CH3 OFF_L, OFF_H
+    int servo2_on = PCA9685_LED0_ON_L + 16;  // CH4 ON_L, ON_H
+    int servo2_off = PCA9685_LED0_ON_L + 18; // CH4 OFF_L, OFF_H
+
+    printf("Servo 테스트 시작: Servo1(CH3), Servo2(CH4)\n");
 
     printf("Servo1, Servo2를 180도로 설정...\n");
-    // Servo1 (CH5, R48)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, servo_180);
-    // Servo2 (CH4, R50)
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_180);
+    // Servo1 (CH3)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_off, servo_180);
+    // Servo2 (CH4)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_off, servo_180);
     delay(1000);
 
-    // 90도 이동 180도 이동, 90도 이동 0도 이동 각 딜레이 1초
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, servo_180 / 2);
-    delay(10);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_180 / 2);
+    printf("Servo1, Servo2를 90도로 설정...\n");
+    // Servo1 (CH3)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_off, servo_180 / 2);
+    // Servo2 (CH4)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_off, servo_180 / 2);
     delay(1000);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, servo_0);
-    delay(10);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_0);
+
+    printf("Servo1, Servo2를 0도로 설정...\n");
+    // Servo1 (CH3)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_off, servo_0);
+    // Servo2 (CH4)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_off, servo_0);
     delay(1000);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, servo_180 / 2);
-    delay(10);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_180 / 2);
+
+    printf("Servo1, Servo2를 90도로 설정...\n");
+    // Servo1 (CH3)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_off, servo_180 / 2);
+    // Servo2 (CH4)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_off, servo_180 / 2);
     delay(1000);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, servo_180);
-    delay(10);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, servo_180);
+
+    printf("Servo1, Servo2를 180도로 설정...\n");
+    // Servo1 (CH3)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_off, servo_180);
+    // Servo2 (CH4)
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_off, servo_180);
     delay(1000);
 
     printf("180도에서 0도까지 이동...\n");
     for (int pulse = servo_180; pulse >= servo_0; pulse -= 1)
     {
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, pulse); // Servo1 (CH5)
-        wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, pulse); // Servo2 (CH4)
+        i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_off, pulse); // Servo1 (CH3)
+        i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_off, pulse); // Servo2 (CH4)
         delay(20);
     }
 
     // 0도에 도달 후 토크 해제
     printf("0도에 도달, 토크 해제 중...\n");
-    // Servo1 (CH4) 토크 해제: PWM 신호 끄기
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 16, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 18, 0); // OFF = 0
-    // Servo2 (CH5) 토크 해제: PWM 신호 끄기
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 12, 0);
-    wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED0_ON_L + 14, 0); // OFF = 0
-    delay(50);                                                      // 해제 후 대기
+    // Servo1 (CH3) 토크 해제: PWM 신호 끄기
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo1_off, 0);
+    // Servo2 (CH4) 토크 해제: PWM 신호 끄기
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_on, 0);
+    i2cWriteWord(rgb_servo_fd, RGB_SERVO_I2C_ADDR, servo2_off, 0);
+    delay(50); // 해제 후 대기
 
     printf("서보 테스트 완료, 토크 해제됨\n");
 }
