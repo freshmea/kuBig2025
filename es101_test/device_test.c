@@ -85,52 +85,6 @@ void testOLED(int oled_fd);
 void testAll(int touch_fd, int temp_humid_fd, int gyro_fd, int rgb_servo_fd, int oled_fd);
 void displayMenu(void);
 
-// I2C에 단일 바이트 쓰기
-int i2cWriteByte(int fd, unsigned char addr, unsigned char reg, unsigned char data)
-{
-    struct i2c_msg messages[1];
-    struct i2c_rdwr_ioctl_data packets;
-    unsigned char buffer[2] = {reg, data};
-
-    messages[0].addr = addr;
-    messages[0].flags = 0; // 쓰기
-    messages[0].len = 2;
-    messages[0].buf = buffer;
-
-    packets.msgs = messages;
-    packets.nmsgs = 1;
-
-    if (ioctl(fd, I2C_RDWR, &packets) < 0)
-    {
-        printf("I2C 쓰기 실패 (reg 0x%02X): %s\n", reg, strerror(errno));
-        return -1;
-    }
-    return 0;
-}
-
-// I2C에 16비트 데이터 쓰기
-int i2cWriteWord(int fd, unsigned char addr, unsigned char reg, unsigned short data)
-{
-    struct i2c_msg messages[1];
-    struct i2c_rdwr_ioctl_data packets;
-    unsigned char buffer[3] = {reg, data & 0xFF, (data >> 8) & 0xFF};
-
-    messages[0].addr = addr;
-    messages[0].flags = 0; // 쓰기
-    messages[0].len = 3;
-    messages[0].buf = buffer;
-
-    packets.msgs = messages;
-    packets.nmsgs = 1;
-
-    if (ioctl(fd, I2C_RDWR, &packets) < 0)
-    {
-        printf("I2C 16비트 쓰기 실패 (reg 0x%02X): %s\n", reg, strerror(errno));
-        return -1;
-    }
-    return 0;
-}
-
 int main(void)
 {
     // WiringPi 초기화
