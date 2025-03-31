@@ -1,4 +1,8 @@
 // sudo dpkg-reconfigure locales
+// sudo apt install git make build-essential
+// git clone https://github.com/WiringPi/WiringPi.git
+// cd WiringPi
+// sudo ./build
 // cc -o device_test device_test.c ssd1306_i2c.c -lwiringPi
 
 #include "ssd1306_i2c.h"

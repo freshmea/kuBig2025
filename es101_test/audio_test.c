@@ -8,9 +8,10 @@ sudo apt-get install libasound2-dev
 
 
 sudo nano /boot/config.txt
+sudo nano /boot/firmware/config.txt
 dtparam=audio=off
 dtoverlay=i2s-mmap
-dtoverlay=wm9860-soundcard
+dtoverlay=wm8960-soundcard
 
 git clone https://github.com/waveshare/WM8960-Audio-HAT
 cd WM8960-Audio-HAT/

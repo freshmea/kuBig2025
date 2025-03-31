@@ -64,4 +64,26 @@
   - sudo ./install.sh
 - sudo apt-get install libasound2-dev
 - aplay -l 에서 확인된 채널과 디바이스 번호로 코드를 수정한다. 324번 라인
-- 
+
+- SD 카드 포맷 순서
+  - imager 다운로드
+  - raspberry pi 4B 선택-> image 만들기
+  - 라즈베리파이4에 꽂아서 실행
+    - 언어설정
+    - wifi 설정
+    - 사용자 아이디/비밀번호 설정
+    - 호스트 명 변경
+    - sudo raspi-config -> vnc 설정, ssh 설정, spi 설정, i2c 설정 ...
+
+- SD 카드 포맷 (ubuntu)
+  - ssh 설치
+    - 패키지 업데이트: sudo apt-get update
+    - ssh 설치: sudo apt-get install openssh-server
+    - vnc 설정: sudo apt install tigervnc-standalone-server tigervnc-common -y -- 포기
+    - 빌드 설치: sudo apt-get install build-essential make git
+    - 사용자 권한 설정: sudo usermod -aG dialout $USER
+    - 비디오 권한 설정: sudo usermod -aG video $USER
+    - 비디오 드라이버: sudo apt install libraspberrypi-bin v4l-utils sudo apt install libcamera-tools 
+    - 비디오 체크: v4l2-ctl --list-devices
+    - wm8960 설정은 라즈비안 에서는 되지만 ubuntu에서는 안됨 -> sound card 설정이 안됨 해결방법이 아직 없음.
+
