@@ -13,11 +13,10 @@ int main(void)
 {
     wiringPiSetupGpio(); // BCM 기준 gpio 핀번호
     pinMode(LED1, OUTPUT);
-    while(1)
+    while (1)
     {
         digitalWrite(LED1, HIGH);
     }
-
     printf("안녕하세요!");
     return 0;
 }

@@ -39,7 +39,8 @@
         "arduino.h": "c",
         "sht2x.h": "c",
         "at25160.h": "c",
-        "uart0.h": "c"
+        "uart0.h": "c",
+        "wiringpi.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"
