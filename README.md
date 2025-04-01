@@ -30,7 +30,7 @@
   - Atmega128의 기본적인 사용법을 익히고 이를 이용한 프로젝트를 수행한다.
   - Atmega128의 입출력을 이용한 프로젝트를 수행한다.
 - [과정 진행 사항](doc/atmega128.md)
-- 시험 링크 : [구글 설문지]()
+- 시험 링크 : [구글 설문지](https://docs.google.com/forms/d/e/1FAIpQLSeor7kW7_PfmBH2YThfQfh7N8WzN0oehRsO59GmvPy4PlWTyg/viewform?usp=header)
 
 ---
 
@@ -50,50 +50,20 @@
 
 ### ES-101 테스트
 
-- wifi-접속
-- 비번 변경 - sudo passwd [사용자이름]
-- 파일 복사 - scp [파일이름] [사용자이름]@[ip주소]:[경로]
-  - `scp -r es101_test/ hotari@192.168.0.43:~/`
-- I2S 장치 설정
-  - sudo nano /boot/config.txt ->
-    - dtparam=audio=off
-    - dtoverlay=i2s-mmap
-    - dtoverlay=wm9860-soundcard
-  - git clone https://github.com/waveshare/WM8960-Audio-HAT
-  - cd WM8960-Audio-HAT/
-  - sudo ./install.sh
-- sudo apt-get install libasound2-dev
-- aplay -l 에서 확인된 채널과 디바이스 번호로 코드를 수정한다. 324번 라인
+---
 
-- SD 카드 포맷 순서
-  - imager 다운로드
-  - raspberry pi 4B 선택-> image 만들기
-  - 라즈베리파이4에 꽂아서 실행
-    - 언어설정
-    - wifi 설정
-    - 사용자 아이디/비밀번호 설정
-    - 호스트 명 변경
-    - sudo raspi-config -> vnc 설정, ssh 설정, spi 설정, i2c 설정 ...
-
-- SD 카드 포맷 (ubuntu)
-  - ssh 설치
-    - 패키지 업데이트: sudo apt-get update
-    - ssh 설치: sudo apt-get install openssh-server
-    - vnc 설정: sudo apt install tigervnc-standalone-server tigervnc-common -y -- 포기
-    - 빌드 설치: sudo apt-get install build-essential make git
-    - 사용자 권한 설정: sudo usermod -aG dialout $USER
-    - 비디오 권한 설정: sudo usermod -aG video $USER
-    - 비디오 드라이버: sudo apt install libraspberrypi-bin v4l-utils sudo apt install libcamera-tools
-    - 비디오 체크: v4l2-ctl --list-devices
-    - wm8960 설정은 라즈비안 에서는 되지만 ubuntu에서는 안됨 -> sound card 설정이 안됨 해결방법이 아직 없음.
+- [테스트 방법](doc/es_101.md)
 
 ---
 
-## 라즈베리파이4 B
+## 라즈베리파이 4B
 
 ---
 
 - 수업 목표
   - 라즈베리파이 OS 를 이해 한다.
+  - OS 운영체제에 대해서 이해 한다.
+  - 라즈베리파이의 GPIO 핀을 이해 한다.
+  - 커널에 모듈을 적용하는 방법을 이해 한다.
 - [과정 진행 사항](doc/raspberry_pi.md)
-- 시험 링크 : [구글 설문지]()
+- 시험 링크 : [구글 설문지](https://docs.google.com/forms/d/e/1FAIpQLSeor7kW7_PfmBH2YThfQfh7N8WzN0oehRsO59GmvPy4PlWTyg/viewform?usp=header)
