@@ -1,11 +1,9 @@
-TARGET = helloRaspberry switch_led
+TARGET = helloRaspberry switch_led interrupt
 all : ${TARGET}
+CFLAGS = -lwiringPi
 
-helloRaspberry :
-	cc -o helloRaspberry helloRaspberry.c -lwiringPi
-
-switch_led : 
-	cc -o switch_led switch_led.c -lwiringPi
+% : %.c
+	cc -o $@ $< ${CFLAGS}
 
 clean :
 	rm ${TARGET}
