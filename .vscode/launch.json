@@ -1,0 +1,176 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Bowling Game",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bowling/bowling",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bowling",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build-bowling",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "C Example - Part1",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${input:part1Program}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/c_example/part1",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build-c-example-part1",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "C Example - Part2",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${input:part2Program}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/c_example/part2",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build-c-example-part2",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "C Example - Part3",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${input:part3Program}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/c_example/part3",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build-c-example-part3",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "SQL Query",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/sqlQuery/sqlQuery",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/sqlQuery",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build-sqlQuery",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "part1Program",
+            "type": "pickString",
+            "description": "Select a program from Part1",
+            "options": [
+                "${workspaceFolder}/build/c_example/part1/infinit",
+                "${workspaceFolder}/build/c_example/part1/limit",
+                "${workspaceFolder}/build/c_example/part1/celsius2fahr",
+                "${workspaceFolder}/build/c_example/part1/fahr2celsius",
+                "${workspaceFolder}/build/c_example/part1/charNumber",
+                "${workspaceFolder}/build/c_example/part1/triangle",
+                "${workspaceFolder}/build/c_example/part1/triangle2",
+                "${workspaceFolder}/build/c_example/part1/arithmetics",
+                "${workspaceFolder}/build/c_example/part1/increment",
+                "${workspaceFolder}/build/c_example/part1/literal",
+                "${workspaceFolder}/build/c_example/part1/genderRatio",
+                "${workspaceFolder}/build/c_example/part1/compare",
+                "${workspaceFolder}/build/c_example/part1/compare2",
+                "${workspaceFolder}/build/c_example/part1/sizeof",
+                "${workspaceFolder}/build/c_example/part1/oddeven",
+                "${workspaceFolder}/build/c_example/part1/fourBit",
+                "${workspaceFolder}/build/c_example/part1/fourBit2"
+            ]
+        },
+        {
+            "id": "part2Program",
+            "type": "pickString",
+            "description": "Select a program from Part2",
+            "options": [
+                "${workspaceFolder}/build/c_example/part2/star",
+                "${workspaceFolder}/build/c_example/part2/power",
+                "${workspaceFolder}/build/c_example/part2/passFail",
+                "${workspaceFolder}/build/c_example/part2/baseball"
+            ]
+        },
+        {
+            "id": "part3Program",
+            "type": "pickString",
+            "description": "Select a program from Part3",
+            "options": [
+                "${workspaceFolder}/build/c_example/part3/voidPointer",
+                "${workspaceFolder}/build/c_example/part3/unionExample",
+                "${workspaceFolder}/build/c_example/part3/sumArrayFunction",
+                "${workspaceFolder}/build/c_example/part3/stringExample",
+                "${workspaceFolder}/build/c_example/part3/selection",
+                "${workspaceFolder}/build/c_example/part3/qsort",
+                "${workspaceFolder}/build/c_example/part3/putSeries",
+                "${workspaceFolder}/build/c_example/part3/pointerConcept",
+                "${workspaceFolder}/build/c_example/part3/pointer2",
+                "${workspaceFolder}/build/c_example/part3/helloStr",
+                "${workspaceFolder}/build/c_example/part3/functionPointer",
+                "${workspaceFolder}/build/c_example/part3/filePointer",
+                "${workspaceFolder}/build/c_example/part3/fileDescriptor",
+                "${workspaceFolder}/build/c_example/part3/enumExample",
+                "${workspaceFolder}/build/c_example/part3/endian",
+                "${workspaceFolder}/build/c_example/part3/dynamicAllocation",
+                "${workspaceFolder}/build/c_example/part3/charPointerOperation",
+                "${workspaceFolder}/build/c_example/part3/charAdress",
+                "${workspaceFolder}/build/c_example/part3/arrayAssignment",
+                "${workspaceFolder}/build/c_example/part3/string/main",
+                "${workspaceFolder}/build/c_example/part3/date/main",
+                "${workspaceFolder}/build/c_example/part3/carSerial/main"
+            ]
+        }
+    ]
+}

@@ -83,7 +83,7 @@
     - 빌드 설치: sudo apt-get install build-essential make git
     - 사용자 권한 설정: sudo usermod -aG dialout $USER
     - 비디오 권한 설정: sudo usermod -aG video $USER
-    - 비디오 드라이버: sudo apt install libraspberrypi-bin v4l-utils sudo apt install libcamera-tools 
+    - 비디오 드라이버: sudo apt install libraspberrypi-bin v4l-utils sudo apt install libcamera-tools
     - 비디오 체크: v4l2-ctl --list-devices
     - wm8960 설정은 라즈비안 에서는 되지만 ubuntu에서는 안됨 -> sound card 설정이 안됨 해결방법이 아직 없음.
 

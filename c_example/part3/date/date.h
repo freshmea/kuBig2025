@@ -9,4 +9,4 @@ typedef struct
     int temp[6];
 } Date;
 
-void printDate(Date *);
+void printDate(Date *pDate);
