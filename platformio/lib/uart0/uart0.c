@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include <stdio.h>
 
 void uart0Init(void)
 {
@@ -10,14 +11,15 @@ void uart0Init(void)
     UBRR0L = 0x07; // 115200 bps
 }
 
-void uart0Transmit(char data)
+int uart0Transmit(char data, FILE *stream)
 {
     while (!(UCSR0A & _BV(UDRE0)))
         ;
     UDR0 = data;
+    return 0;
 }
 
-unsigned char uart0Receive(void)
+int uart0Receive(FILE *stream)
 {
     while (!(UCSR0A & _BV(RXC0))) // 문자 버퍼에 있으면 루프 탈출
         ;
@@ -27,7 +29,7 @@ void uart0PrintString(char *str)
 {
     for (int i = 0; str[i]; ++i)
     {
-        uart0Transmit(str[i]);
+        uart0Transmit(str[i], NULL);
         if (i > 500)
             break;
     }
@@ -50,5 +52,5 @@ void uart0Print1ByteNumber(unsigned char n)
     }
 
     for (i = index; i >= 0; i--)
-        uart0Transmit(numString[i]); // "123"
+        uart0Transmit(numString[i], NULL); // "123"
 }
