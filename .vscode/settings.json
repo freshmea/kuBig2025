@@ -40,7 +40,9 @@
         "sht2x.h": "c",
         "at25160.h": "c",
         "uart0.h": "c",
-        "wiringpi.h": "c"
+        "wiringpi.h": "c",
+        "kernel.h": "c",
+        "module.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"
