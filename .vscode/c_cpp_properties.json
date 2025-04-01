@@ -1,71 +1,16 @@
-//
-// !!! WARNING !!! AUTO-GENERATED FILE!
-// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
-// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
-//
 {
     "configurations": [
         {
-            "name": "PlatformIO",
+            "name": "Linux",
             "includePath": [
-                "/home/aa/kuBig2025/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/cores/MegaCore",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/variants/64-pin-avr",
-                "/home/aa/kuBig2025/lib/at25",
-                "/home/aa/kuBig2025/lib/avr-uart",
-                "/home/aa/kuBig2025/lib/lcd",
-                "/home/aa/kuBig2025/lib/sht20",
-                "/home/aa/kuBig2025/lib/uart0",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/AVR_examples/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/EEPROM/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/Flash/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/SD/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/SPI/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/Servo/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/SoftwareSerial/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/Timer/src",
-                "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/Wire/src",
-                ""
+                "${workspaceFolder}/**",
+                "/usr/include/**"
             ],
-            "browse": {
-                "limitSymbolsToIncludedHeaders": true,
-                "path": [
-                    "/home/aa/kuBig2025/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/cores/MegaCore",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/variants/64-pin-avr",
-                    "/home/aa/kuBig2025/lib/at25",
-                    "/home/aa/kuBig2025/lib/avr-uart",
-                    "/home/aa/kuBig2025/lib/lcd",
-                    "/home/aa/kuBig2025/lib/sht20",
-                    "/home/aa/kuBig2025/lib/uart0",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/AVR_examples/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/EEPROM/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/Flash/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/SD/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/SPI/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/Servo/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/SoftwareSerial/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/Timer/src",
-                    "/home/aa/.platformio/packages/framework-arduino-avr-megacore/libraries/Wire/src",
-                    ""
-                ]
-            },
-            "defines": [
-                "PLATFORMIO=60118",
-                "ARDUINO_AVR_ATmega128",
-                "F_CPU=16000000L",
-                "ARDUINO_ARCH_AVR",
-                "ARDUINO=10808",
-                "__AVR_ATmega128__",
-                ""
-            ],
-            "cStandard": "gnu11",
-            "cppStandard": "gnu++17",
-            "compilerPath": "/home/aa/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
-            "compilerArgs": [
-                "-mmcu=atmega128",
-                ""
-            ]
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4
