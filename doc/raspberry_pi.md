@@ -41,9 +41,16 @@
   - 복습
   - 여러 프로세스 다루기 ( &, nohup, bg, fg, jobs, ps, kill, top, htop)
 - 2교시
+  - 데몬으로 프로세스 작동 시키기
 - 3교시
+  - mydaemon.service 파일, mydaemon.sh 파일 작성
+  - systemctl 명령어 설명
 - 4교시
+  - wiringPi 로 pwm 제어하기, 버저 설정
+  - software pwm 제어하기, hardware pwm 제어하기, buzzer 제어하기
 - 5교시
+  - PCA9685 설명
+  - PCA9685 제어하기
 - 6교시
 - 7교시
 - 8교시
