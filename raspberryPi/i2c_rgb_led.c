@@ -9,10 +9,10 @@
 int main(void)
 {
     int rgb_servo_fd = wiringPiI2CSetup(RGB_SERVO_I2C_ADDR);
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x80);    // 리셋
-    delay(10);                                                  // 리셋 후 대기
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x79); // 주파수 60Hz 설정
-    wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x20);
+    // wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x80);    // 리셋
+    // delay(10);                                                  // 리셋 후 대기
+    // wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_PRESCALE, 0x79); // 주파수 60Hz 설정
+    // wiringPiI2CWriteReg8(rgb_servo_fd, PCA9685_MODE1, 0x20);
 
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED_ON_L, 0);
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED_ON_L + 2, 4095);
