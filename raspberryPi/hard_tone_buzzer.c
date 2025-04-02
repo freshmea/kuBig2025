@@ -17,7 +17,7 @@ int main(void)
         {
             setPWMFrequency(doReMi[i]);
             pwmWrite(BUZZER_PIN, 1000);
-            delay(100);
+            delay(1000);
         }
     }
     return 0;

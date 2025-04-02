@@ -18,7 +18,7 @@ int main(void)
         for (int i = 0; i < 8; ++i)
         {
             softToneWrite(BUZZER_PIN, doReMi[i]);
-            delay(100);
+            delay(1000);
         }
     }
     return 0;
