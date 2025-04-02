@@ -17,7 +17,7 @@ int main(void)
         {
             setPWMFrequency(doReMi[i]);
             pwmWrite(BUZZER_PIN, 1000); // HIGH 가 유지되는 틱 수
-            delay(1000);
+            delay(100);
         }
     }
     return 0;
