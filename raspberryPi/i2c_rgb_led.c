@@ -12,6 +12,8 @@ int main(void)
 {
     int rgb_servo_fd = wiringPiI2CSetup(RGB_SERVO_I2C_ADDR);
     i2C_init(rgb_servo_fd, 0x79); // 50 hz
+    // 프리스케일 값 = (오실레이터 주파수 / (4096 * 원하는 주파수)) - 1
+    // 25000000 / (4096 * (0x79 + 1))=50.028817
 
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED_ON_L, 0);     // 빨간색
     wiringPiI2CWriteReg16(rgb_servo_fd, PCA9685_LED_ON_L + 4, 0); // 녹색
@@ -42,6 +44,6 @@ void i2C_init(int fd, int freq)
 {
     wiringPiI2CWriteReg8(fd, PCA9685_MODE1, 0x01);    // 리셋
     delay(10);                                        // 리셋 후 대기
-    wiringPiI2CWriteReg8(fd, PCA9685_PRESCALE, freq); // 주파수 60Hz 설정
+    wiringPiI2CWriteReg8(fd, PCA9685_PRESCALE, freq); // 주파수 설정
     wiringPiI2CWriteReg8(fd, PCA9685_MODE1, 0xA1);
 }
