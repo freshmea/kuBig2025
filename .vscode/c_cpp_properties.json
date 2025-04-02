@@ -4,9 +4,16 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include/**"
+                "/usr/include/**",
+                "/lib/modules/6.6.51+rpt-rpi-v8/source/include",
+                "/usr/src/linux-headers-6.6.51+rpt-rpi-v8//arch/arm64/include/generated",
+                "/usr/src/linux-headers-6.6.51+rpt-rpi-v8//include",
+                "/usr/src/linux-headers-6.6.51+rpt-common-rpi/arch/arm64/include"
             ],
-            "defines": [],
+            "defines": [
+                "__KERNEL__",
+                "MODULE"
+            ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
             "cppStandard": "c++14",
