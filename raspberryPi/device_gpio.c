@@ -4,17 +4,17 @@
 #include <unistd.h>
 
 // phys pin
-#define LED1 23
+#define LED1 535
 
 int main(void)
 {
     int fd = open("/sys/class/gpio/export", O_WRONLY);
-    write(fd, "23", strlen("23"));
+    write(fd, "535", strlen("535"));
     close(fd);
-    fd = open("/sys/class/gpio/gpio23/direction", O_WRONLY);
+    fd = open("/sys/class/gpio/gpio535/direction", O_WRONLY);
     write(fd, "out", strlen("out"));
     close(fd);
-    fd = open("/sys/class/gpio/gpio23/value", O_WRONLY);
+    fd = open("/sys/class/gpio/gpio535/value", O_WRONLY);
     for (int i = 0; i < 5; ++i)
     {
         write(fd, "1", strlen("1"));
@@ -24,7 +24,7 @@ int main(void)
     }
     close(fd);
     fd = open("/sys/class/gpio/unexport", O_WRONLY);
-    write(fd, "23", strlen("23"));
+    write(fd, "535", strlen("535"));
     close(fd);
     return 0;
 }
