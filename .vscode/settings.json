@@ -44,7 +44,8 @@
         "kernel.h": "c",
         "module.h": "c",
         "time.h": "c",
-        "compare": "c"
+        "compare": "c",
+        "init.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"
