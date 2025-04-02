@@ -59,7 +59,7 @@ int main(void)
 void i2C_init(int fd, int freq)
 {
     wiringPiSetupGpio();
-    wiringPiI2CWriteReg8(fd, PCA9685_MODE1, 0x01);    // 리셋
+    wiringPiI2CWriteReg8(fd, PCA9685_MODE1, 0x10);    // 리셋
     delay(10);                                        // 리셋 후 대기
     wiringPiI2CWriteReg8(fd, PCA9685_PRESCALE, freq); // 주파수 설정
     wiringPiI2CWriteReg8(fd, PCA9685_MODE1, 0xA1);
