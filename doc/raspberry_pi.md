@@ -38,6 +38,8 @@
 ---
 
 - 1교시
+  - 복습
+  - 여러 프로세스 다루기 ( &, nohup, bg, fg, jobs, ps, kill, top, htop)
 - 2교시
 - 3교시
 - 4교시

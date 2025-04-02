@@ -1,0 +1,12 @@
+[Unit]
+Description=My System Monitor Daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=~/mydaemon.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
