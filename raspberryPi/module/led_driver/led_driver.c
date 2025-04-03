@@ -1,9 +1,9 @@
 /*
-sudo insmod driver_exam.ko
+sudo insmod led_driver.ko
 dmesg
 ls /dev
-sudo mknod /dev/driver_exam c 220 0
-sudo chmod 666 /dev/driver_exam
+sudo mknod /dev/led_driver c 220 0
+sudo chmod 666 /dev/led_driver
 */
 #include <linux/fs.h>
 #include <linux/gpio.h>
