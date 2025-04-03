@@ -2,7 +2,7 @@
 sudo insmod led_driver.ko
 dmesg
 ls /dev
-sudo mknod /dev/led_driver c 220 0
+sudo mknod /dev/led_driver c 221 0
 sudo chmod 666 /dev/led_driver
 */
 #include <linux/fs.h>
@@ -17,6 +17,8 @@ sudo chmod 666 /dev/led_driver
 static int led_driver_open(struct inode *inode, struct file *file);
 static int led_driver_release(struct inode *inode, struct file *file);
 static ssize_t led_driver_write(struct file *file, const char __user *buf, size_t length, loff_t *ofs);
+
+int led[4] = {23 + 512, 24 + 512, 25 + 512, 1 + 512};
 
 static struct file_operations led_driver_fops = {
     .owner = THIS_MODULE,
@@ -44,7 +46,7 @@ static int led_driver_open(struct inode *inode, struct file *file)
     printk(KERN_INFO "led driver open!\n");
     for (i = 0; i < 4; ++i)
     {
-        ret = gpio_request(535 + i, "LED");
+        ret = gpio_request(led[i], "LED");
         if (ret < 0)
             printk(KERN_INFO "led driver %d request fail!\n", i);
     }
@@ -57,7 +59,7 @@ static int led_driver_release(struct inode *inode, struct file *file)
     printk(KERN_INFO "led driver release!\n");
     for (i = 0; i < 4; ++i)
     {
-        gpio_free(535 + i);
+        gpio_free(led[i]);
     }
     return 0;
 }
@@ -71,7 +73,7 @@ static ssize_t led_driver_write(struct file *file, const char __user *buf, size_
     printk(KERN_INFO "led driver open!\n");
     for (i = 0; i < 4; ++i)
     {
-        ret = gpio_direction_output(535 + i, cbuf[i]);
+        ret = gpio_direction_output(led[i], cbuf[i]);
         if (ret < 0)
             printk(KERN_INFO "led driver %d direction output fail!\n", i);
     }
