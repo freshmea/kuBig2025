@@ -8,7 +8,7 @@ int main(void)
 {
     int fd;
     char buf = 1;
-    fd = open("dev/driver_exam", O_RDWR);
+    fd = open("/dev/driver_exam", O_RDWR);
     if (fd < 0)
     {
         printf("driver open fail\n");
