@@ -52,8 +52,12 @@
   - PCA9685 설명
   - PCA9685 제어하기
 - 6교시
+  - 커널 모듈 설명
 - 7교시
+  - RGB LED 제어하기
+  - RGB LED 제어하기 - PWM
 - 8교시
+  - servo 제어하기 - PWM
   - 정리
 
 ---
@@ -63,12 +67,23 @@
 ---
 
 - 1교시
+  - 복습
+  - 커널 모듈 설명
+  - led_driver.c 코드 작성
+  - Makefile 작성
 - 2교시
+  - switch_interrupt.c 코드 작성
 - 3교시
+  - export_symbol 모듈 작성
 - 4교시
+  - GPL 설명
 - 5교시
+  - character device driver 설명
+  - led_driver.c
 - 6교시
+  - switch_driver.c 코드 작성
 - 7교시
+  - led_switch_driver 실습
 - 8교시
   - 정리
 
