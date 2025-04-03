@@ -46,7 +46,11 @@
         "time.h": "c",
         "compare": "c",
         "init.h": "c",
-        "gpio.h": "c"
+        "gpio.h": "c",
+        "fcntl.h": "c",
+        "unistd.h": "c",
+        "fs.h": "c",
+        "stdlib.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"
