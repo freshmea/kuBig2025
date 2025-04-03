@@ -15,10 +15,11 @@ int main(void)
         return -1;
     }
 
-    for (int i = 0; i < 4000; ++i)
+    for (int i = 0; i < 4; ++i)
     {
         read(fd, &buf, 4);
         printf("sw1: %d, sw2: %d, sw3: %d, sw4: %d\n", buf[0], buf[1], buf[2], buf[3]);
+        sleep(1);
     }
     for (int i = 0; i < 4; ++i)
     {
