@@ -12,7 +12,8 @@ void export_symbol_test_func2(void)
 {
     printk(KERN_INFO "symbol test func2! GPL License\n");
 }
-EXPORT_SYMBOL_GPL(export_symbol_test_func2);
+EXPORT_SYMBOL(export_symbol_test_func2);
+// EXPORT_SYMBOL_GPL(export_symbol_test_func2);
 
 static int __init export_symbol_a_init(void)
 {
