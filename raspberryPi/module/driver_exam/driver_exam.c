@@ -1,3 +1,10 @@
+/*
+sudo insmod driver_exam.ko
+dmesg
+ls /dev
+sudo mknod /dev/driver_exam c 220 0
+sudo chmod 666 /dev/driver_exam
+*/
 #include <linux/fs.h>
 #include <linux/init.h>
 #include <linux/kernel.h>
@@ -20,14 +27,14 @@ static struct file_operations driver_exam_fops = {
 
 static int driver_exam_init(void)
 {
-    printk(KERN_INFO "switch_interrupt_init!\n");
+    printk(KERN_INFO "driver exam init!\n");
     register_chrdev(DEV_MAJOR_NUMBER, DEV_NAME, &driver_exam_fops);
     return 0;
 }
 
 static void driver_exam_exit(void)
 {
-    printk(KERN_INFO "switch_interrupt_exit!\n");
+    printk(KERN_INFO "driver exam exit!\n");
     unregister_chrdev(DEV_MAJOR_NUMBER, DEV_NAME);
 }
 
