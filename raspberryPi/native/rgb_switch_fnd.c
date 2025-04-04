@@ -100,7 +100,7 @@ void SW_ISR1R(void)
         printf("R: %d\n", r_value);
         int de2 = (int)((float)r_value / 409.6);
         int de1 = (int)((float)r_value / 40.96) % 10;
-        bit_74HC595_shift16(numbers[de2], numbers[de1]);
+        bit_74HC595_shift16(numbers[de1], numbers[de2]);
         r_pushed = 0;
     }
 }
@@ -119,9 +119,9 @@ void SW_ISR2R(void)
         if (g_value >= 4096)
             g_value = 4095;
         printf("G: %d\n", g_value);
-        int de2 = (int)((float)r_value / 409.6);
-        int de1 = (int)((float)r_value / 40.96) % 10;
-        bit_74HC595_shift16(numbers[de2], numbers[de1]);
+        int de2 = (int)((float)g_value / 409.6);
+        int de1 = (int)((float)g_value / 40.96) % 10;
+        bit_74HC595_shift16(numbers[de1], numbers[de2]);
         g_pushed = 0;
     }
 }
@@ -140,9 +140,9 @@ void SW_ISR3R(void)
         if (b_value >= 4096)
             b_value = 4095;
         printf("B: %d\n", b_value);
-        int de2 = (int)((float)r_value / 409.6);
-        int de1 = (int)((float)r_value / 40.96) % 10;
-        bit_74HC595_shift16(numbers[de2], numbers[de1]);
+        int de2 = (int)((float)b_value / 409.6);
+        int de1 = (int)((float)b_value / 40.96) % 10;
+        bit_74HC595_shift16(numbers[de1], numbers[de2]);
         b_pushed = 0;
     }
 }
