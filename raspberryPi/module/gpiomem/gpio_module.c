@@ -32,7 +32,7 @@ static int led_module_init(void)
         reg_offset = (led[i] / 10) * 4;
         bit = (led[i] % 10) * 3;
         value = ioread32(gpio_base + reg_offset);
-        value = (value & (7 << bit)) | (1 << bit);
+        value = (value & ~(7 << bit)) | (1 << bit);
         iowrite32(value, gpio_base + reg_offset);
 
         // HIGH 설정
