@@ -21,7 +21,7 @@ int main(void)
     digitalWrite(LATCH_PIN, LOW);
     digitalWrite(CLOCK_PIN, LOW);
 
-    printf("테스트 FND 숫자 테스트");
+    printf("테스트 FND 숫자 테스트\n");
     for (int i = 0; i < 10; ++i)
     {
         bit_74HC595_shift16(numbers[i % 10], numbers[0]);
@@ -32,7 +32,7 @@ int main(void)
         bit_74HC595_shift16(numbers[0], numbers[i % 10]);
         delay(300);
     }
-    printf("FND 끄기");
+    printf("FND 끄기\n");
     bit_74HC595_shift16(0x00, 0x00);
 }
 
