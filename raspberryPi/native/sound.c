@@ -18,7 +18,7 @@ cd WM8960-Audio-HAT/
 sudo ./install.sh
 cd ..
 
-gcc -o audio_test audio_test.c -lasound -lm
+gcc -o sound sound.c -lasound -lm
 
 libcamera-jpeg -o test.jpg
 libcamera-vid -t 10000 -o test.h264
