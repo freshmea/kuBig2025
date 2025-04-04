@@ -50,7 +50,9 @@
         "fcntl.h": "c",
         "unistd.h": "c",
         "fs.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "ioctl.h": "c",
+        "types.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"
