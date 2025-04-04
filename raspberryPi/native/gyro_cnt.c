@@ -45,12 +45,13 @@ int main(void)
         gyro_z_offset += gz;
         delay(10);
     }
-    accel_x_offset /= 100 * 16384.0;
-    accel_y_offset /= 100 * 16384.0;
-    accel_z_offset /= 100 * 16384.0;
-    gyro_x_offset /= 100 * 131.0;
-    gyro_y_offset /= 100 * 131.0;
-    gyro_z_offset /= 100 * 131.0;
+    accel_x_offset /= 100;
+    accel_y_offset /= 100;
+    accel_z_offset /= 100;
+    gyro_x_offset /= 100;
+    gyro_y_offset /= 100;
+    gyro_z_offset /= 100;
+    accel_z_offset -= 16384.0;
 
     while (1)
     {
@@ -61,12 +62,12 @@ int main(void)
         int16_t gy = (wiringPiI2CReadReg8(gyro_fd, GYRO_XOUT_H + 2) << 8) | wiringPiI2CReadReg8(gyro_fd, GYRO_XOUT_H + 3);
         int16_t gz = (wiringPiI2CReadReg8(gyro_fd, GYRO_XOUT_H + 4) << 8) | wiringPiI2CReadReg8(gyro_fd, GYRO_XOUT_H + 5);
 
-        printf("ax : %f\n", (float)ax / 16384.0 - accel_x_offset);
-        printf("ay : %f\n", (float)ay / 16384.0 - accel_y_offset);
-        printf("az : %f\n", (float)az / 16384.0 - accel_z_offset);
-        printf("gx : %f\n", (float)gx / 131.0 - gyro_x_offset);
-        printf("gy : %f\n", (float)gy / 131.0 - gyro_y_offset);
-        printf("gz : %f\n", (float)gz / 131.0 - gyro_z_offset);
+        printf("ax : %f\n", ((float)ax - accel_x_offset) / 16384.0);
+        printf("ay : %f\n", ((float)ay - accel_y_offset) / 16384.0);
+        printf("az : %f\n", ((float)az - accel_z_offset) / 16384.0);
+        printf("gx : %f\n", ((float)gx - gyro_x_offset) / 131.0);
+        printf("gy : %f\n", ((float)gy - gyro_y_offset) / 131.0);
+        printf("gz : %f\n", ((float)gz - gyro_z_offset) / 131.0);
         // printf("ax : %f\n", (float)ax / 16384.0);
         // printf("ay : %f\n", (float)ay / 16384.0);
         // printf("az : %f\n", (float)az / 16384.0);
