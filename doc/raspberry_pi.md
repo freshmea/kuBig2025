@@ -92,8 +92,11 @@
 ## 2025-04-04
 
 ---
+
 [라즈베리파이 하드웨어](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html)
 [커널 교재](https://sysprog21.github.io/lkmpg/#sticking-your-head-inside-a-large-carnivore)
+[커널 예제 코드](https://github.com/PacktPublishing/Linux-Kernel-Programming)
+
 - 1교시
   - 복습
   - ioremap 설명, 라즈베리파이4B IO register 설명
