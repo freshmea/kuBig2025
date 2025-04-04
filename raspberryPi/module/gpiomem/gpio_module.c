@@ -1,3 +1,7 @@
+// make
+// sudo insmod gpio_module.ko
+// sudo rmmod gpio_module
+
 #include <linux/init.h>
 #include <linux/io.h>
 #include <linux/kernel.h>
@@ -43,7 +47,7 @@ static void led_module_exit(void)
     {
         iowrite32(1 << led[i], gpio_base + GPCTL0);
     }
-    ioumap(gpio_base);
+    iounmap(gpio_base);
     printk(KERN_INFO "All GPIOs freed successfully.\n");
 }
 
