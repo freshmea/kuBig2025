@@ -1,3 +1,7 @@
+// make
+// sudo insmod gpio_module.ko
+// sudo rmmod gpio_module
+
 #include <linux/init.h>
 #include <linux/io.h>
 #include <linux/kernel.h>
@@ -28,7 +32,7 @@ static int led_module_init(void)
         reg_offset = (led[i] / 10) * 4;
         bit = (led[i] % 10) * 3;
         value = ioread32(gpio_base + reg_offset);
-        value = (value & (7 << bit)) | (1 << bit);
+        value = (value & ~(7 << bit)) | (1 << bit);
         iowrite32(value, gpio_base + reg_offset);
 
         // HIGH 설정
@@ -43,7 +47,7 @@ static void led_module_exit(void)
     {
         iowrite32(1 << led[i], gpio_base + GPCTL0);
     }
-    ioumap(gpio_base);
+    iounmap(gpio_base);
     printk(KERN_INFO "All GPIOs freed successfully.\n");
 }
 

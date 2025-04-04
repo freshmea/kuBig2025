@@ -8,9 +8,7 @@
                 "/lib/modules/6.6.51+rpt-rpi-v8/source/include",
                 "/usr/src/linux-headers-6.6.51+rpt-rpi-v8//arch/arm64/include/generated",
                 "/usr/src/linux-headers-6.6.51+rpt-rpi-v8//include",
-                "/usr/src/linux-headers-6.6.51+rpt-common-rpi/arch/arm64/include",
-                "/lib/modules/6.8.0-57-generic/**",
-                "/usr/src/linux-headers-6.8.0-57-generic/**"
+                "/usr/src/linux-headers-6.6.51+rpt-common-rpi/arch/arm64/include"
             ],
             "defines": [
                 "__KERNEL__",
