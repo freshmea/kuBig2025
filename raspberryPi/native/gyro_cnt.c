@@ -68,12 +68,6 @@ int main(void)
         printf("gx : %f\n", ((float)gx - gyro_x_offset) / 131.0);
         printf("gy : %f\n", ((float)gy - gyro_y_offset) / 131.0);
         printf("gz : %f\n", ((float)gz - gyro_z_offset) / 131.0);
-        // printf("ax : %f\n", (float)ax / 16384.0);
-        // printf("ay : %f\n", (float)ay / 16384.0);
-        // printf("az : %f\n", (float)az / 16384.0);
-        // printf("gx : %f\n", (float)gx / 131.0);
-        // printf("gy : %f\n", (float)gy / 131.0);
-        // printf("gz : %f\n", (float)gz / 131.0);
         delay(100);
     }
 
