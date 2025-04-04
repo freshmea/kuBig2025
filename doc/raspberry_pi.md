@@ -108,10 +108,19 @@
 - 3교시
   - rgb_switch_fnd.c 작성 [실습]
 - 4교시
+  - PIR 센서 설명 - GPIO 핀 - 인터럽트가 작동 하지 않았음.... 다른 핀과 겹치는듯
+  - 터치 센서 값 읽기 - I2C touch_ATQT1070 IC 칩 데이터 시트
 - 5교시
+  - 온습도 센서 값 읽기 - I2C SHT20 IC 칩 데이터 시트
+  - 자이로 센서 값 읽기 - I2C MPU6050 IC 칩 데이터 시트
 - 6교시
+  - 자이로 센서 활용 실습 - 라즈베리파이4B 실습 상자 움직임 감지 -> 버저, LED 점등
 - 7교시
+  - 자이로 센서 활용 코드 - gyro_detect.c 작성
+  - 오디오 실습 - WM8960 칩 설명
 - 8교시
+  - dts config.txt 파일 수정, github 커널모듈 설치, aplay -l 확인
+  - sound.c 코드 실습 - 스피커 소리 출력 및 마이크 입력 테스트
   - 정리
 
 ---
@@ -120,6 +129,7 @@
 
 ---
 [스크립트 코드](https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/?utm_source=chatgpt.com)
+
 - 1교시
 - 2교시
 - 3교시
