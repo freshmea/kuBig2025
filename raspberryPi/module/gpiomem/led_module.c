@@ -1,45 +1,49 @@
-#include <asm/io.h>
-#include <asm/uaccess.h>
-#include <linux/fs.h>
-#include <linux/gpio.h>
 #include <linux/init.h>
+#include <linux/io.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
 
-#define HIGH 1
-#define LOW 0
+#define GPIO_BASE 0xFE200000 // video -> CPU
+#define GPIO_SIZE 0x1000
 
-int led[4] = {23 + 512, 24 + 512, 25 + 512, 1 + 512};
+#define GPFSEL0 0x00
+#define GPFSEL1 0x04
+#define GPFSEL2 0x08
+
+#define GPSET0 0x1C
+#define GPCTL0 0x28
+
+int led[4] = {23, 24, 25, 1};
+static void __iomem *gpio_base;
 
 static int led_module_init(void)
 {
-    int ret, i;
+    int ret, i, reg_offset, bit;
+    __u32 value;
+    gpio_base = ioremap(GPIO_BASE, GPIO_SIZE);
     printk(KERN_INFO "led module init! \n");
     for (i = 0; i < 4; i++)
     {
-        ret = gpio_request(led[i], "LED");
-        if (ret < 0)
-            printk(KERN_INFO "led mosule gpio request failed!\n");
-    }
-    for (i = 0; i < 4; i++)
-    {
-        ret = gpio_direction_output(led[i], HIGH);
+        // 출력 설정
+        reg_offset = (led[i] / 10) * 4;
+        bit = (led[i] % 10) * 3;
+        value = ioread32(gpio_base + reg_offset);
+        value = (value & (7 << bit)) | (1 << bit);
+        iowrite32(value, gpio_base + reg_offset);
+
+        // HIGH 설정
+        iowrite32(1 << led[i], gpio_base + GPSET0);
     }
     return 0;
 }
 
 static void led_module_exit(void)
 {
-    int i;
-    printk(KERN_INFO "led module exit!\n");
-    for (i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++)
     {
-        gpio_direction_output(led[i], LOW);
+        iowrite32(1 << led[i], gpio_base + GPCTL0);
     }
-    for (i = 0; i < 4; i++)
-    {
-        gpio_free(led[i]);
-    }
+    ioumap(gpio_base);
     printk(KERN_INFO "All GPIOs freed successfully.\n");
 }
 
