@@ -93,9 +93,20 @@
 
 ---
 
+[라즈베리파이 하드웨어](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html)
+[커널 교재](https://sysprog21.github.io/lkmpg/#sticking-your-head-inside-a-large-carnivore)
+[커널 예제 코드](https://github.com/PacktPublishing/Linux-Kernel-Programming)
+
 - 1교시
+  - 복습
+  - ioremap 설명, 라즈베리파이4B IO register 설명
+  - 가상메모리, 물리메모리 설명
+  - gpiomem_module.c 코드 작성
 - 2교시
+  - FND, 74HC595 칩 설명(latch, clock, data)
+  - fnd_cnt.c 코드 작성
 - 3교시
+  - rgb_switch_fnd.c 작성 [실습]
 - 4교시
 - 5교시
 - 6교시
@@ -108,7 +119,7 @@
 ## 2025-04-07
 
 ---
-
+[스크립트 코드](https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/?utm_source=chatgpt.com)
 - 1교시
 - 2교시
 - 3교시
