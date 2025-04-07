@@ -134,11 +134,15 @@
   - 복습
   - 스크립트 작성법 설명
 - 2교시
-  - 
+  - bash 스크립트 작성법 설명
+  - hello.sh 코드 작성 - 변수, echo, read, export, 환경변수, local
+  - if문, for문, while문, until문 연산자, 논리 연산자, case문
 - 3교시
+  - 반복문, 함수 설명
+  - flow_exec.sh 코드 작성
+  - 스크립트 자동화 기법 설명
 - 4교시
-- 5교시
-- 6교시
-- 7교시
-- 8교시
+  - cron 설명, crontab을 사용하여 스크립트 자동 실행하기
+  - 스크립트 실행 주기 설정 방법 설명 - crontab -e, crontab -l
+  - grep CRON /var/log/syslog
   - 정리
