@@ -131,7 +131,10 @@
 [스크립트 코드](https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/?utm_source=chatgpt.com)
 
 - 1교시
+  - 복습
+  - 스크립트 작성법 설명
 - 2교시
+  - 
 - 3교시
 - 4교시
 - 5교시
