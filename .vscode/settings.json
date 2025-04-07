@@ -52,7 +52,8 @@
         "fs.h": "c",
         "stdlib.h": "c",
         "ioctl.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "cstdlib": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025"
