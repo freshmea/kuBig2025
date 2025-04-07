@@ -23,12 +23,12 @@ echo ${#text}
 
 # read
 echo "이름을 입력하시요: "
-# read name
-# read -s -p "비밀번호를 입력하세요: " passward
-# echo "입력한 이름: $name"
-# echo "패스워드: $passward "
-# export name=$name
-# ./envTest
+read name
+read -s -p "비밀번호를 입력하세요: " passward
+echo "입력한 이름: $name"
+echo "패스워드: $passward "
+export name=$name
+./envTest
 
 # 화면출력 echo , printf
 echo -n "이어지는 " # 개행 없음
@@ -76,6 +76,17 @@ else
 fi
 
 # 논리연산 && || !
+
+# switch - case -> case
+
+read -p "과일 입력: " fruit
+case $fruit in
+    "사과"|"딸기") echo "빨간 과일" ;;
+    "바나나"|"망고") echo "노란 과일" ;;
+    *) echo "알 수 없음" ;;
+esac
+
+
 
 
 
