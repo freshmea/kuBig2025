@@ -66,4 +66,4 @@
   - 라즈베리파이의 GPIO 핀을 이해 한다.
   - 커널에 모듈을 적용하는 방법을 이해 한다.
 - [과정 진행 사항](doc/raspberry_pi.md)
-- 시험 링크 : [구글 설문지](https://docs.google.com/forms/d/e/1FAIpQLSeor7kW7_PfmBH2YThfQfh7N8WzN0oehRsO59GmvPy4PlWTyg/viewform?usp=header)
+- 시험 링크 : [구글 설문지](https://forms.gle/5DPF6XtAHk4Uo97N7)
