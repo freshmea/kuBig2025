@@ -2,68 +2,38 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-all",
+            "label": "build",
             "type": "shell",
-            "command": "mkdir -p build && cd build && cmake .. && make",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/complex"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": "$gcc"
         },
         {
-            "label": "build-bowling",
+            "label": "run",
             "type": "shell",
-            "command": "mkdir -p build && cd build && cmake .. && make -C bowling",
-            "group": "build",
-            "problemMatcher": [
-                "$gcc"
+            "command": "${workspaceFolder}/complex",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always"
+            },
+            "dependsOn": [
+                "build"
             ]
-        },
-        {
-            "label": "build-c-example-part1",
-            "type": "shell",
-            "command": "mkdir -p build && cd build && cmake .. && make -C c_example/part1",
-            "group": "build",
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
-            "label": "build-c-example-part2",
-            "type": "shell",
-            "command": "mkdir -p build && cd build && cmake .. && make -C c_example/part2",
-            "group": "build",
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
-            "label": "build-c-example-part3",
-            "type": "shell",
-            "command": "mkdir -p build && cd build && cmake .. && make -C c_example/part3",
-            "group": "build",
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
-            "label": "build-sqlQuery",
-            "type": "shell",
-            "command": "mkdir -p build && cd build && cmake .. && make -C sqlQuery",
-            "group": "build",
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
-            "label": "clean",
-            "type": "shell",
-            "command": "cd build && make clean",
-            "group": "none",
-            "problemMatcher": []
         }
     ]
 }
