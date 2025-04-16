@@ -58,16 +58,3 @@ if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -pedantic")
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0")
 endif()
-
-message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "C compiler: ${CMAKE_C_COMPILER_ID}")
-message(STATUS "Project directory: ${CMAKE_SOURCE_DIR}")
-
-# 빌드 지침 출력
-message(STATUS "")
-message(STATUS "Build instructions:")
-message(STATUS "  1. Create a build directory: mkdir build")
-message(STATUS "  2. Go to the build directory: cd build")
-message(STATUS "  3. Run cmake: cmake ..")
-message(STATUS "  4. Build: make")
-message(STATUS "")

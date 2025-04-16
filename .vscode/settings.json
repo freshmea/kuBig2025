@@ -53,8 +53,15 @@
         "stdlib.h": "c",
         "ioctl.h": "c",
         "types.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "vector": "cpp"
     },
     "ros.distro": "humble",
-    "cmake.sourceDirectory": "/home/aa/kuBig2025"
+    "cmake.sourceDirectory": "/home/aa/kuBig2025",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
+    }
 }
