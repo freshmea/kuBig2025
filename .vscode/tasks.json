@@ -2,38 +2,45 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "CMake: Build Current File",
             "type": "shell",
-            "command": "g++",
-            "args": [
-                "-g",
-                "${workspaceFolder}/*.cpp",
-                "-o",
-                "${workspaceFolder}/complex"
-            ],
+            "command": "cd ${workspaceFolder} && ([ -f build/CMakeCache.txt ] || cmake -S . -B build) && cmake --build build --target ${fileBasenameNoExtension}",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "presentation": {
-                "reveal": "always"
+                "reveal": "silent",
+                "panel": "shared"
             },
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "label": "run",
+            "label": "CMake: Run Current File",
             "type": "shell",
-            "command": "${workspaceFolder}/complex",
+            "command": "./build/c_example/part1/${fileBasenameNoExtension}",
+            "dependsOn": "CMake: Build Current File",
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
             "presentation": {
-                "reveal": "always"
+                "reveal": "always",
+                "panel": "new"
             },
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Build and Run Current File",
+            "dependsOrder": "sequence",
             "dependsOn": [
-                "build"
-            ]
+                "CMake: Build Current File",
+                "CMake: Run Current File"
+            ],
+            "group": {
+                "kind": "none"
+            },
+            "problemMatcher": []
         }
     ]
 }
