@@ -4,7 +4,6 @@
 
 int main(void)
 {
-
     int size;
     scanf("%d", &size);
 

@@ -31,6 +31,7 @@ endforeach()
 # 단일 파일 예제
 add_executable(strcpy_test strcpy.c)
 add_executable(list_example list.c)
+add_executable(varSizeArray2 varSizeArray2.c)
 
 # 컴파일 플래그 설정
 if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
