@@ -13,11 +13,15 @@ int main()
     // cout << "v 의 첫번째 원소는 : " << v[0] << endl;
     // cout << "v 의 두번째 원소는 : " << v[1] << endl;
     // cout << "v 의 세번째 원소는 : " << v[2] << endl;
+    // vector<int>::iterator it;
+    auto it = v.begin() + 2;
+    v.erase(it); // 111 삭제
+    v.at(0) = 2; // 원소에 접근해서 변경.
 
     // for 문을 쓰는 첫 번째
-    for (int i = 0; i < v.size(); ++i)
+    for (auto i = 0; i < v.size(); ++i)
     {
-        cout << "v 의 " << i + 1 << " 번째 원소는 :" << v[i] << endl;
+        cout << "v 의 " << i + 1 << " 번째 원소는 :" << v.at(i) << endl;
     }
     return 0;
 }
