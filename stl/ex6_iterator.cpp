@@ -21,6 +21,14 @@ int main()
     {
         cout << v << endl;
     }
+    for (auto &v : test_vector) // 컨테이너의 값을 변경
+    {
+        cout << v << endl;
+    }
+    for (const auto &v : test_vector) // 메모리 효율적으로 값 참고 할 때
+    {
+        cout << v << endl;
+    }
 
     return 0;
 }
