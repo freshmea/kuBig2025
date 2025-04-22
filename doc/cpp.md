@@ -41,7 +41,8 @@
   - 범위 for 문을 위한 코드 - forClass 작성
 - 6교시
   - nullptr 설명
+  - constexpr 설명
 - 7교시
-  - 
+  - 통합 예제 작성 range_example.cpp
 - 8교시
   - 정리
