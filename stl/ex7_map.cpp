@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    map<string, string> dic;
+    map<string, string> dic = {{"power", "힘"}, {"money", "돈"}};
     dic.insert(make_pair("love", "사랑"));
     dic["cherry"] = "체리";
 
