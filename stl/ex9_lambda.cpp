@@ -1,5 +1,14 @@
 #include <iostream>
+#include <vector>
 using namespace std;
+
+class Adder
+{
+public:
+    int offset;
+    Adder(int o) : offset(o) {};
+    int operator()(int x) const { return x + offset; }
+};
 
 int main()
 {
@@ -16,5 +25,15 @@ int main()
     { sum = x + y; };
     calc2(2, 3);
     cout << "합은 : " << sum << endl;
+
+    auto calc3 = [&](int x, int y)
+    { sum = x + y + pi; };
+    calc3(2, 3);
+    cout << "합은 : " << sum << endl;
+
+    // vector<int> test;
+    // test();
+    Adder addObject(4);
+    cout << addObject(10) << endl;
     return 0;
 }
