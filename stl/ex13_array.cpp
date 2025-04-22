@@ -1,6 +1,10 @@
 #include <array>
 #include <deque>
 #include <iostream>
+#include <list>
+#include <set>
+#include <string>
+#include <unordered_map>
 using namespace std;
 
 int main()
@@ -31,5 +35,36 @@ int main()
     for (const auto &v : dq)
         cout << v << " ";
     cout << endl;
+
+    // list 삽입 삭제 특화
+    list<int> lst = {1, 2, 3};
+    auto it = lst.begin();
+    ++it;
+    ++it;
+    lst.insert(it, 3);
+    for (const auto &v : lst)
+        cout << v << " ";
+    cout << endl;
+
+    // set 집합 - 중복이 없는 자료들, 자동 정렬.
+    set<int> s = {3, 1, 2, 2, 1};
+    for (const auto &v : s)
+        cout << v << " ";
+    cout << endl;
+    cout << "s 집합의 크기는 " << s.size() << endl;
+
+    // unorderd_map
+    // 해쉬 테이블 기반의 자료 -> 아주아주 아주~ 빠른 접근
+    // sha256..
+    // 데이터가 굉장히 많을 때 100만개 이상.
+    unordered_map<std::string, int> um = {{"apple", 100}, {"banana", 150}, {"mango", 200}};
+    // 모든 것을 가지고 오려면 그냥 map 을 쓰세요.
+    for (const auto &[key, val] : um)
+    {
+        cout << key << " : " << val << endl;
+    }
+    // 참조가 빠르다.
+    cout << um["apple"] << endl;
+
     return 0;
 }
