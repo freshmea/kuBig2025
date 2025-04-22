@@ -1,5 +1,6 @@
 #include <cctype>
 #include <ctime>
+#include <fstream>
 #include <iostream>
 #include <list>
 
@@ -13,8 +14,8 @@ int main()
     string student;
     char temp;
     int grade;
+
     FILE *fp = fopen("/home/aa/kuBig2025/stl/1000.txt", "r");
-    // ifstream fin("/home/aa/kuBig2025/stl/studnet.txt");
 
     while (fread(&temp, sizeof(char), 1, fp))
     {
@@ -28,10 +29,14 @@ int main()
             student.clear();
         }
     }
+    fclose(fp);
+    // ifstream fin("/home/aa/kuBig2025/stl/10.txt");
+    // while (fin >> grade)
+    //     students.push_back(grade);
+    // fin.close();
 
     for (auto v : students)
         cout << v << endl;
-    fclose(fp);
 
     auto count = students.size();
 
