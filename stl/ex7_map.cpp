@@ -23,5 +23,10 @@ int main()
             cout << dic[eng] << endl;
     }
 
+    for (const auto &[eng, kor] : dic)
+    {
+        std::cout << "영어 : " << eng << " 한국어 : " << kor << endl;
+    }
+
     return 0;
 }
