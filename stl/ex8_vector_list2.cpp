@@ -10,12 +10,24 @@ void test_function(list<int> students);
 int main()
 {
     list<int> students;
-    int student;
+    string student;
+    char temp;
+    int grade;
     FILE *fp = fopen("/home/aa/kuBig2025/stl/studnet.txt", "r");
     // ifstream fin("/home/aa/kuBig2025/stl/studnet.txt");
 
-    while (fread(&student, sizeof(int), 1, fp))
-        students.push_back(student);
+    while (fread(&temp, sizeof(char), 1, fp))
+    {
+        if (temp != '\n' && temp != ' ')
+            student.push_back(temp);
+        else
+        {
+            grade = stoi(student);
+            students.push_back(grade);
+            student.clear();
+        }
+    }
+
     for (auto v : students)
         cout << v << endl;
     fclose(fp);

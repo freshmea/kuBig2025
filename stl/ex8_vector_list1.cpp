@@ -15,7 +15,9 @@ int main()
     // ifstream fin("/home/aa/kuBig2025/stl/studnet.txt");
 
     while (fread(&student, sizeof(int), 1, fp))
-        students.push_back(student);
+        if (0 < student && student < 100)
+            students.push_back(student);
+
     for (auto v : students)
         cout << v << endl;
     fclose(fp);
