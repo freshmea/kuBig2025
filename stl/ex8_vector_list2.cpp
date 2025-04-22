@@ -1,11 +1,11 @@
+#include <cctype>
 #include <ctime>
 #include <iostream>
 #include <list>
-#include <unistd.h>
 
 using namespace std;
 
-void test_function(list<int> students);
+void test_function(list<int> &students);
 
 int main()
 {
@@ -13,14 +13,15 @@ int main()
     string student;
     char temp;
     int grade;
-    FILE *fp = fopen("/home/aa/kuBig2025/stl/studnet.txt", "r");
+    FILE *fp = fopen("/home/aa/kuBig2025/stl/1000.txt", "r");
     // ifstream fin("/home/aa/kuBig2025/stl/studnet.txt");
 
     while (fread(&temp, sizeof(char), 1, fp))
     {
-        if (temp != '\n' && temp != ' ')
+
+        if (isdigit(temp))
             student.push_back(temp);
-        else
+        else if (!student.empty())
         {
             grade = stoi(student);
             students.push_back(grade);
@@ -42,11 +43,9 @@ int main()
     cout << "벡터를 연산하는 시간은" << count << "데이터 사이즈" << endl;
     cout << "지워진 데이터의 숫자는" << count - students.size() << endl;
     cout << (end - begin) / CLOCKS_PER_SEC << "초" << endl;
-
-    return 0;
 }
 
-void test_function(list<int> students)
+void test_function(list<int> &students)
 {
     list<int>::iterator it = students.begin();
     while (it != students.end())

@@ -55,7 +55,8 @@
         "types.h": "c",
         "cstdlib": "c",
         "vector": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "iosfwd": "cpp"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025",

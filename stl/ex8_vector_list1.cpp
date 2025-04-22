@@ -5,22 +5,29 @@
 
 using namespace std;
 
-void test_function(vector<int> students);
+void test_function(vector<int> &students);
 
 int main()
 {
     vector<int> students;
-    int student;
-    FILE *fp = fopen("/home/aa/kuBig2025/stl/studnet.txt", "r");
+    string student;
+    char temp;
+    int grade;
+    FILE *fp = fopen("/home/aa/kuBig2025/stl/1000.txt", "r");
     // ifstream fin("/home/aa/kuBig2025/stl/studnet.txt");
 
-    while (fread(&student, sizeof(int), 1, fp))
-        if (0 < student && student < 100)
-            students.push_back(student);
+    while (fread(&temp, sizeof(char), 1, fp))
+    {
 
-    for (auto v : students)
-        cout << v << endl;
-    fclose(fp);
+        if (isdigit(temp))
+            student.push_back(temp);
+        else if (!student.empty())
+        {
+            grade = stoi(student);
+            students.push_back(grade);
+            student.clear();
+        }
+    }
 
     auto count = students.size();
 
@@ -36,7 +43,7 @@ int main()
     return 0;
 }
 
-void test_function(vector<int> students)
+void test_function(vector<int> &students)
 {
     vector<int>::iterator it = students.begin();
     while (it != students.end())
