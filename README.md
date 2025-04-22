@@ -69,5 +69,16 @@
 - [과정 진행 사항](doc/raspberry_pi.md)
 - 시험 링크 : [구글 설문지](https://forms.gle/R1RUJXs28xyrw1NB9)
 
+---
 
--[cppreference](https://en.cppreference.com/)
+## CPP
+
+---
+
+- 수업 목표
+  - C++ 언어의 기본 문법을 익히고 객체 지향 프로그래밍을 이해한다.
+  - C++ STL을 이용한 자료구조와 알고리즘을 이해한다.
+  - C++의 고급 문법을 익히고 이를 이용한 프로젝트를 수행한다.
+  - C++의 메모리 관리와 스마트 포인터를 이해한다.
+- [과정 진행 사항](doc/cpp.md)
+- [C++ Reference](https://en.cppreference.com/)

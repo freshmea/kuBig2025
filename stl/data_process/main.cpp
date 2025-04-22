@@ -1,17 +1,24 @@
 #include "data_process.hpp"
 #include <iostream>
-
+using namespace std;
 int main()
 {
-    std::vector<std::string> words = {"apple", "ant", "banana", "bear", "cat"};
+    vector<string> words = {"apple", "ant", "banana", "bear", "cat"};
     DataProcessor processor(words);
 
     auto sorted = processor.sort_by_length();
-    std::cout << "original sequence : " << std::endl;
+    cout << "original sequence : " << endl;
     for (const auto &word : processor.data_)
-        std::cout << word << std::endl;
+        cout << word << endl;
 
-    std::cout << "Sorted by length : " << std::endl;
+    cout << "Sorted by length : " << endl;
     for (const auto &word : sorted)
-        std::cout << word << std::endl;
+        cout << word << endl;
+
+    cout << "Filtered by prefix : " << endl;
+    auto filtered = processor.filter_by_prefix("b");
+    for (const auto &word : filtered)
+        cout << word << endl;
+
+    return 0;
 }
