@@ -7,10 +7,11 @@ int main()
     DataProcessor processor(words);
 
     auto sorted = processor.sort_by_length();
-    std::cout << "Sorted by length : " << std::endl;
+    std::cout << "original sequence : " << std::endl;
     for (const auto &word : processor.data_)
         std::cout << word << std::endl;
 
+    std::cout << "Sorted by length : " << std::endl;
     for (const auto &word : sorted)
         std::cout << word << std::endl;
 }
