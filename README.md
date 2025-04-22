@@ -68,3 +68,6 @@
   - 스크립트 프로그래밍을 통해 자동화된 시스템을 구축하는 방법을 익힌다.
 - [과정 진행 사항](doc/raspberry_pi.md)
 - 시험 링크 : [구글 설문지](https://forms.gle/R1RUJXs28xyrw1NB9)
+
+
+-[cppreference](https://en.cppreference.com/)
