@@ -3,5 +3,5 @@
 // algorithm 에서는 stable_sort 변경!
 // 데이터는 1000.txt 테스트.
 // 참고 - sort_fstream2.cpp
-// 학점 grade private -> A(<100), B(<90), C(<80), D(<70), F(<60)
+// 학점 grade private -> A(<=100), B(<=90), C(<=80), D(<=70), F(<=60)
 // -> print() 에 표현 될 수 있게 변경.
