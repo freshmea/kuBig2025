@@ -58,6 +58,7 @@
   - priority_queue 연습 - priority_queue.cpp
 - 2교시
 - 3교시
+  - input
 - 4교시
 - 5교시
 - 6교시
