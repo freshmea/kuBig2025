@@ -17,6 +17,7 @@ public:
 int main()
 {
     auto ptr = make_unique<Myclass>(); // heap 에 만들어진 메모리.
+    // 에러 상황에서도 동작!!
     cout << ptr->test_a << endl;
     return 0;
 }
