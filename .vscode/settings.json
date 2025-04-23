@@ -58,7 +58,10 @@
         "iostream": "cpp",
         "iosfwd": "cpp",
         "string_view": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "execution": "cpp",
+        "cmath": "cpp",
+        "algorithm": "cpp"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025",
