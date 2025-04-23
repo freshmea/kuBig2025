@@ -1,4 +1,4 @@
-//  g++ -std=c++17 -ltbb ex18_excution.cpp
+//  g++ -std=c++17 ex18_excution.cpp -ltbb -o ex18_excution
 #include <algorithm>
 #include <chrono>
 #include <cmath>
