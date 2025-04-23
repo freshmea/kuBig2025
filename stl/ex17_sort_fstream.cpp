@@ -14,6 +14,17 @@ public:
     int sub3;
     int sub4;
     int sub5;
+    int totalScore() const
+    {
+        return sub1 + sub2 + sub3 + sub4 + sub5;
+    }
+    void print() const
+    {
+        cout << "이름 : " << name << endl;
+        cout << "점수 : " << sub1 << " " << sub2 << " " << sub3 << " " << sub4 << " " << sub4 << " " << sub5 << endl;
+        cout << "총점 : " << totalScore() << endl;
+        cout << "-----------------------------------------" << endl;
+    }
 };
 
 int main()
@@ -32,5 +43,11 @@ int main()
     for (const auto &student : students)
         cout << student.name << " ";
     cout << endl;
+
+    sort(students.begin(), students.end(), [](const Student &a, const Student &b)
+         { return a.totalScore() < b.totalScore(); });
+
+    for (const auto &student : students)
+        student.print();
     return 0;
 }
