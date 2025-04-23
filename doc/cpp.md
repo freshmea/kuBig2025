@@ -67,7 +67,12 @@
   - sort_fstream2.cpp - class 캡슙화
   - partition, merge
 - 5교시
+  - unique_ptr
+  - move() 이동 연산
 - 6교시
+  - shared_ptr
 - 7교시
+  - 순환 참조 문제
+  - weak_ptr
 - 8교시
   - 정리
