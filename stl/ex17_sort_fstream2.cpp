@@ -36,6 +36,10 @@ public:
         cout << "총점 : " << averageScore() << endl;
         cout << "-----------------------------------------" << endl;
     }
+    bool operator<(const Student &other) const
+    {
+        return totalScore() < other.totalScore(); // 총점이 낮은 학생이 "더 작다"
+    }
 };
 
 int main()
