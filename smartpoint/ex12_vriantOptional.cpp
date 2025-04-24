@@ -20,5 +20,9 @@ int main()
     if (maybeInt)
         cout << *maybeInt << endl;
 
+    any anything = 123;
+    cout << any_cast<int>(anything) << endl;
+    anything = string("hi");
+    anything = 1.1;
     return 0;
 }

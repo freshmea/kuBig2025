@@ -13,7 +13,7 @@ public:
     {
         cout << "복사 생성자 호출" << endl;
     }
-    MyData(const MyData &data) : data_(data.get_data())
+    MyData(const MyData &data) : data_("100")
     {
     }
     MyData(const string &&d) noexcept : data_(move(d))
