@@ -8,6 +8,7 @@
 #include <vector>
 
 using namespace std;
+using namespace chrono_literals; // 시간 코드 넣을 때
 
 class TaskQueue
 {
@@ -40,4 +41,32 @@ public:
                 } });
         }
     }
+    void enqueue(function<void()> task)
+    {
+        {
+            lock_guard<mutex> lock(mtx);
+            tasks.push(move(task));
+        }
+        cv.notify_one();
+    }
+
+    ~TaskQueue()
+    {
+        stop = true;
+        cv.notify_all();
+        for (auto &t : workers)
+            t.join();
+    }
 };
+
+int main()
+{
+    TaskQueue queue(4);
+    for (int i = 0; i < 10; ++i)
+    {
+        queue.enqueue([i]()
+                      { cout << "작업 " << i << " 시작!!!" << endl; });
+    }
+    this_thread::sleep_for(1s);
+    return 0;
+}
