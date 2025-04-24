@@ -103,7 +103,7 @@
         "typeinfo": "cpp"
     },
     "ros.distro": "humble",
-    "cmake.sourceDirectory": "C:/Users/Administrator/kuBig2025",
+    "cmake.sourceDirectory": "/home/aa/kuBig2025",
     "github.copilot.enable": {
         "*": false,
         "plaintext": true,
