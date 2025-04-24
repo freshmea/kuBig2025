@@ -41,11 +41,11 @@ int main()
 {
     string str = "Hello";
     MyData d1(str);
-    MyData d2(move(str));
-    MyData d3(move(str)); // 안 만들어짐 ??
+    MyData d2(move(str)); // move 의 의미가 rvalue 를 넘긴다.! 소유권을 넘기는 것을 X
+    MyData d3(move(str)); // 만들어짐 소유권을 넘기는 추가 코드가 있어야 안 만들어짐.
     // useMydata(d1);
     useMyData(move(d2));
-    // useMyData(move(d2)); // 안 되야 정상인데 ??
+    // useMyData(move(d2)); //
     referenceMyData(d1);
     return 0;
 }
