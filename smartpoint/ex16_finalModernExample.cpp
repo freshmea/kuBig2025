@@ -45,7 +45,8 @@ public:
         shared_lock lock(mtx);
         for (const auto &[key, value] : db)
         {
-            cout << key << " : " << *value << endl;
+            if (value)
+                cout << key << " : " << *value << endl;
         }
     }
 };
