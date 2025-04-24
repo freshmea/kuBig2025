@@ -13,14 +13,14 @@ public:
     {
         cout << "복사 생성자 호출" << endl;
     }
-    MyData(const MyData &data) : data_("100")
+    MyData(const MyData &data) : data_(data.get_data())
     {
     }
     MyData(const string &&d) noexcept : data_(move(d))
     {
         cout << "이동 생성자 호출" << endl;
     }
-    const string &get_data()
+    const string &get_data() const
     {
         return data_;
     }
@@ -42,7 +42,7 @@ int main()
     string str = "Hello";
     MyData d1(str);
     MyData d2(move(str));
-    // MyData d3(move(str)); // 안 만들어짐 ??
+    MyData d3(move(str)); // 안 만들어짐 ??
     // useMydata(d1);
     useMyData(move(d2));
     // useMyData(move(d2)); // 안 되야 정상인데 ??
