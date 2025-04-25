@@ -85,25 +85,26 @@
 
 - 1교시
   - 복습
-  - priority_queue 연습 - priority_queue.cpp
+  - TreeNode 예제 - shared_ptr 연습
 - 2교시
-  - fstream 파일에서 불러오기
-  - unordered_map - word_count
+  - move() 연산자를 이용한 속도 비교 - moveVector.cpp
+  - forward<>() 를 이용한 인자 전달 - forward.cpp
 - 3교시
-  - sstream 사용법
-  - 알고리즘 transform, copy, copy_if, sort, find
-  - - sort_fstream.cpp - 파일 읽기
+  - move() 가 인식되는 인자를 차용한 class 만들기 - moveClass.cpp
+    - reference count 는 적용 되지 않음 직접 구현 해야 한다.
+    - 왠만 하면 smart_ptr 사용하자.
 - 4교시
-  - sort_fstream2.cpp - class 캡슙화
-  - partition, merge
+  - variant, optional 예제.
+  - vscode 의 세팅 C++23 으로 변경, cmake 세팅 C++23 으로 변경
 - 5교시
-  - unique_ptr
-  - move() 이동 연산
+  - any 예제 추가 - variantOptional.cpp
+  - thread, mutex 예제 - thread.cpp
 - 6교시
-  - shared_ptr
+  - async, future 예제 - asyncFuture.cpp
+  - asyncFutre 예제 - 로깅 추가, join 추가
 - 7교시
-  - 순환 참조 문제
-  - weak_ptr
+  - multithread 에제 - multithreadTask.cpp
+  - finalModernExample 실습 - DataBase 만들기
 - 8교시
   - 정리
 
@@ -123,4 +124,4 @@
 - 4교시
   - 시험
 - 5교시
-  - 
+  - 정리
