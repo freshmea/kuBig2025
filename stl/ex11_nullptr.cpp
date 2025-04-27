@@ -13,7 +13,7 @@ int main()
     }
     func(0L);
     func(1);
-    func(NULL); // nullpointer 안가짐....
+    // func(NULL); // nullpointer 안가짐....
     func(nullptr);
     func(ptr);
     func(fp);

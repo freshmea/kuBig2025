@@ -72,13 +72,15 @@ bool String::operator==(const String &rhs)
 // 더하기 연산자 오버로딩: 두 String 객체를 연결한 새로운 String 객체를 반환.
 const String String::operator+(const String &rhs)
 {
-    char buf[len + rhs.len + 1];
+    char *buf = new char[len + rhs.len + 1];
     // 현재 String 객체의 내용을 임시 버퍼에 복사.
     strcpy(buf, this->str);
     // rhs String 객체의 내용을 임시 버퍼의 현재 내용 뒤에 연결.
     strcat(buf, rhs.str);
     // 임시 버퍼의 내용으로 새로운 String 객체를 생성.
     String result(buf);
+
+    delete[] buf; // Free the dynamically allocated memory
 
     return result;
 }

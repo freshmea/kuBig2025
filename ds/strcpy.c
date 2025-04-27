@@ -7,7 +7,8 @@ void my_strcpy(char *des, const char *src)
         des[i] = src[i];
     }
     des[i] = '\0';*/
-    while (*des++ = *src++)
+    // while (*des++ = *src++)
+    while ((*des++ = *src++))
     {
         ;
     }
