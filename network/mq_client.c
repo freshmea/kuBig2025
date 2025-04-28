@@ -1,3 +1,5 @@
+// build/network 에서 ./mq_server 실행
+// build/network 에서 ./mq_client 실행
 #include <fcntl.h>
 #include <mqueue.h>
 #include <stdio.h>
