@@ -4,8 +4,10 @@
 #include <semaphore.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/mman.h>
 #include <unistd.h>
+#include <wait.h>
 
 #define SHM_NAME "/myshm"
 #define SEM_NAME "/mysem"
@@ -21,20 +23,32 @@ int main()
     pid_t pid = fork();
     if (pid == 0)
     {
-        printf("부모");
-    }
-    if (pid == 1)
-    {
+        sem_wait(sem); // 다른 프로세서가 쓰고 있으면 대기!
         printf("자식");
+        printf("Child read: %s\n", shm);
+        sem_post(sem); // 세마포어 해제
+
+        munmap(shm, SHM_SIZE);
+        sem_close(sem);
+        exit(0);
     }
-    getchar();
+    else
+    {
+        sem_wait(sem); // 다른 프로세서가 쓰고 있으면 대기!
+        printf("부모");
+        strcpy(shm, "Hello from Parent!");
+        printf("Parent wrote: %s\n", shm);
+        sem_post(sem); // 세마포어 해제
 
-    munmap(shm, SHM_SIZE); // 메모리 해제
-    close(shm_fd);
-    shm_unlink(SHM_NAME); // 언링크
+        wait(NULL); // fork 된 다른 프로세서 종료 대기.
 
-    sem_close(sem); // 세마포어 해제
-    sem_unlink(SEM_NAME);
+        munmap(shm, SHM_SIZE); // 메모리 해제
+        close(shm_fd);
+        shm_unlink(SHM_NAME); // 언링크
+
+        sem_close(sem); // 세마포어 해제
+        sem_unlink(SEM_NAME);
+    }
 
     return 0;
 }
