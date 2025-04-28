@@ -31,16 +31,21 @@ int main(int argc, char *argv[])
     serv_addr.sin_port = htons(atoi(argv[1]));
 
     bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
-    listen(serv_sock, 5); // 대기!!!
+    while (1)
+    {
+        listen(serv_sock, 5); // 대기!!!
+        clnt_addr_size = sizeof(clnt_addr);
+        clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
+        // 연결된 상태의 코드....
+        // char message[] = "Hello, TCP IP!!";
+        // write(clnt_sock, message, sizeof(message));
+        char message[30];
+        read(clnt_sock, message, sizeof(message) - 1);
+        message[30] = '\0';
+        printf("서버 받은 메세지: %s \n", message);
+        close(clnt_sock);
+    }
 
-    clnt_addr_size = sizeof(clnt_addr);
-    clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
-
-    // 연결된 상태의 코드....
-    char message[] = "Hello, TCP IP!!";
-    write(clnt_sock, message, sizeof(message));
-
-    close(clnt_sock);
     close(serv_sock);
 
     return 0;

@@ -26,10 +26,12 @@ int main(int argc, char *argv[])
 
     connect(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)); // listen 상태의 서버에 접속
     // 연결된 상태의 코드....
-    char message[30];
-    read(serv_sock, message, sizeof(message) - 1);
-    message[30] = '\0';
-    printf("서버에서 받은 메세지: %s \n", message);
+    // char message[30];
+    // read(serv_sock, message, sizeof(message) - 1);
+    // message[30] = '\0';
+    // printf("서버에서 받은 메세지: %s \n", message);
+    char message[] = "Hello, TCP IP!!";
+    write(serv_sock, message, sizeof(message));
 
     close(serv_sock);
 
