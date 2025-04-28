@@ -22,11 +22,12 @@
   - mqueeue 예제 작성
   - server, client 코드
 - 6교시
-  - 
+  - tcp server, tcp client 예제 작성
 - 7교시
   - ninja 설정 하는 방법
 - 8교시
-  - 
+  - ss -tulpn -socket statictics
+  - 옵션 설명
 
 ---
 

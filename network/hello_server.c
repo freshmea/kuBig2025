@@ -30,6 +30,8 @@ int main(int argc, char *argv[])
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     serv_addr.sin_port = htons(atoi(argv[1]));
 
+    int option = 1;
+    setsockopt(serv_sock, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
     bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
     while (1)
     {
