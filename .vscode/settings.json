@@ -101,7 +101,8 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "socket.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025",

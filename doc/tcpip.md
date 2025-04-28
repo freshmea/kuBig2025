@@ -19,15 +19,14 @@
 - 4교시
   - mkfifo - mkfifo 예제 작성
 - 5교시
-  - DataProcessor 클래스 - 추가 작성 [=], mutable
-  - 범위 for 문을 위한 코드 - forClass 작성
+  - mqueeue 예제 작성
+  - server, client 코드
 - 6교시
-  - nullptr 설명
-  - constexpr 설명
+  - 
 - 7교시
-  - 통합 예제 작성 range_example.cpp
+  - 
 - 8교시
-  - 정리
+  - 
 
 ---
 
