@@ -1,3 +1,10 @@
+// 1. server 프로그램 실행
+// 2. cat /tmp/pipe1
+// 3. echo 'data from cli' >> /tmp/pipe2
+
+// 1. server 프로그램 실행
+// 2. client 프로그램 실행
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
