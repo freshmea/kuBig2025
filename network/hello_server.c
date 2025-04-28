@@ -1,3 +1,6 @@
+// ./hello_server
+// ./hello_client 127.0.0.1 8888
+
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
