@@ -34,15 +34,24 @@ int main(int argc, char *argv[])
     else
         puts("Connected............");
     char message[BUF_SIZE];
-    int str_len;
+    int str_len, recv_len, recv_cnt;
     while (1)
     {
         fputs("메세지를 넣으세요(Q 나가기): ", stdout);
         fgets(message, BUF_SIZE, stdin);
         if (!strcmp(message, "q\n") || !strcmp(message, "Q\n"))
             break;
-        write(sock, message, strlen(message));
-        str_len = read(sock, message, BUF_SIZE - 1);
+        str_len = write(sock, message, strlen(message));
+        while (recv_len < str_len)
+        {
+            recv_cnt = read(sock, message, BUF_SIZE - 1);
+            if (recv_cnt == -1)
+            {
+                fputs("read() 에러!!!", stderr);
+                break;
+            }
+            recv_len += recv_cnt;
+        }
         message[str_len] = '\0';
         printf("서버에서 온 메세지: %s", message);
     }

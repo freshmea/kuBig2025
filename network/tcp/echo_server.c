@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
         error_handling("바인드 에러!!!");
     if (listen(serv_sock, 5) == -1)
         error_handling("리슨 에러"); // 대기!!!
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 20; ++i)
     {
         clnt_addr_size = sizeof(clnt_addr);
         clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
