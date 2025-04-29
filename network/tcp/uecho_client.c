@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
         fgets(message, BUF_SIZE, stdin);
         if (!strcmp(message, "q\n") || !strcmp(message, "Q\n"))
             break;
-        message[strlen(message) - 1] = '\0';
+        message[strlen(message) - 1] = '\0'; // 리턴 문자 제거!!
         // 보내는 코드
         str_len = sendto(sock, message, strlen(message), 0, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
         printf("서버로 보내는 메세지: %s\n", message);
