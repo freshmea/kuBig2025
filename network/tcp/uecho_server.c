@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
         char message[BUF_SIZE];
         str_len = recvfrom(serv_sock, message, BUF_SIZE, 0, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
         message[str_len] = '\0';
+        printf("클라이언트의 IP : PORT : %s, %d\n", inet_ntoa(clnt_addr.sin_addr), ntohs(clnt_addr.sin_port));
         printf("들어온 메세지는 : %s \n", message);
         sendto(serv_sock, message, str_len, 0, (struct sockaddr *)&clnt_addr, sizeof(clnt_addr));
     }
