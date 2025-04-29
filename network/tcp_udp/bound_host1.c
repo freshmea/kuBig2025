@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     int serv_sock;
     char msg1[] = "안녕!";
-    char msg2[] = " 나는 UDP 호스트야!";
+    char msg2[] = "나는 UDP 호스트야!";
     char msg3[] = "방가워";
 
     struct sockaddr_in serv_addr;
@@ -34,14 +34,10 @@ int main(int argc, char *argv[])
     serv_addr.sin_addr.s_addr = inet_addr(argv[1]); // localhost 는 입력 받을 수 없는 코드
     serv_addr.sin_port = htons(atoi(argv[2]));
 
-    int option = 1;
-    setsockopt(serv_sock, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
-    if (bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1)
-        error_handling("바인드 에러!!!");
-
     sendto(serv_sock, msg1, sizeof(msg1), 0, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
     sendto(serv_sock, msg2, sizeof(msg2), 0, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
     sendto(serv_sock, msg3, sizeof(msg3), 0, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
+    printf("send done!!\n");
 
     close(serv_sock);
 
