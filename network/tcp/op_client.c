@@ -49,8 +49,21 @@ int main(int argc, char *argv[])
     fgetc(stdin); // 버퍼에 남은것 버리기
     fputs("연산자를 넣으세요! :", stdout);
     scanf("%c", &message[opnd_cnt * 4 + 1]);
+    fputs("메세지는 !!: ", stdout);
+    fputc(message[0], stdout);
+    fputc(message[1], stdout);
+    fputc(message[2], stdout);
+    fputc(message[3], stdout);
+    fputc(message[4], stdout);
+    fputc(message[5], stdout);
+    fputc(message[6], stdout);
+    fputc(message[7], stdout);
+    fputc(message[8], stdout);
+    fputc(message[9], stdout);
+    fputs("메세지는 !!: ", stdout);
 
     write(sock, message, opnd_cnt * 4 + 2);
+
     read(sock, &result, 4);
 
     printf("연산의 결과는: %d \n", result);
