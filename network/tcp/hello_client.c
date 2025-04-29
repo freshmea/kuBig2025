@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
     memset(&serv_addr, 0, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
+    serv_addr.sin_addr.s_addr = inet_addr(argv[1]); // localhost 는 입력 받을 수 없는 코드
     serv_addr.sin_port = htons(atoi(argv[2]));
 
     connect(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)); // listen 상태의 서버에 접속

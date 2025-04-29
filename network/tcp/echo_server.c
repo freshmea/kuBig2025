@@ -7,11 +7,13 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+void error_handling(char *message);
 
 int main(int argc, char *argv[])
 {
     int serv_sock;
     int clnt_sock;
+    int str_len;
 
     struct sockaddr_in serv_addr;
     struct sockaddr_in clnt_addr;
@@ -24,6 +26,8 @@ int main(int argc, char *argv[])
     }
 
     serv_sock = socket(PF_INET, SOCK_STREAM, 0); // TCP 설정
+    if (serv_sock == -1)
+        error_handling("socker() 만들기 실패");
 
     memset(&serv_addr, 0, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
@@ -34,23 +38,36 @@ int main(int argc, char *argv[])
 
     int option = 1;
     setsockopt(serv_sock, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
-    bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
-    while (1)
+    if (bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1)
+        error_handling("바인드 에러!!!");
+    if (listen(serv_sock, 5) == -1)
+        error_handling("리슨 에러"); // 대기!!!
+    for (int i = 0; i < 5; ++i)
     {
-        listen(serv_sock, 5); // 대기!!!
         clnt_addr_size = sizeof(clnt_addr);
         clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
-        // 연결된 상태의 코드....
-        // char message[] = "Hello, TCP IP!!";
-        // write(clnt_sock, message, sizeof(message));
+        if (clnt_sock == -1)
+            error_handling("accept() 에러!!");
+        else
+            printf("Conneted client %d : %s \n", i + 1, inet_ntoa(clnt_addr.sin_addr));
         char message[30];
-        read(clnt_sock, message, sizeof(message) - 1);
-        message[30] = '\0';
-        printf("서버 받은 메세지: %s \n", message);
+        while (str_len = read(clnt_sock, message, sizeof(message) - 1))
+        {
+            message[30] = '\0';
+            printf("서버 받은 메세지: %s \n", message);
+            write(clnt_sock, message, str_len);
+        }
         close(clnt_sock);
     }
 
     close(serv_sock);
 
     return 0;
+}
+
+void error_handling(char *message)
+{
+    fputs(message, stderr);
+    fputc('\n', stderr);
+    exit(1);
 }

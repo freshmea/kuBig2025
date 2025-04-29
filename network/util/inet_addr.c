@@ -29,6 +29,7 @@ int main()
     buffer_ptr = inet_ntoa(addr_inet.sin_addr);
     strcpy(buffer, buffer_ptr);
     printf("네트워크 형식(111.111.111.111) 의 문자열 : %s \n", buffer);
+    // printf("네트워크 형식(111.111.111.111) 의 문자열 : %s \n", inet_ntoa(addr_inet.sin_addr));
 
     addr_inet2.sin_addr.s_addr = htonl(0x10203040);
     buffer_ptr = inet_ntoa(addr_inet2.sin_addr);
