@@ -9,6 +9,8 @@
 #include <unistd.h>
 void error_handling(char *message);
 
+#define BUF_SIZE 1024
+
 int main(int argc, char *argv[])
 {
     int serv_sock;
@@ -32,8 +34,6 @@ int main(int argc, char *argv[])
     memset(&serv_addr, 0, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY); // localhost 내부 ip.loopback
-    // serv_addr.sin_addr.s_addr = inet_addr("0.0.0.0");
-    // serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     serv_addr.sin_port = htons(atoi(argv[1]));
 
     int option = 1;
@@ -50,10 +50,10 @@ int main(int argc, char *argv[])
             error_handling("accept() 에러!!");
         else
             printf("Conneted client %d : %s \n", i + 1, inet_ntoa(clnt_addr.sin_addr));
-        char message[30];
+        char message[BUF_SIZE];
         while (str_len = read(clnt_sock, message, sizeof(message) - 1))
         {
-            message[30] = '\0';
+            message[str_len] = '\0';
             printf("서버 받은 메세지: %s \n", message);
             write(clnt_sock, message, str_len);
         }
