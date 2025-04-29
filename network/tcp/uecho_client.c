@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     int str_len, recv_len, recv_cnt;
 
     struct sockaddr_in serv_addr, from_addr;
+    socklen_t from_addr_size;
 
     if (argc != 3)
     {
@@ -37,13 +38,14 @@ int main(int argc, char *argv[])
         fgets(message, BUF_SIZE, stdin);
         if (!strcmp(message, "q\n") || !strcmp(message, "Q\n"))
             break;
-
+        message[strlen(message) - 1] = '\0';
         // 보내는 코드
         str_len = sendto(sock, message, strlen(message), 0, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
         printf("서버로 보내는 메세지: %s\n", message);
 
         // 받는 코드
-        str_len = recvfrom(sock, message, BUF_SIZE, 0, (struct sockaddr *)&from_addr, sizeof(from_addr));
+        from_addr_size = sizeof(from_addr);
+        str_len = recvfrom(sock, message, BUF_SIZE, 0, (struct sockaddr *)&from_addr, &from_addr_size);
         message[str_len] = '\0';
         printf("서버의 IP : PORT : %s, %d\n", inet_ntoa(from_addr.sin_addr), ntohs(from_addr.sin_port));
         printf("서버에서 온 메세지: %s\n", message);

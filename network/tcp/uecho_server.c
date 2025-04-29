@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
         str_len = recvfrom(serv_sock, message, BUF_SIZE, 0, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
         message[str_len] = '\0';
         printf("들어온 메세지는 : %s \n", message);
-        sendto(serv_sock, message, str_len, 0, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
+        sendto(serv_sock, message, str_len, 0, (struct sockaddr *)&clnt_addr, sizeof(clnt_addr));
     }
 
     close(serv_sock);
