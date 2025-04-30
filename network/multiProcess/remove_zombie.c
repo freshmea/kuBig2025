@@ -30,7 +30,7 @@ int main()
         if (pid == 0)
         {
             puts("안녕, 나는 두번째 자식 프로세스야!!");
-            sleep(10);
+            sleep(2);
             exit(24);
         }
         else
