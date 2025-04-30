@@ -12,8 +12,6 @@ int main()
     char buf[BUf_SIZE];
 
     struct timeval timeout;
-    timeout.tv_sec = 5;
-    timeout.tv_usec = 0;
 
     FD_ZERO(&reads);
     FD_SET(0, &reads); // std input(console)
@@ -21,6 +19,8 @@ int main()
     while (1)
     {
         temps = reads;
+        timeout.tv_sec = 5;
+        timeout.tv_usec = 0;
         result = select(1, &temps, 0, 0, &timeout);
         if (result == -1)
         {
