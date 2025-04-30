@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     printf("주소 타입: %d \n", host->h_addrtype);
 
     for (i = 0; host->h_addr_list[i]; ++i)
-        printf("주소 %d : %s", i + 1, host->h_addr_list[i]);
+        printf("주소 %d : %s", i + 1, inet_ntoa(*(struct in_addr *)host->h_addr_list[i]));
     return 0;
 }
 
