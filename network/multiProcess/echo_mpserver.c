@@ -71,7 +71,10 @@ int main(int argc, char *argv[])
         {
             close(serv_sock);
             while (str_len = read(clnt_sock, buf, BUF_SIZE) != 0)
+            {
+                puts(buf);
                 write(clnt_sock, buf, str_len);
+            }
             close(clnt_sock);
             printf("client 연결 종료... %s \n", inet_ntoa(clnt_addr.sin_addr));
             return 0;
