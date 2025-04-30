@@ -41,7 +41,9 @@ int main(int argc, char *argv[])
         fgets(message, BUF_SIZE, stdin);
         if (!strcmp(message, "q\n") || !strcmp(message, "Q\n"))
             break;
+        message[strlen(message) - 1] = '\0'; // 리턴 문자 제거
         str_len = write(sock, message, strlen(message));
+        recv_len = 0; // 리턴되는 문자수 초기화
         while (recv_len < str_len)
         {
             recv_cnt = read(sock, message, BUF_SIZE - 1);
@@ -52,8 +54,7 @@ int main(int argc, char *argv[])
             }
             recv_len += recv_cnt;
         }
-        message[str_len] = '\0';
-        printf("서버에서 온 메세지: %s", message);
+        printf("서버에서 온 메세지: %s\n", message);
     }
     close(sock);
 

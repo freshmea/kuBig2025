@@ -70,8 +70,10 @@ int main(int argc, char *argv[])
         if (pid == 0)
         {
             close(serv_sock);
-            while (str_len = read(clnt_sock, buf, BUF_SIZE) != 0)
+            while ((str_len = read(clnt_sock, buf, BUF_SIZE)) != 0)
             {
+                buf[str_len] = '\0'; // 널 문자 추가
+                printf("%s : ", inet_ntoa(clnt_addr.sin_addr));
                 puts(buf);
                 write(clnt_sock, buf, str_len);
             }
