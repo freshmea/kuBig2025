@@ -23,10 +23,10 @@ int main()
         else // 부모
         {
             printf("자식 프로세스 ID: %d \n", pid);
-            wait(&status);
+            wait(&status); // 자식 프로세스가 끝날때 까지 블럭된다.
             if (WIFEXITED(status))
                 printf("자식1 이 보낸 메세지: %d \n", WEXITSTATUS(status));
-            wait(&status);
+            wait(&status); // 자식 프로세스가 끝날때 까지 블럭된다.
             if (WIFEXITED(status))
                 printf("자식2 이 보낸 메세지: %d \n", WEXITSTATUS(status));
             sleep(30);
