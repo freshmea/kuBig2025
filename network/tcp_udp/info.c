@@ -1,25 +1,35 @@
 #include <arpa/inet.h>
+#include <linux/sockios.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <unistd.h>
+
 void error_handling(char *message);
 
 #define BUF_SIZE 30
 
 int main(int argc, char *argv[])
 {
+    printf("INADDR_ANY: %d\n", INADDR_ANY);
+    printf("INADDR_LOOPBACK %d\n", INADDR_LOOPBACK);
+    printf("AF_INET: %d\n", AF_INET);
+    printf("AF_INET6: %d\n", AF_INET6);
+
     int serv_sock;
     int clnt_sock;
     int str_len;
     FILE *fp;
     char buf[BUF_SIZE];
     int read_cnt;
+    int snd_buf, rcv_buf, state;
 
     struct sockaddr_in serv_addr;
     struct sockaddr_in clnt_addr;
     socklen_t clnt_addr_size;
+    socklen_t len;
 
     if (argc != 2)
     {
@@ -30,6 +40,9 @@ int main(int argc, char *argv[])
     serv_sock = socket(PF_INET, SOCK_STREAM, 0); // TCP 설정
     if (serv_sock == -1)
         error_handling("socker() 만들기 실패");
+
+    state = getsockopt(serv_sock, SOL_SOCKET, SO_SNDBUF, &snd_buf, &len);
+    printf("서버소켓의 Snd buffer size: %d\n", snd_buf);
 
     fp = fopen("/home/aa/kuBig2025/network/tcp_udp/file_server.txt", "rb");
 
@@ -50,8 +63,15 @@ int main(int argc, char *argv[])
     if (clnt_sock == -1)
         error_handling("accept() 에러!!");
     else
+    {
         printf("Conneted client : %s \n", inet_ntoa(clnt_addr.sin_addr));
+        printf("Conneted client port: %d \n", inet_ntohs(clnt_addr.sin_port));
+    }
 
+    state = getsockopt(clnt_sock, SOL_SOCKET, SO_SNDBUF, &rcv_buf, &len);
+    printf("서버소켓의 Rcv buffer size: %d\n", rcv_buf);
+
+    int outq;
     while (1)
     {
         read_cnt = fread((void *)buf, 1, BUF_SIZE, fp);
@@ -62,13 +82,18 @@ int main(int argc, char *argv[])
             break;
         }
         write(clnt_sock, buf, BUF_SIZE);
+        ioctl(clnt_sock, SIOCOUTQ, &outq);
+        printf("현재 클라이언트 send 큐의 크기: %d bytes\n", outq);
+        ioctl(serv_sock, SIOCOUTQ, &outq);
+        printf("현재 서버 send 큐의 크기: %d bytes\n", outq);
     }
 
     // 우아한 종료
     shutdown(clnt_sock, SHUT_WR);
     // shutdown(clnt_sock, SHUT_RD); // recvQ흐름을 방해한다.
-    shutdown(serv_sock, SHUT_RD);              // 서버의 recvQ 는 클라이언트 패킷 전달에 상관 없다!
-    read(clnt_sock, buf, BUF_SIZE);            // sendQ 종료!! recvQ 살아 있음.
+    shutdown(serv_sock, SHUT_RD);   // 서버의 recvQ 는 클라이언트 패킷 전달에 상관 없다!
+    read(clnt_sock, buf, BUF_SIZE); // sendQ 종료!! recvQ 살아 있음.
+
     printf("Message from client: %s \n", buf); // sendQ 종료!! recvQ 살아 있음.
 
     fclose(fp);
