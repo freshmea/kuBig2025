@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
     while (1)
     {
         read_cnt = fread((void *)buf, 1, BUF_SIZE, fp);
+        printf("outdata cnt \n");
         if (read_cnt < BUF_SIZE)
         {
             write(clnt_sock, buf, read_cnt);

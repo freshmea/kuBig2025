@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     int serv_sock;
     int clnt_sock;
     int str_len;
+    char message[BUF_SIZE];
 
     struct sockaddr_in serv_addr;
     struct sockaddr_in clnt_addr;
@@ -50,7 +51,6 @@ int main(int argc, char *argv[])
             error_handling("accept() 에러!!");
         else
             printf("Conneted client %d : %s \n", i + 1, inet_ntoa(clnt_addr.sin_addr));
-        char message[BUF_SIZE];
         while (str_len = read(clnt_sock, message, sizeof(message) - 1))
         {
             message[str_len] = '\0';
