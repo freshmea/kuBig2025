@@ -56,12 +56,27 @@ int main(int argc, char *argv[])
     {
         clnt_addr_size = sizeof(clnt_addr);
         clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
+        // accept!! 대기
         if (clnt_sock == -1)
-            error_handling("accept() 에러!!");
+            continue;
         else
             printf("Conneted client : %s \n", inet_ntoa(clnt_addr.sin_addr));
-        // accept!! 멈춤
-        close(clnt_sock);
+        pid = fork();
+        if (pid == -1)
+        {
+            close(clnt_sock);
+            continue;
+        }
+        if (pid == 0)
+        {
+            close(serv_sock);
+            while (str_len = read(clnt_sock, buf, BUF_SIZE) != 0)
+                white(clnt_sock, buf, str_len);
+            close(clnt_sock);
+            printf("client 연결 종료... %s \n", inet_ntoa(clnt_addr.sin_addr));
+        }
+        else
+            close(clnt_sock);
     }
 
     close(serv_sock);
