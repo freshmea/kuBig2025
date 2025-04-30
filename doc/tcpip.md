@@ -31,32 +31,32 @@
 
 ---
 
-## 2025-04-23
+## 2025-04-29
 
 ---
 
 - 1교시
   - 복습
-  - priority_queue 연습 - priority_queue.cpp
+  - inet_addr 함수 설명
+  - inet_pton 함수 설명(iton 함수 사라짐. ipv4, ipv6 모두 지원)
+  - inet_ntoa 함수 실습
 - 2교시
-  - fstream 파일에서 불러오기
-  - unordered_map - word_count
+  - echo_server 예제 작성
 - 3교시
-  - sstream 사용법
-  - 알고리즘 transform, copy, copy_if, sort, find
-  - - sort_fstream.cpp - 파일 읽기
+  - echo_client 예제 작성
 - 4교시
-  - sort_fstream2.cpp - class 캡슙화
-  - partition, merge
+  - 수신된 메시지의 전체 길이를 보장하도록 수정(server, client)
 - 5교시
-  - unique_ptr
-  - move() 이동 연산
+  - ninja 설정
+  - op_server 예제 작성
 - 6교시
-  - shared_ptr
+  - op_client 예제 작성
 - 7교시
-  - 순환 참조 문제
-  - weak_ptr
+  - udp 설명
+  - uecho_server 예제 작성
+  - uecho_client 예제 작성
 - 8교시
+  - boundhost 예제 작성(경계가 존재 한다는 예시)
   - 정리
 
 ---
