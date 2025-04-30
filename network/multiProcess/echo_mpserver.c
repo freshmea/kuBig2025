@@ -50,21 +50,17 @@ int main(int argc, char *argv[])
         error_handling("바인드 에러!!!");
     if (listen(serv_sock, 5) == -1)
         error_handling("리슨 에러"); // 대기!!!
-    for (int i = 0; i < 20; ++i)
+
+    /// fork, child!!! 기능 echo -read -> write
+    while (1)
     {
         clnt_addr_size = sizeof(clnt_addr);
         clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
         if (clnt_sock == -1)
             error_handling("accept() 에러!!");
         else
-            printf("Conneted client %d : %s \n", i + 1, inet_ntoa(clnt_addr.sin_addr));
-
-        /// fork, child!!! 기능 echo -read -> write
-        while (1)
-        {
-            // accept!!
-        }
-
+            printf("Conneted client : %s \n", inet_ntoa(clnt_addr.sin_addr));
+        // accept!! 멈춤
         close(clnt_sock);
     }
 
