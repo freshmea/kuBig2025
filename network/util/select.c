@@ -19,7 +19,7 @@ int main()
     while (1)
     {
         temps = reads;
-        timeout.tv_sec = 5;
+        timeout.tv_sec = 5; // 5초로 세팅 초기화
         timeout.tv_usec = 0;
         result = select(1, &temps, 0, 0, &timeout);
         if (result == -1)
