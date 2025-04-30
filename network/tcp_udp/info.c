@@ -83,10 +83,16 @@ int main(int argc, char *argv[])
         }
         write(clnt_sock, buf, BUF_SIZE);
         ioctl(clnt_sock, SIOCOUTQ, &outq);
-        printf("현재 클라이언트 큐의 크기: %d bytes\n", outq);
+        printf("현재 클라이언트 아웃 큐의 크기: %d bytes\n", outq);
+        outq = 0;
+        ioctl(clnt_sock, SIOCINQ, &outq);
+        printf("현재 클라이언트 인 큐의 크기: %d bytes\n", outq);
         outq = 0;
         ioctl(serv_sock, SIOCOUTQ, &outq);
-        printf("현재 서버 큐의 크기: %d bytes\n", outq);
+        printf("현재 서버 아웃 큐의 크기: %d bytes\n", outq);
+        outq = 0;
+        ioctl(serv_sock, SIOCINQ, &outq);
+        printf("현재 서버 인 큐의 크기: %d bytes\n", outq);
         outq = 0;
     }
 
@@ -95,6 +101,18 @@ int main(int argc, char *argv[])
     // shutdown(clnt_sock, SHUT_RD); // recvQ흐름을 방해한다.
     shutdown(serv_sock, SHUT_RD);   // 서버의 recvQ 는 클라이언트 패킷 전달에 상관 없다!
     read(clnt_sock, buf, BUF_SIZE); // sendQ 종료!! recvQ 살아 있음.
+    ioctl(clnt_sock, SIOCOUTQ, &outq);
+    printf("현재 클라이언트 아웃 큐의 크기: %d bytes\n", outq);
+    outq = 0;
+    ioctl(clnt_sock, SIOCINQ, &outq);
+    printf("현재 클라이언트 인 큐의 크기: %d bytes\n", outq);
+    outq = 0;
+    ioctl(serv_sock, SIOCOUTQ, &outq);
+    printf("현재 서버 아웃 큐의 크기: %d bytes\n", outq);
+    outq = 0;
+    ioctl(serv_sock, SIOCINQ, &outq);
+    printf("현재 서버 인 큐의 크기: %d bytes\n", outq);
+    outq = 0;
 
     printf("Message from client: %s \n", buf); // sendQ 종료!! recvQ 살아 있음.
 
