@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     else
     {
         printf("Conneted client : %s \n", inet_ntoa(clnt_addr.sin_addr));
-        printf("Conneted client port: %d \n", inet_ntohs(clnt_addr.sin_port));
+        printf("Conneted client port: %d \n", ntohs(clnt_addr.sin_port));
     }
 
     state = getsockopt(clnt_sock, SOL_SOCKET, SO_SNDBUF, &rcv_buf, &len);
