@@ -39,25 +39,25 @@ int main()
         perror("open pipe1");
         exit(EXIT_FAILURE);
     }
-    fd2 = open(PIPE1, O_WRONLY);
+    fd2 = open(PIPE2, O_WRONLY);
     if (fd1 == -1)
     {
         perror("open pipe1");
         exit(EXIT_FAILURE);
     }
-    fd3 = open(PIPE1, O_WRONLY);
+    fd3 = open(PIPE3, O_WRONLY);
     if (fd1 == -1)
     {
         perror("open pipe1");
         exit(EXIT_FAILURE);
     }
-    fd4 = open(PIPE1, O_WRONLY);
+    fd4 = open(PIPE4, O_WRONLY);
     if (fd1 == -1)
     {
         perror("open pipe1");
         exit(EXIT_FAILURE);
     }
-    fd5 = open(PIPE1, O_WRONLY);
+    fd5 = open(PIPE5, O_WRONLY);
     if (fd1 == -1)
     {
         perror("open pipe1");
@@ -93,7 +93,7 @@ int main()
         {
             if (FD_ISSET(fd1, &read_fds))
             {
-                read(fd2, buffer, BUFFER_SIZE);
+                read(fd1, buffer, BUFFER_SIZE);
                 printf("파이프1에서 읽은 메세지: %s\n", buffer);
             }
             if (FD_ISSET(fd2, &read_fds))
@@ -103,17 +103,17 @@ int main()
             }
             if (FD_ISSET(fd3, &read_fds))
             {
-                read(fd2, buffer, BUFFER_SIZE);
+                read(fd3, buffer, BUFFER_SIZE);
                 printf("파이프3에서 읽은 메세지: %s\n", buffer);
             }
             if (FD_ISSET(fd4, &read_fds))
             {
-                read(fd2, buffer, BUFFER_SIZE);
+                read(fd4, buffer, BUFFER_SIZE);
                 printf("파이프4에서 읽은 메세지: %s\n", buffer);
             }
             if (FD_ISSET(fd5, &read_fds))
             {
-                read(fd2, buffer, BUFFER_SIZE);
+                read(fd5, buffer, BUFFER_SIZE);
                 printf("파이프5에서 읽은 메세지: %s\n", buffer);
             }
         }
