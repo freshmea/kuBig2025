@@ -84,8 +84,10 @@ int main(int argc, char *argv[])
         write(clnt_sock, buf, BUF_SIZE);
         ioctl(clnt_sock, SIOCOUTQ, &outq);
         printf("현재 클라이언트 큐의 크기: %d bytes\n", outq);
+        outq = 0;
         ioctl(serv_sock, SIOCOUTQ, &outq);
         printf("현재 서버 큐의 크기: %d bytes\n", outq);
+        outq = 0;
     }
 
     // 우아한 종료
