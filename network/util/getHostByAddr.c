@@ -10,12 +10,17 @@ int main(int argc, char *argv[])
 {
     int i;
     struct hostent *host;
+    struct sockaddr_in addr;
     if (argc != 2)
     {
-        printf("사용법: %s <addr>\n", argv[0]);
+        printf("사용법: %s <IP>\n", argv[0]);
         exit(0);
     }
-    host = gethostbyname(argv[1]);
+
+    memset(&addr, 0, sizeof(addr));
+    addr.sin_addr.s_addr = inet_addr(argv[1]);
+
+    host = gethostbyaddr((void *)&addr.sin_addr, 4, AF_INET);
     if (!host)
         error_handling("gethost... error");
 
