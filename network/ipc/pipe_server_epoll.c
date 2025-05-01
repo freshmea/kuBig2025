@@ -1,6 +1,5 @@
-// 1. server 프로그램 실행
-// 2. cat /tmp/pipe1
-// 3. echo 'data from cli' >> /tmp/pipe2
+// 1. epoll 프로그램 실행
+// 2. echo 'data from cli' >> /tmp/pipe2
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -54,11 +53,11 @@ void read_pipe(int fd, const char *path, char *buffer, size_t buf_size)
         perror("read pipe1");
 }
 
-void reopen_pipe(Pipe *pipe, int epfd)
-{
-    close(pipe->fd);
-    pipe->fd = open_pipe(pipe->path);
-}
+// void reopen_pipe(Pipe *pipe, int epfd)
+// {
+//     close(pipe->fd);
+//     pipe->fd = open_pipe(pipe->path);
+// }
 
 int main()
 {
