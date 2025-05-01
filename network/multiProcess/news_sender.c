@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
     if (argc != 3)
     {
-        printf("사용법: %s <IP> <port>\n", argv[0]);
+        printf("사용법: %s <GroupIP> <port>\n", argv[0]);
         exit(1);
     }
 
@@ -43,10 +43,10 @@ int main(int argc, char *argv[])
     while (!feof(fp))
     {
         fgets(buf, BUF_SIZE, fp);
-        sentto(sock, buf, strlen(buf), 0, 0, (struct sockaddr *)&mul_addr, sizeof(mul_addr));
+        sendto(sock, buf, strlen(buf), 0, (struct sockaddr *)&mul_addr, sizeof(mul_addr));
         sleep(2);
     }
-    fcolse(fp);
+    fclose(fp);
     close(sock);
     return 0;
 }
