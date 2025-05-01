@@ -15,7 +15,7 @@
 #include <unistd.h>
 
 #define BUFFER_SIZE 256
-#define NUM_PIPES 5
+#define NUM_PIPES 30
 #define PIPE_PREFIX "/tmp/pipe"
 #define BUF_SIZE 128
 void create_pipe(const char *path)
