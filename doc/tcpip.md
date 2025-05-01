@@ -116,3 +116,27 @@
 - 8교시
   - select_pipe 예제 작성
   - 정리
+  - redis, mqtt, http, https, websocket, grpc, rest, GraphQL, WebRTC, CoAP, kafka
+
+---
+
+## 2025-05-02
+
+---
+
+- 1교시
+  - a
+- 2교시
+  - a
+- 3교시
+  - a
+- 4교시
+  - a
+- 5교시
+  - a
+- 6교시
+  - a
+- 7교시
+  - a
+- 8교시
+  - 시험
