@@ -61,49 +61,58 @@
 
 ---
 
-## 2025-04-24
+## 2025-04-30
 
 ---
 
 - 1교시
   - 복습
-  - TreeNode 예제 - shared_ptr 연습
+  - file_server 작성 - 우아한 종료 halfclose
 - 2교시
-  - move() 연산자를 이용한 속도 비교 - moveVector.cpp
-  - forward<>() 를 이용한 인자 전달 - forward.cpp
+  - file_client 작성
 - 3교시
-  - move() 가 인식되는 인자를 차용한 class 만들기 - moveClass.cpp
-    - reference count 는 적용 되지 않음 직접 구현 해야 한다.
-    - 왠만 하면 smart_ptr 사용하자.
+  - info.c 작성 다양한 내부 변수 확인 버퍼크기 및 큐 사이즈
 - 4교시
-  - variant, optional 예제.
-  - vscode 의 세팅 C++23 으로 변경, cmake 세팅 C++23 으로 변경
+  - DNS 설명
+  - gethostbyname, getaddrinfo 설명
 - 5교시
-  - any 예제 추가 - variantOptional.cpp
-  - thread, mutex 예제 - thread.cpp
+  - zombie 프로세스 설명
+  - fork 예제 작성 zombie 프로세스
 - 6교시
-  - async, future 예제 - asyncFuture.cpp
-  - asyncFutre 예제 - 로깅 추가, join 추가
+  - wait, waitpid 설명 - 좀비 프로세스 해결
+  - signal 설명 - ipc 폴더에 sigal.c 작성, sigaction.c 작성(인텔리센스 인식 오류 해결)
 - 7교시
-  - multithread 에제 - multithreadTask.cpp
-  - finalModernExample 실습 - DataBase 만들기
+  - 멀티 프로세서 코드 작성 forck, waitpid, signal -> echo_mpserver.c
+  - echo_mpclient.c 작성
 - 8교시
+  - select_pipe 예제 작성
   - 정리
 
 ---
 
-## 2025-04-25
+## 2025-05-01
 
 ---
 
 - 1교시
   - 복습
-  - 명품 C++ 책 리뷰 1~4
+  - select_pipe 예제 디버깅
 - 2교시
-  - 명품 C++ 책 리뷰 5~10
+  - select_pipe 예제 -배열과 함수 사용
 - 3교시
-  - 명품 C++ 책 리뷰 10~13
+  - 멀티플렉싱 echo_server 작성(select)
 - 4교시
-  - 시험
+  - 멀티플렉싱 echo_client 작성(select)
 - 5교시
+  - 다양한 입출력함수 설명 send, recv, readv, writev
+  - 멀티 캐스팅
+    - 학생 절반이 메세지를 받지 못함(아마도 방확벽 때문인듯)
+- 6교시
+  - 소켓과 표준입출력 fileno, fdopen, 이중 버퍼 문제 fflush
+  - 브로드캐스팅(한명 빼고 다 받음)
+- 7교시
+  - epoll 설명
+  - epoll 예제 작성 (pipe 서버)
+- 8교시
+  - select_pipe 예제 작성
   - 정리
