@@ -1,3 +1,6 @@
+// ./echo_selectsrv 1234
+// ./echo_selectcli 127.0.0.1 1234
+
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -62,28 +65,38 @@ int main(int argc, char *argv[])
         {
             if (FD_ISSET(i, &cpy_reads))
             {
-                clnt_addr_size = sizeof(clnt_addr);
-                clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
-                // accept!! 대기
-                if (clnt_sock == -1)
-                    continue;
-                else
-                    printf("Conneted client : %s \n", inet_ntoa(clnt_addr.sin_addr));
-            }
-            else
-            {
-                str_len = read(clnt_sock, buf, BUF_SIZE);
-                if (str_len == 0)
+                if (i == serv_sock) // 새로만들어진 클라이언트 인지 확인
                 {
-                    FD_CLR(i, &reads);
-                    close(clnt_sock);
-                    printf("client 연결 종료... %s \n", inet_ntoa(clnt_addr.sin_addr));
+                    clnt_addr_size = sizeof(clnt_addr);
+                    clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
+                    // accept!! 대기
+                    if (clnt_sock == -1)
+                        continue;
+                    else
+                    {
+                        FD_SET(clnt_sock, &reads);
+                        if (fd_max < clnt_sock)
+                            fd_max = clnt_sock;
+                        printf("Conneted client : %s \n", inet_ntoa(clnt_addr.sin_addr));
+                    }
                 }
-                buf[str_len] = '\0'; // 널 문자 추가
-                printf("%s : ", inet_ntoa(clnt_addr.sin_addr));
-                puts(buf);
-                write(clnt_sock, buf, str_len);
-                return 0;
+                else // 이미 만들어진 클라이언트
+                {
+                    str_len = read(i, buf, BUF_SIZE);
+                    if (str_len == 0)
+                    {
+                        FD_CLR(i, &reads);
+                        close(i);
+                        printf("client 연결 종료... \n");
+                    }
+                    else
+                    {
+                        buf[str_len] = '\0'; // 널 문자 추가
+                        printf("%s : ", inet_ntoa(clnt_addr.sin_addr));
+                        puts(buf);
+                        write(i, buf, str_len);
+                    }
+                }
             }
         }
     }

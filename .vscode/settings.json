@@ -103,7 +103,8 @@
         "typeinfo": "cpp",
         "fstream": "cpp",
         "socket.h": "c",
-        "signal.h": "c"
+        "signal.h": "c",
+        "string.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025",
