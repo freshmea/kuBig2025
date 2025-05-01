@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 project(stl)
 
-# 모든 .cpp 파일 자동 감지/home/aa/kuBig2025/stl/studnet.txt
+# 모든 .c 파일 자동 감지/home/aa/kuBig2025/stl/studnet.txt
 file(GLOB EXECUTABLES "${CMAKE_CURRENT_LIST_DIR}/*.c")
 
 foreach(EXECUTABLE ${EXECUTABLES})
     get_filename_component(EXE_NAME ${EXECUTABLE} NAME_WE)
+    # 실행 파일 이름 앞에 "test_" 접두사 추가
+    set(EXE_NAME "test_${EXE_NAME}")
     add_executable(${EXE_NAME} ${EXECUTABLE})
 endforeach()
 
@@ -25,6 +27,8 @@ foreach(SUBDIR ${SUBDIRS})
     file(GLOB EXECUTABLES "${SUBDIR}/main.c")
     foreach(EXECUTABLE ${EXECUTABLES})
         get_filename_component(EXECUTABLE_NAME ${SUBDIR} NAME_WE)
+        # 실행 파일 이름 앞에 "test_" 접두사 추가
+        set(EXECUTABLE_NAME "test_${EXECUTABLE_NAME}")
         get_filename_component(EXECUTABLE_DIR ${EXECUTABLE} DIRECTORY)
         file(GLOB_RECURSE SOURCES "${EXECUTABLE_DIR}/*.c")
         add_executable(${EXECUTABLE_NAME} ${SOURCES})
