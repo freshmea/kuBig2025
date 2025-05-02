@@ -12,7 +12,7 @@ int main()
 {
     pthread_t t_id[THREAD_NUM];
     void *thr_ret;
-    int range[5][2] = {{1, 5}, {6, 10}, {10, 50}, {16, 20}, {21, 25}};
+    int range[5][2] = {{1, 5}, {6, 10}, {10, 15}, {16, 20}, {21, 25}};
 
     for (int i = 0; i < THREAD_NUM; ++i)
         pthread_create(&t_id[i], NULL, (void *)thread_main, (void *)&range[i]);
@@ -20,7 +20,7 @@ int main()
 
     for (int i = 0; i < THREAD_NUM; ++i)
     {
-        pthread_join(t_id[0], &thr_ret); // 쓰레드가 리턴 될때까지 대기!!
+        pthread_join(t_id[i], &thr_ret); // 쓰레드가 리턴 될때까지 대기!!
         printf("쓰레드에서 받아온 메세지: %s \n", (char *)thr_ret);
     }
     printf("쓰레드 끝 메인 시작!! \n");
