@@ -75,8 +75,8 @@ void handle_clnt(void *arg)
         buf[str_len] = '\0'; // 널 문자 추가
         puts(buf);
         for (int i = 0; i < clnt_cnt; ++i)
-            if (clnt_socks[i] != fd)
-                write(clnt_socks[i], buf, str_len);
+            write(clnt_socks[i], buf, str_len);
+        // if (clnt_socks[i] != fd)
     }
 
     // clnt_cocks 안에 있는 fd 위치 확인!
@@ -85,9 +85,8 @@ void handle_clnt(void *arg)
         if (clnt_socks[i] == fd)
             cl_index = i;
     // 맨 끝의 fd 를 지워지는 위치로 이동
-    clnt_socks[cl_index] = clnt_socks[clnt_cnt];
     // cnt 감소 및 fd 제거
-    clnt_cnt--;
+    clnt_socks[cl_index] = clnt_socks[--clnt_cnt];
     close(fd);
 
     printf("fd가 %d 인 client 연결 종료...\n", fd);
