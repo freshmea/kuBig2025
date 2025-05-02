@@ -14,7 +14,7 @@ int main()
 {
     pthread_t t_id[THREAD_NUM];
     void *thr_ret;
-    int range[5][2] = {{1, 5}, {6, 10}, {10, 15}, {16, 20}, {21, 25}};
+    int range[5][2] = {{1, 5}, {6, 10}, {11, 15}, {16, 20}, {21, 25}};
 
     for (int i = 0; i < THREAD_NUM; ++i)
         pthread_create(&t_id[i], NULL, (void *)thread_main, (void *)&range[i]);
@@ -47,9 +47,9 @@ char *thread_main(void *arg)
     {
         incre = -1;
     }
+
     for (int i = start * 1000000; i < end * 1000000; i++)
     {
-        printf("%d", incre);
         pthread_mutex_lock(&mtx);
         num = num + incre;
         pthread_mutex_unlock(&mtx);
