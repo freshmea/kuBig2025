@@ -8,6 +8,7 @@
 
 char *thread_main(void *arg);
 long long num = 0;
+pthread_mutex_t mtx;
 
 int main()
 {
@@ -48,7 +49,10 @@ char *thread_main(void *arg)
     }
     for (int i = start * 1000000; i < end * 1000000; i++)
     {
-        num += incre;
+        printf("%d", incre);
+        pthread_mutex_lock(&mtx);
+        num = num + incre;
+        pthread_mutex_unlock(&mtx);
     }
     return msg;
 }
