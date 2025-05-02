@@ -11,7 +11,7 @@
 
 void error_handling(char *message);
 void handle_clnt(void *arg);
-void send_msg(char *msg, int len);
+// void send_msg(char *msg, int len);
 
 int clnt_cnt = 0;
 int clnt_socks[MAX_CLIENT];
@@ -76,9 +76,10 @@ void handle_clnt(void *arg)
         write(fd, buf, str_len);
     }
 
-    printf("fd가 %d 인 client 연결 종료...\n", fd);
-
+    clnt_cnt--;
+    // clnt_socks[fd] = clnt_socks[] clnt_cnt 가 몇 번째 였는지!! 확인!!
     close(fd);
+    printf("fd가 %d 인 client 연결 종료...\n", fd);
 }
 
 void error_handling(char *message)
