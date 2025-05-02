@@ -13,7 +13,7 @@ int main()
     void *thr_ret;
 
     pthread_create(&t_id, NULL, (void *)thread_main, (void *)&thread_param);
-    // 쓰레드 동작!!(백그라운드)
+    // 쓰레드 동작!!
     pthread_join(t_id, &thr_ret); // 쓰레드가 리턴 될때까지 대기!!
     for (int i = 0; i < 10; i++)
     {
