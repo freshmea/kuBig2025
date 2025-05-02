@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
                 {
                     buf[str_len] = '\0'; // 널 문자 추가
                     puts(buf);
-                    write(i, buf, str_len);
+                    write(ep_events[i].data.fd, buf, str_len);
                 }
             }
         }
