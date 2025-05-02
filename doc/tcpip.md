@@ -125,18 +125,20 @@
 ---
 
 - 1교시
-  - a
+  - 복습
+  - echo epollserver 디버깅- fd 설정 오류
 - 2교시
-  - a
+  - 쓰레드 설명!
+  - thread_test.c 작성
 - 3교시
-  - a
+  - thread_test2.c 작성
 - 4교시
-  - a
-- 5교시
-  - a
+  - chat_srv.c 작성
 - 6교시
-  - a
+  - multithread echo_server 작성
+  - multithread echo_client 작성
 - 7교시
-  - a
+  - multithread echo_server 작성 수정 - 구조체 추가
+  - 2차 프로젝트, 파이널 프로젝트 팀 구성
 - 8교시
   - 시험
