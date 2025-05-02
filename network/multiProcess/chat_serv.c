@@ -65,6 +65,7 @@ int main(int argc, char *argv[])
 
 void handle_clnt(void *arg)
 {
+    // 쓰레드의 연결대상 == 클라이언트
     int str_len;
     char buf[BUF_SIZE];
     int fd = *(int *)arg;
@@ -73,12 +74,22 @@ void handle_clnt(void *arg)
     {
         buf[str_len] = '\0'; // 널 문자 추가
         puts(buf);
-        write(fd, buf, str_len);
+        for (int i = 0; i < clnt_cnt; ++i)
+            if (clnt_socks[i] != fd)
+                write(clnt_socks[i], buf, str_len);
     }
 
+    // clnt_cocks 안에 있는 fd 위치 확인!
+    int cl_index;
+    for (int i = 0; i < clnt_cnt; ++i)
+        if (clnt_socks[i] == fd)
+            cl_index = i;
+    // 맨 끝의 fd 를 지워지는 위치로 이동
+    clnt_socks[cl_index] = clnt_socks[clnt_cnt];
+    // cnt 감소 및 fd 제거
     clnt_cnt--;
-    // clnt_socks[fd] = clnt_socks[] clnt_cnt 가 몇 번째 였는지!! 확인!!
     close(fd);
+
     printf("fd가 %d 인 client 연결 종료...\n", fd);
 }
 
