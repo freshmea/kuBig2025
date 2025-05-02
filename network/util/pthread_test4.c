@@ -24,6 +24,7 @@ int main()
     {
         pthread_join(t_id[i], &thr_ret); // 쓰레드가 리턴 될때까지 대기!!
         printf("쓰레드에서 받아온 메세지: %s \n", (char *)thr_ret);
+        free(thr_ret);
     }
     printf("쓰레드 끝 메인 시작!! \n");
     for (int i = 0; i < 3; i++)
@@ -31,7 +32,6 @@ int main()
         sleep(1);
         puts("running main()");
     }
-    free(thr_ret);
     printf("num: %lld", num);
     return 0;
 }
