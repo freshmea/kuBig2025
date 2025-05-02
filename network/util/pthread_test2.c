@@ -10,7 +10,7 @@ int main()
 {
     pthread_t t_id;
     int thread_param = 5;
-    char *thr_ret;
+    void *thr_ret;
 
     pthread_create(&t_id, NULL, (void *)thread_main, (void *)&thread_param);
     // 쓰레드 동작!!(백그라운드)
@@ -20,7 +20,7 @@ int main()
         sleep(1);
         puts("running main()");
     }
-    printf("쓰레드에서 받아온 메세지: %s \n", thr_ret);
+    printf("쓰레드에서 받아온 메세지: %s \n", (char *)thr_ret);
     free(thr_ret);
     return 0;
 }
