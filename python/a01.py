@@ -1,5 +1,4 @@
-import a02_keyward
-
+# import a02_keyward
 print("hello, world")
 
 def print_hello():
@@ -11,5 +10,4 @@ def print_hello2():
     pass
 
 print_hello()
-
 

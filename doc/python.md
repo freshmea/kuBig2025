@@ -11,12 +11,12 @@
   - 특징 : 인터프리터 언어, 동적 타이핑, 객체 지향 언어, 플랫폼 독립적 언어
   - 장점 : 간결한 문법, 다양한 라이브러리 지원, 커뮤니티가 활발함
 - 2교시
-  - 
+  - 파이썬 주의 사항 : indentation, 대소문자 구분, 주석
 - 3교시
-  - shm_test2 예제 - semaphore 가 없을 때 문제 상황
-  - pipe 예제 작성
+  - pythonInterpreter 작성, pythonInterpreter2 작성
+  - type : int , float, str, list
 - 4교시
-  - mkfifo - mkfifo 예제 작성
+  - 
 - 5교시
   - mqueeue 예제 작성
   - server, client 코드
