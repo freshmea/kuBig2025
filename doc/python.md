@@ -16,17 +16,35 @@
   - pythonInterpreter 작성, pythonInterpreter2 작성
   - type : int , float, str, list
 - 4교시
-  - 
+  - python frame 설명: sys._getframe -> C언어의 PyFrameObject
+  - python 의 객체 :
+    - PyObject : 모든 객체의 기본 클래스
+    - PyFrameObject : 함수 호출 시 생성되는 객체
+    - PyTypeObject : 객체의 타입을 정의하는 구조체
+    - PyCodeObject : 바이트코드를 저장하는 구조체
+  - frame.f_back, f_code, f_locals, f_globals
+  - locals() : 현재 지역변수
+  - globals() : 현재 전역변수
+  - vars() : 현재 전역변수 + 지역변수
 - 5교시
-  - mqueeue 예제 작성
-  - server, client 코드
+  - string class 설명
+  - 연산자 : +, *, -, /, %, //, **, in, not in
 - 6교시
-  - tcp server, tcp client 예제 작성
+  - input 함수 설명 -> return str class!
+  - indentation 주의 : C 언어의 블럭 {} 역할
+  - 스트링 정의 "", '', """ """, ''' ''' 차이점
 - 7교시
-  - ninja 설정 하는 방법
+  - 스트링 클래스 메소드 :
+    - find, rfind, index, rindex, count, replace
+    - split, join, strip, lstrip, rstrip
+    - upper, lower, title, capitalize
+    - isalpha, isdigit, isalnum, isspace
 - 8교시
-  - ss -tulpn -socket statictics
-  - 옵션 설명
+  - 과제:
+    - 파이썬으로 구구단 출력하기 2단 -> 9단
+    - 섭씨->화씨 변환 프로그램 input -> casting -> 연산 -> 출력
+    - 문자열을 입력 받아서 단어를 카운트 해서 결과를 출력하세요
+  - 정리
 
 ---
 
