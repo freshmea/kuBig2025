@@ -1,5 +1,10 @@
 # 파이썬으로 구구단 출력하기 2단 -> 9단
+def main():
+    dan = "23456789"
+    for i in dan:
+        print(f"{i} 단 입니다.")
+        for j in dan:
+            print( i, "*", j, "=", int(i)*int(j))
 
-# 섭씨->화씨 변환 프로그램 input -> casting -> 연산 -> 출력
-
-# 문자열을 입력 받아서 단어를 카운트 해서 결과를 출력하세요
+if __name__ == "__main__":
+    main()
