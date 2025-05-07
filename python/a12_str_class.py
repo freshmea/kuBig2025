@@ -36,7 +36,7 @@ def main():
     print(f)
     g = d.split()
     print(g)
-    
+
     print("안녕" in "안녕하세요")
     print("요요" in "안녕하세요")
 
