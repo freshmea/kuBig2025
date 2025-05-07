@@ -5,7 +5,7 @@ def main():
     print("안녕하세요"[2])
     print("안녕하세요"[3])
     print("안녕하세요"[4])
-    
+
     say_hello = "안녕하세요"
     print(say_hello[0], end='')
     print(say_hello[1], end='')
@@ -24,6 +24,9 @@ def main():
     print(say_hello[-3:])
     print(say_hello[5:10:2]) # start:end:step 안하요
     print(say_hello[-1::-1]) # 거꾸로 출력!
+    print("say_hello 길이 : ",len(say_hello))
+    print("say_hello 길이 : ",say_hello.__len__()) # len() 함수 호출 하면.__len__() 실행된다.
+    
 
 if __name__ == "__main__":
     main()

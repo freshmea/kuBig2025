@@ -10,4 +10,3 @@ def print_hello2():
     pass
 
 print_hello()
-
