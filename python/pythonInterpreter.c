@@ -41,7 +41,7 @@ void execute(Instruction inst)
         printf("%s\n", inst.arg);
         break;
     case OP_UNKNOWN:
-        printf("실행할 수 없는 Instruction!!");
+        printf("실행할 수 없는 Instruction!!\n");
         break;
     }
 }
