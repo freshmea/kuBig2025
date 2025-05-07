@@ -31,7 +31,7 @@ Oh, I believe in yesterday.
         if text[i].isalnum() or text[i] == " ":
             word += text[i]
         else:
-            word += " "
+            text.replace(text[i]," ")
         if text[i] == " " or text[i] == "\n":
             if word.strip() and word.strip() not in unique_word:
                 unique_word += word.strip() + ","
