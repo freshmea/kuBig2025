@@ -68,7 +68,7 @@ int main()
         printf("\n>>>");
         fgets(source, sizeof(source), stdin);
         source[strcspn(source, "\n")] = 0;
-        if (source == "exit")
+        if (strcmp(source, "exit") == 0)
             break;
         Instruction inst = parse(source);
         execute(inst);
