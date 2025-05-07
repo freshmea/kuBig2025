@@ -62,7 +62,7 @@ int main()
 {
     char source[256];
 
-    printf("파이썬 프로토 타입 V1.0 ( print(\"arg..\") ):");
+    printf("파이썬 프로토 타입 V1.1 ( print(\"arg..\") ):");
     while (1)
     {
         printf("\n>>>");
