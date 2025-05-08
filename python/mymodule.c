@@ -40,7 +40,7 @@ static int Hello_init(HelloObject *self, PyObject *args, PyObject *kwds)
 // def hello_greet():
 static PyObject *Hello_greet(HelloObject *self, PyObject *Py_UNUSED(ignored))
 {
-    return PyUnicode_FromFormat("hello, &U!", self->name);
+    return PyUnicode_FromFormat("hello, %s!", self->name);
 }
 
 static PyMethodDef Hello_methods[] = {
@@ -48,7 +48,8 @@ static PyMethodDef Hello_methods[] = {
     {NULL}};
 
 static PyTypeObject HelloType = {
-    PyVarObject_HEAD_INIT(NULL, 0).tp_name = "mymodule.hello",
+    PyVarObject_HEAD_INIT(NULL, 0)
+        .tp_name = "mymodule.hello",
     .tp_basicsize = sizeof(HelloObject),
     .tp_itemsize = 0,
     .tp_flags = Py_TPFLAGS_DEFAULT,
