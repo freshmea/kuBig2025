@@ -2,10 +2,11 @@ import datetime
 
 
 def main():
-    # 선언
     # 크기 제한 없다.
     # 모든 다른 타입의 객체가 동시에 들어갈 수 있다.
     # iterable 하다. ...
+    
+    # 선언
     list_a = list()
     list_b = [1,2,[3,4,5]]
     print(type(list_a), type(list_b))
