@@ -7,11 +7,11 @@ def main():
     print(b.lower())
     print(c.lower())
     c = "    choi    "
-    print(c+"end")
-    print(c.strip() + 'end')
-    print(c.lstrip() + 'end')
-    print(c.rstrip() + 'end')
-    
+    print(c + "end")
+    print(c.strip() + "end")
+    print(c.lstrip() + "end")
+    print(c.rstrip() + "end")
+
     d = "this is a python class in ict, our class is best of IT class!"
     print(d.find("a"))
     print(d[d.find("a")])
@@ -20,9 +20,9 @@ def main():
     idx = int()
     while d.find("a", idx) != -1:
         idx = d.find("a", idx)
-        print(idx, end=' ')
+        print(idx, end=" ")
         idx += 1
-    
+
     f = "TrainA10".isalnum()
     print(f)
 
@@ -39,6 +39,7 @@ def main():
 
     print("안녕" in "안녕하세요")
     print("요요" in "안녕하세요")
+
 
 if __name__ == "__main__":
     main()

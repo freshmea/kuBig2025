@@ -5,10 +5,9 @@ def main():
     print(not True)
     print(not (10 < 100))
 
-    if True: # 무족건 실행
+    if True:  # 무족건 실행
         print("True 입니다.")
-
-    if False:
+    if False:  # noqa
         print("False 입니다...!")
 
     while True:
@@ -21,6 +20,7 @@ def main():
             print(a, "는 100보다 크고 200 보다 작습니다.", sep="")
         else:
             print(a, "는 100 보다 작습니다.", sep="")
+
 
 if __name__ == "__main__":
     main()

@@ -27,12 +27,13 @@ def main():
         season = "봄"
     elif month <= 8:
         season = "여름"
-    elif month <=11:
+    elif month <= 11:
         season = "가을"
     else:
         season = "겨울"
 
     print(f"현재 오전/오후 : {period} 계절 : {season} 입니다.")
+
 
 if __name__ == "__main__":
     main()

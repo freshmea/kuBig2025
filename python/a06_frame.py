@@ -14,13 +14,14 @@ print("로컬 변수:", frame.f_locals)
 # ....
 print("module_frame co name : ", frame.f_code.co_name)
 
+
 def main():
     a = 123
-    b = [3,4,5]
+    b = [3, 4, 5]
     main_frame = sys._getframe()
     print("main_frame co name : ", main_frame.f_code.co_name)
-    print("local 변수 : ",main_frame.f_locals)
-    print("전역 변수 : ",main_frame.f_globals)
+    print("local 변수 : ", main_frame.f_locals)
+    print("전역 변수 : ", main_frame.f_globals)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 def main():
-    list_a = [1,2,3]
-    list_b = [4,5,6]
+    list_a = [1, 2, 3]
+    list_b = [4, 5, 6]
     print(list_a + list_b)
     print(list_a, list_b)
 
@@ -15,12 +15,13 @@ def main():
     print(list_b)
     list_b.insert(0, 3)
     print(list_b)
-    list_b.insert(4, 6.5) # type: ignore
+    list_b.insert(4, 6.5)  # type: ignore
     print(list_b)
     list_b.remove(7)
     print(list_b)
     print(list_b.pop())
     print(list_b)
+
 
 if __name__ == "__main__":
     main()

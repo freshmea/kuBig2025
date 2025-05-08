@@ -31,7 +31,7 @@ Oh, I believe in yesterday.
         if text[i].isalnum() or text[i] == " ":
             word += text[i]
         else:
-            text.replace(text[i]," ")
+            text.replace(text[i], " ")
         if text[i] == " " or text[i] == "\n":
             if word.strip() and word.strip() not in unique_word:
                 unique_word += word.strip() + ","
@@ -39,6 +39,7 @@ Oh, I believe in yesterday.
                 print(word.strip(), ":", count, "번")
             word = ""
         i += 1
+
 
 if __name__ == "__main__":
     main()

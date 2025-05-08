@@ -16,7 +16,7 @@ def main():
     print("pi / 2 = ", pi / 2)
     print("pi // 2 = ", pi // 2)
     print("pi % 2 = ", pi % 2)
-    print("pi ** 2 = ", pi ** 2)
+    print("pi ** 2 = ", pi**2)
 
 
 if __name__ == "__main__":

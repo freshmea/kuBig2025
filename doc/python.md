@@ -63,15 +63,19 @@
   - datetime 모듈
   - 과제 - 오전오후, 계절 출력
 - 4교시
-  - ㅁ
+  - 리스트 설명
+  - list 메소드 : append, extend, insert, remove, pop, index, count, sort, reverse
 - 5교시
-  - a
+  - range 설명, for문 설명, tuple 설명
+  - enumerate 예시.
 - 6교시
-  - a
+  - 동적 로딩 dynamic loading 설명
+  - dlMain.c, plugin.c 작성
+  - dlopen, dlsym, dlclose 설명
 - 7교시
-  - a
+  - mymodule.c 작성
 - 8교시
-  - a
+  - setup.py 작성 및 패키지 설치
   - 정리
 
 ---
