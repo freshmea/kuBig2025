@@ -34,13 +34,14 @@ static int Hello_init(HelloObject *self, PyObject *args, PyObject *kwds)
 
     Py_INCREF(name);
     Py_DECREF(self->name);
+    self->name = name;
     return 0;
 }
 
 // def hello_greet():
 static PyObject *Hello_greet(HelloObject *self, PyObject *Py_UNUSED(ignored))
 {
-    return PyUnicode_FromFormat("hello, %s!", self->name);
+    return PyUnicode_FromFormat("hello, %U!", self->name);
 }
 
 static PyMethodDef Hello_methods[] = {

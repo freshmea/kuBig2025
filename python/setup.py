@@ -6,8 +6,16 @@
 
 from setuptools import Extension, setup
 
-module = Extension("mymodule", sources=['mymodule.c'])
-setup(name = 'mymodule', version='1.0', ext_modules=[module])
+setup(
+    name='mymodule',
+    version='0.1',
+    packages=['mymodule'],
+    ext_modules=[Extension('mymodule.mymodule', ['mymodule/mymodule.c'])],
+    package_data={'mymodule': ['*.pyi', 'py.typed']},
+    include_package_data=True,
+    zip_safe=False,
+)
+
 
 # poetry
 # uv
