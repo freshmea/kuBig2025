@@ -48,32 +48,30 @@
 
 ---
 
-## 2025-04-29
+## 2025-05-08
 
 ---
 
 - 1교시
   - 복습
-  - inet_addr 함수 설명
-  - inet_pton 함수 설명(iton 함수 사라짐. ipv4, ipv6 모두 지원)
-  - inet_ntoa 함수 실습
+  - 3D 프린터 사용법 설명(bambu studio)
 - 2교시
-  - echo_server 예제 작성
+  - 제어 흐름 설명 if - else, elif
+  - import 설명 - module(.py), package(폴더), library(.so, .pyi)
+  - 환경변수 env, PATH, PYTHONPATH
 - 3교시
-  - echo_client 예제 작성
+  - datetime 모듈
+  - 과제 - 오전오후, 계절 출력
 - 4교시
-  - 수신된 메시지의 전체 길이를 보장하도록 수정(server, client)
+  - ㅁ
 - 5교시
-  - ninja 설정
-  - op_server 예제 작성
+  - a
 - 6교시
-  - op_client 예제 작성
+  - a
 - 7교시
-  - udp 설명
-  - uecho_server 예제 작성
-  - uecho_client 예제 작성
+  - a
 - 8교시
-  - boundhost 예제 작성(경계가 존재 한다는 예시)
+  - a
   - 정리
 
 ---
