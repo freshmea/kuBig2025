@@ -1,4 +1,5 @@
 // gcc -o main dlMain.c -ldl
+// nm -D libplugin.so
 
 #include <dlfcn.h> // 따로 정적링크가 필요. -ldl
 #include <stdio.h>
