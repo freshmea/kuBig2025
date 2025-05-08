@@ -1,4 +1,5 @@
 // gcc -fPIC -shared -o libplugin.so plugin.c
+// file , objdump, strings, readelf
 #include <stdio.h>
 
 void hello()
