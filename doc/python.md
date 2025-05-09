@@ -80,29 +80,30 @@
 
 ---
 
-## 2025-04-30
+## 2025-05-09
 
 ---
 
 - 1교시
   - 복습
-  - file_server 작성 - 우아한 종료 halfclose
+  - dictionary 설명 - key, value, pop, update, items, keys, values
 - 2교시
-  - file_client 작성
+  - while문 설명 - break, continue
+  - time 모듈 - sleep, time, localtime, strftime
 - 3교시
-  - info.c 작성 다양한 내부 변수 확인 버퍼크기 및 큐 사이즈
+  - list comprehension 설명
+  - nim, max, sum 설명
 - 4교시
-  - DNS 설명
-  - gethostbyname, getaddrinfo 설명
+  - 함수의 argument 설명 - default, keyword, positional, variable-length
+  - return 설명
+  - packing, unpacking 설명
 - 5교시
-  - zombie 프로세스 설명
-  - fork 예제 작성 zombie 프로세스
+  - 재귀함수
+  - lru_cache, cache 설명
 - 6교시
-  - wait, waitpid 설명 - 좀비 프로세스 해결
-  - signal 설명 - ipc 폴더에 sigal.c 작성, sigaction.c 작성(인텔리센스 인식 오류 해결)
+  -
 - 7교시
-  - 멀티 프로세서 코드 작성 forck, waitpid, signal -> echo_mpserver.c
-  - echo_mpclient.c 작성
+  -
 - 8교시
   - select_pipe 예제 작성
   - 정리
