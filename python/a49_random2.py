@@ -17,16 +17,23 @@ def main():
     b = 1
 
     means = []
-
     # uniform 균등 분포 결과 테스트
+    for _ in range(n_samples):
+        value = random.uniform(a, b)
+        means.append(value)
+    plt.hist(means, bins=sample_size)
+    plt.show()
+
+    means = []
+    # uniform 균등 분포 평균결과 테스트
     for _ in range(n_samples):
         sample = [random.uniform(a, b) for _ in range(sample_size)]
         mean = sum(sample) / sample_size
         means.append(mean)
     print("표준 편차: ", np.std(means))
     plt.hist(means, bins=sample_size)
-
     plt.show()
+
     # gauss() 함수 테이터
     mu = (a + b) / 2
     sigma = math.sqrt((b - a) ** 2 / (12 * sample_size))  # 표준 편차
