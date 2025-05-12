@@ -7,6 +7,7 @@ import math
 import random
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def main():
@@ -22,16 +23,18 @@ def main():
         sample = [random.uniform(a, b) for _ in range(sample_size)]
         mean = sum(sample) / sample_size
         means.append(mean)
-
+    print("표준 편차: ", np.std(means))
     plt.hist(means, bins=sample_size)
 
     plt.show()
     # gauss() 함수 테이터
     mu = (a + b) / 2
     sigma = math.sqrt((b - a) ** 2 / (12 * sample_size))  # 표준 편차
+    print("sigma: ", sigma)
     gauss_data = []
     for _ in range(n_samples):
         gauss_data.append(random.gauss(mu=mu, sigma=sigma))
+    print(np.std(gauss_data))
 
     plt.hist(gauss_data, bins=sample_size)
     plt.show()
