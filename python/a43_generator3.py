@@ -22,7 +22,7 @@ def main():
     print(a)
 
     try:
-        a = next(output)  # generator 두번째 시퀴스 실행
+        a = next(output)  # generator  시퀴스 실행
         print(a)
     except StopIteration:
         print("Stop Iteration Error!")
