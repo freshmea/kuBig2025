@@ -1,6 +1,7 @@
 README.md
 pyproject.toml
 test_package/__init__.py
+test_package/main.py
 test_package/module_a.py
 test_package/module_b.py
 test_package/test_module.py

@@ -7,7 +7,7 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.scripts]
-test_package_main = "main:main"
+test_package_main = "test_package.main:main"
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
