@@ -11,8 +11,8 @@ import numpy as np
 
 
 def main():
-    n_samples = 100000
-    sample_size = 300
+    n_samples = 10000
+    sample_size = 30
     a = 0
     b = 1
 
