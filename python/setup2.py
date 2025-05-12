@@ -1,5 +1,7 @@
 # sudo python3 setup2.py bdist_wheel
 # pip install dist/test_package-0.1.0-py3-none-any.whl
+# 테스트 -> test_package_main
+# pip uninstall test_package
 
 from setuptools import setup
 
