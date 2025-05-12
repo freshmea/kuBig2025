@@ -127,15 +127,26 @@
 - 3교시
   - random 모듈 설명 - random, randint, choice, shuffle, sample, uniform, randrange
 - 4교시
-  - a
+  - random 의 균등 분포, 정규 분포 설명 (matplotlib)
 - 5교시
-  - a
+  - 내부 모듈 설명 - os, sys, time, math, urllib - (argparse, beatifulsoup)
 - 6교시
-  - a
+  - 외부 모듈 설명
+    - 웹 : flask, django, gradio, fastapi, dash, streamlit
+    - 빅데이터 : numpy, pandas, matplotlib, seaborn
+    - AI : scikit-learn, tensorflow, keras, pytorch
+    - 게임 : pygame
+    - GUI : tkinter, PyQt, wxPython, openCV
+    - DB : sqlite3, mysql-connector-python
+    - 네트워크 : socket, twisted, asyncio
+    - 테스트 : unittest, pytest
+    - 문서화 : sphinx, pydoc
+    - 패키지 관리 : pip, conda, poetry, uv
 - 7교시
-  - a
+  - setuptools 패키지 작성 및 설치
+  - uv_test 패키지 작성 및 설치
 - 8교시
-  - a
+  - 패키지 심화 설명 - 가상환경, docker, uv, venv, poetry, conda
   - 정리
 
 ---
