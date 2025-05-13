@@ -159,10 +159,20 @@
 
 - 1교시
   - 복습
+  - 가상 환경 설명
 - 2교시
-  - a
+  - venv 설명 및 실습 - path 관리 하는 기본적인 도구
+  - myenv 실습 - pip 및 PATH 환경 변수 확인
 - 3교시
-  - a
+  - miniconda 설명 및 실습 - conda, pip, venv
+  - myconda 실습 - conda 및 PATH 환경 변수 확인
+  - poetry 설명 및 실습 - 패키지 관리 도구
+    - activate 할 필요 없음 ( poetry shell -> 실습 안됨...)
+    - lock 파일로 패키지 버전 관리
+    - 폴더 별 pyproject.toml 로 관리
+    - poetry add, remove, update, build, publish
+    - poetry run python
+  - CI/CD 설명 - github actions, travis, circleci, jenkins
 - 4교시
   - a
 - 5교시
