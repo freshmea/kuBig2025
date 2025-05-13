@@ -5,7 +5,7 @@ description = ""
 authors = [{ name = "freshmea", email = "freshmea@naver.com" }]
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["requests (==2.28.1)", "numpy (==1.23.5)"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
