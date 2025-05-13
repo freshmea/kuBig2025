@@ -14,4 +14,12 @@
  1684  conda list | grep png
  1686  conda install -c conda-forge libpng
  1687  conda list
- 1688  history
+ 1689  conda env export > environment.yml
+ 1690  ls
+ 1691  cat environment.yml
+ 1692  code environment.yml
+ 1693  conda deactivate
+ 1694  conda env create -f environment.yml
+
+ pip install poetry
+ export PATH="$HOME/.local/bin:$PATH"
