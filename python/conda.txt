@@ -1,0 +1,17 @@
+ 1671  conda create -n myconda python=3.11
+ 1672  conda activate myconda
+ 1673  echo $PATH
+ 1674  echo $PYTHONPATH
+ 1675  pip list
+ 1676  unset PYTHONPATH
+ 1677  pip list
+ 1678  clear
+ 1679  pip list
+ 1680  env
+ 1681  conda list
+ 1682  pip list
+ 1683  apt list | grep png
+ 1684  conda list | grep png
+ 1686  conda install -c conda-forge libpng
+ 1687  conda list
+ 1688  history
