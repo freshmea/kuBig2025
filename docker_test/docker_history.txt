@@ -10,3 +10,8 @@
  1654  history
 ---
 ps -al
+
+
+---
+
+docker build --network host -t my-flask .
