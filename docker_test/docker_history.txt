@@ -15,3 +15,5 @@ ps -al
 ---
 
 docker build --network host -t my-flask .
+ 1752  docker build --network host -t my-flask .
+ 1753  docker run -it --net=host my-flask
