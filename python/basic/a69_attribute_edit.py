@@ -24,16 +24,14 @@ class StudentData:
         for item in data:
             subjects.update(item.keys())
         for subject in subjects:
-            setattr(cls, subject, 0)  # cls 클래스에 인스턴스 변수공간을 추가!!
+            setattr(cls, subject, 0)  # cls 클래스에 클래스 변수공간을 추가!!
         print(subjects)
         print(data)
-        return [cls(**item) for item in data]
 
 
 def main():
-    students = StudentData.from_json("params.json")
-    for student in students:
-        print(student)
+    StudentData.from_json("params.json")
+    print(StudentData.__dict__)
 
 
 if __name__ == "__main__":
