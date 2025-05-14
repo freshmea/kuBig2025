@@ -174,14 +174,18 @@
     - poetry run python
   - CI/CD 설명 - github actions, travis, circleci, jenkins
 - 4교시
-  - a
+  - docker 설명 및 실습 - 컨테이너 관리 도구
+  - VsCode dev container 설명 및 실습
 - 5교시
-  - a
+  - dockerfile 작성 및 실습
+  - flask 예제
 - 6교시
-  - a
+  - docker-compose 설명 및 실습
+  - app.py 작성
 - 7교시
-  - a
+  - docker-compose 파일 작성 및 실습 - flask
 - 8교시
+  - dict class student 작성
   - 정리
 
 ---
@@ -192,19 +196,36 @@
 
 - 1교시
   - 복습
+  - 클래스 설명
+  - student class 작성
 - 2교시
-  - a
+  - student class 메소드 작성
+  - 생성자 __init__ 설명 및 __new__ 설명 - singleton 패턴 실습
+  - 데이터 파일저장과 읽기로 student class 수정
+  - pickle 을 이용한 객체 직렬화 설명
 - 3교시
-  - a
+  - special method 설명(dunder method)
+  - operator overloading 설명
+  - __str__, __repr__, __add__, __sub__, __mul__, __truediv__, __floordiv__, __mod__, __pow__
+  - __lt__, __le__, __eq__, __ne__, __gt__, __ge__
 - 4교시
-  - a
+  - 소멸자 __del__ 설명
+  - 클래스 상속
+  - super() 설명
+  - mro() 설명
 - 5교시
-  - a
+  - dataclass 설명
+  - dataclass 실습, list, dict, default_factory 사용하여 초기화
 - 6교시
-  - a
+  - meta-programming 설명
+  - __getattr__, __setattr__, __delattr__, __call__, __getitem__, __setitem__, __delitem__
+  - setattr 예제
 - 7교시
-  - a
+  - 래퍼함수 작성
+  - 데코레이터 만들기 실습
+  - time check 데코레이터 실습
 - 8교시
+  - threading 실습
   - 정리
 
 ---
