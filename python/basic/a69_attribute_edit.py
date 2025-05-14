@@ -19,7 +19,7 @@ class StudentData:
     def from_json(cls, file):
         param_dir = r"/home/aa/kuBig2025/python/basic"
         with open(Path(param_dir) / file, "r", encoding="utf8") as f:
-            data: dict = json.loads(f.read())  # dictionary
+            data: list[dict] = json.loads(f.read())  # dictionary
         subjects = set()
         for item in data:
             subjects.update(item.keys())
