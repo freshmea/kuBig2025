@@ -21,6 +21,20 @@ class Student:
     def student_to_string(self):
         return f"{self.name}\t{self.student_get_sum()}\t{self.student_get_average()}"
 
+    def __str__(self):
+        return f"{self.name}\t{self.student_get_sum()}\t{self.student_get_average()}"
+
+    def __gt__(self, value):
+        return self.student_get_sum() > value.student_get_sum()
+
+    def __eq__(self, value):
+        return self.student_get_sum() == value.student_get_sum()
+
+    def __ne__(self, value):
+        return self.student_get_sum() != value.student_get_sum()
+
+    # ge , le, lt
+
 
 def main():
     hanguls = list("최강박이손정적고구류오김송곽유")

@@ -14,7 +14,12 @@ def main():
             pass
 
     for student in students:
-        print(student.student_to_string())
+        print(student)
+
+    print(students[0], students[1])
+    print(students[0] > students[1])
+    print(students[0] == students[1])
+    print(students[0] != students[1])
 
 
 if __name__ == "__main__":
