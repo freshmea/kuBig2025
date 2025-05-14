@@ -62,6 +62,8 @@ def main():
             random.randint(65, 100),
         )
     Student.print()
+    Student.students_[0].print()
+    print(Student.students_[0].count_)
 
 
 if __name__ == "__main__":
