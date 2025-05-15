@@ -55,6 +55,13 @@ class Game:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         exit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_q:
+                            self.game_active = False
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        print("mouse button down")
+                        print(event.dict)
+                        print(event.dict["pos"][0], event.dict["pos"][1])
                 self.update()  # 게임 로직에 필요한 내부 변수...
                 self.draw()  # 화면 출력을 담당.
             else:
