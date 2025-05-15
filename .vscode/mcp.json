@@ -1,0 +1,27 @@
+{
+    "servers": {
+        "taskmaster-ai": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "--package=task-master-ai",
+                "task-master-ai"
+            ],
+            "env": {
+                "OPENAI_API_KEY": "",
+                "ANTHROPIC_API_KEY": ""
+            }
+        },
+        "github": {
+            "command": "docker",
+            "args": [
+                "run",
+                "-i",
+                "--rm",
+                "-e",
+                "GITHUB_TOKEN=${env:GITHUB_TOKEN}",
+                "ghcr.io/github/github-mcp-server"
+            ]
+        }
+    }
+}
