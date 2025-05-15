@@ -2,6 +2,8 @@ import random
 
 import pygame
 
+Vec = pygame.math.Vector2
+
 
 class Ball:
     def __init__(self):
@@ -13,11 +15,11 @@ class Ball:
             random.randint(0, 255),
             random.randint(0, 255),
         )
-        self.vel = (random.randint(-10, 10), random.randint(-10, 10))
+        self.vel = Vec(random.randint(-10, 10), random.randint(-10, 10))
 
     def update(self):
-        self.x += self.vel[0]
-        self.y += self.vel[1]
+        self.x += self.vel.x
+        self.y += self.vel.y
         if self.x < 0:
             self.x = 800
         if self.x > 800:
