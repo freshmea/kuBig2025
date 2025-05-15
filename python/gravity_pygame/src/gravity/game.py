@@ -1,86 +1,27 @@
-import random
+import time
 
 import pygame
 
-Vec = pygame.math.Vector2
+from .ball import Ball
 
 
-class Ball(pygame.sprite.Sprite):
+class UI(pygame.sprite.Sprite):
     def __init__(self, game):
-        self.game = game
         super().__init__()
-        self.size = random.randint(10, 30)
-        self.image = pygame.Surface((self.size * 2, self.size * 2))
-        self.color = (
-            random.randint(0, 255),
-            random.randint(0, 255),
-            random.randint(0, 255),
-        )
-        pygame.draw.circle(self.image, self.color, (self.size, self.size), self.size)
-        self.image.set_colorkey((0, 0, 0))
-        self.x = random.randint(0, 800)
-        self.y = random.randint(0, 600)
-        self.rect = self.image.get_rect()
-        self.rect.center = Vec(self.x, self.y)  # type: ignore
-        self.vel = Vec(random.randint(-10, 10), random.randint(-10, 10))
-        self.mass = self.size
-        self.acc = Vec(1, 0)
+        self.game = game
+        self.font = pygame.font.SysFont(None, 50)
+        self.image = None
+        self.rect = None
+        self.start_time = time.time()
 
     def update(self):
-        self.gravity()
-        self.collide()
-        self.vel -= self.acc
-        if self.vel.length() > 30:
-            self.vel = Vec(random.randint(-5, 5), random.randint(-5, 5))
-        if self.vel.length() < 5:
-            self.vel = Vec(random.randint(-5, 5), random.randint(-5, 5))
-        self.rect.center += self.vel  # type: ignore
-        if self.rect.x < 0:
-            self.rect.x = 800
-        if self.rect.x > 800:
-            self.rect.x = 0
-        if self.rect.y < 0:
-            self.rect.y = 600
-        if self.rect.y > 600:
-            self.rect.y = 0
+        elapsed_time = time.time() - self.start_time
+        ui_text = f"Elapsed Time : {elapsed_time:.2f}, ball Count: {len(self.game.all_sprite)}"
+        self.image = self.font.render(ui_text, True, (0, 0, 0))
+        self.rect = self.image.get_rect(topleft=(10, 10))
 
-    def gravity(self):
-        self.acc = Vec(0, 0)
-        for ball in self.game.all_sprite.sprites():
-            if not (ball == self):
-                try:
-                    distance = (Vec(self.rect.center) - Vec(ball.rect.center)).length()
-                    direction = (
-                        Vec(self.rect.center) - Vec(ball.rect.center)
-                    ).normalize()
-                    self.acc += 10 * direction * self.mass * ball.mass / (distance**2)
-                except ZeroDivisionError:
-                    pass
-
-    def collide(self):
-        other = pygame.sprite.spritecollide(self, self.game.all_sprite, False)
-        if len(other) > 1:
-            temp = self.rect.center
-            self.vel = (self.vel * self.size + other[1].vel * other[1].size) / (
-                self.size + other[1].size
-            )
-            self.size = self.size + other[1].size
-            if self.size > 100:
-                self.size = 100
-            self.image = pygame.Surface((self.size * 2, self.size * 2))
-            self.color = (
-                random.randint(0, 255),
-                random.randint(0, 255),
-                random.randint(0, 255),
-            )
-            pygame.draw.circle(
-                self.image, self.color, (self.size, self.size), self.size
-            )
-            self.image.set_colorkey((0, 0, 0))
-            self.rect = self.image.get_rect()
-            self.rect.center = temp
-            other[1].kill()
-            del other[1]
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)
 
 
 class Game:
@@ -91,9 +32,11 @@ class Game:
         self.clock = pygame.time.Clock()
         self.fps = 60
         self.all_sprite = pygame.sprite.Group()
+        self.ui = UI(self)
 
     def update(self):
-        if len(self.all_sprite) < 6:
+        self.ui.update()
+        if len(self.all_sprite) < 20:
             ball = Ball(self)
             self.all_sprite.add(ball)
         self.all_sprite.update()
@@ -101,6 +44,7 @@ class Game:
     def draw(self):
         self.screen.fill((255, 255, 255))
         self.all_sprite.draw(self.screen)
+        self.ui.draw(self.screen)
         pygame.display.flip()
 
     def run(self):
