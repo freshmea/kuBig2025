@@ -29,6 +29,10 @@ class Ball(pygame.sprite.Sprite):
     def update(self):
         self.gravity()
         self.vel -= self.acc
+        if self.vel.length() > 50:
+            self.vel = Vec(random.randint(-5, 5), random.randint(-5, 5))
+        if self.vel.length() < 5:
+            self.vel = Vec(random.randint(-5, 5), random.randint(-5, 5))
         self.rect.center += self.vel  # type: ignore
         if self.rect.x < 0:
             self.rect.x = 800
@@ -48,7 +52,7 @@ class Ball(pygame.sprite.Sprite):
                     direction = (
                         Vec(self.rect.center) - Vec(ball.rect.center)
                     ).normalize()
-                    self.acc += direction * self.mass * ball.mass / (distance**2)
+                    self.acc += 10 * direction * self.mass * ball.mass / (distance**2)
                 except ZeroDivisionError:
                     pass
 
@@ -63,7 +67,7 @@ class Game:
         self.all_sprite = pygame.sprite.Group()
 
     def update(self):
-        if len(self.all_sprite) < 2:
+        if len(self.all_sprite) < 10:
             ball = Ball(self)
             self.all_sprite.add(ball)
         self.all_sprite.update()
