@@ -116,4 +116,5 @@
         "markdown": true,
         "scminput": false
     },
+    "chat.tools.autoApprove": true
 }
