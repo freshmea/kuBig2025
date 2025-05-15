@@ -20,7 +20,6 @@
                 "--rm",
                 "-e",
                 "GITHUB_PERSONAL_ACCESS_TOKEN",
-                // "GITHUB_TOKEN=${env:GITHUB_TOKEN}",
                 "ghcr.io/github/github-mcp-server"
             ],
             "env": {
