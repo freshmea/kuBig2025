@@ -1,16 +1,9 @@
 #include "invalidIndex.h"
 
 InvalidIndex::InvalidIndex(int index)
-: index_(index)
-{
+    : index_(index) {}
 
-}
-
-
-InvalidIndex::invalid() const
+int InvalidIndex::invalid() const
 {
     return index_;
 }
-
-
-

@@ -82,3 +82,30 @@
   - C++의 메모리 관리와 스마트 포인터를 이해한다.
 - [과정 진행 사항](doc/cpp.md)
 - [C++ Reference](https://en.cppreference.com/)
+
+---
+
+## TCP/IP 네트워크 프로그래밍
+
+---
+
+- 수업 목표
+  - IPC의 기본 개념을 이해하고, shm, pipe, mqueue,
+    - socket, select, poll, epoll을 이용한 IPC 프로그래밍을 이해한다.
+  - TCP/IP의 기본 개념을 이해하고, TCP/IP 소켓 프로그래밍을 익힌다.
+  - TCP/IP 네트워크 프로그래밍의 기본 개념을 이해한다.
+    - TCP/IP 프로토콜의 기본 개념을 이해하고, TCP/IP 소켓 프로그래밍을 익힌다.
+- [과정 진행 사항](doc/tcpip.md)
+
+---
+
+## Python
+
+---
+
+- 수업 목표
+  - Python의 기본 문법을 익히고 객체 지향 프로그래밍을 이해한다.
+  - Python의 다양한 라이브러리를 활용한 데이터 처리 및 분석 방법을 익힌다.
+  - Python을 이용한 웹 프로그래밍의 기초를 이해한다.
+  - Python의 테스트 및 디버깅 기법을 익힌다.
+- [과정 진행 사항](doc/python.md)

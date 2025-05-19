@@ -100,7 +100,13 @@
         "stdexcept": "cpp",
         "cinttypes": "cpp",
         "typeindex": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "fstream": "cpp",
+        "socket.h": "c",
+        "signal.h": "c",
+        "string.h": "c",
+        "dlfcn.h": "c",
+        "python.h": "c"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025",
@@ -109,5 +115,6 @@
         "plaintext": true,
         "markdown": true,
         "scminput": false
-    }
+    },
+    "chat.tools.autoApprove": true
 }

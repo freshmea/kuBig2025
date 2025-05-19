@@ -4,3 +4,5 @@ build/
 *.o
 *.mod.*
 .*.cmd
+__pycache__/
+.env

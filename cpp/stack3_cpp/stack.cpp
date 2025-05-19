@@ -14,30 +14,36 @@ const int Stack::STACK_SIZE = 100;
 //     // this->tos = 0;
 // }
 Stack::Stack(int size)
-: arr_(size), tos_(0){//has-a 관계도 일종의 상속이다
-    
+    : arr_(size), tos_(0)
+{ // has-a 관계도 일종의 상속이다
 }
-Stack::~Stack(){ //Array쪽의 소멸자에도 delete가 있고 거기서 처리가 될거다
-    // delete [] pArr_;
+Stack::~Stack()
+{ // Array쪽의 소멸자에도 delete가 있고 거기서 처리가 될거다
+  // delete [] pArr_;
 }
 
-bool Stack::isEmpty() const{
+bool Stack::isEmpty() const
+{
     return tos_ == 0;
 }
-bool Stack::isFull() const{
+bool Stack::isFull() const
+{
     // return tos_ == size_;
-    return tos_ == arr_.size;
+    return tos_ == arr_.size();
 }
-int Stack::size() const{
+int Stack::size() const
+{
     // return size_;
     return arr_.size();
 }
-int Stack::avab() const{
+int Stack::avab() const
+{
     // return size_ - tos_;
-    return arr_.size() - tos;
+    return arr_.size() - tos_;
 }
 
-void Stack::push(int data){
+void Stack::push(int data)
+{
     assert(!this->isFull());
 
     // pArr_[tos_] = data;
@@ -45,7 +51,8 @@ void Stack::push(int data){
     ++tos_;
 }
 
-int Stack::pop(){
+int Stack::pop()
+{
     assert(!this->isEmpty());
 
     --tos_;
@@ -53,10 +60,10 @@ int Stack::pop(){
     return arr_[tos_];
 }
 
-//stack3은 has-a관계를 이용하여 파일을 구축함
-//stack has a array?
+// stack3은 has-a관계를 이용하여 파일을 구축함
+// stack has a array?
 /*
 ~/Big2025/cpp/stack3$ g++ -o testStack  main.o stack.o array.o
-~/Big2025/cpp/stack3$ ./testStack 
+~/Big2025/cpp/stack3$ ./testStack
 
 */
