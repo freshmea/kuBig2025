@@ -24,6 +24,11 @@ int main()
 
     imshow("lenna", img);
     waitKey();
+    vector<int> jpg_params;
+    jpg_params.push_back(IMWRITE_JPEG_QUALITY);
+    jpg_params.push_back(20);
+
+    imwrite(folderPath + "lenna_save_20.jpg", img, jpg_params);
 
     return 0;
 }
