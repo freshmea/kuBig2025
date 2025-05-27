@@ -51,7 +51,11 @@ int main()
     rr1.points(pts);
 
     Rect br = rr1.boundingRect();
-    cout << "rr1 points : " << pts << endl;
+    cout << "rr1 points : ";
+    for (int i = 0; i < 4; ++i)
+    {
+        cout << pts[i];
+    }
     cout << "bounding Rect : " << br << endl;
 
     return 0;
