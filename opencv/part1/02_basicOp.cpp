@@ -45,5 +45,14 @@ int main()
     cout << "rc6: " << rc6 << endl;
     cout << rc6.contains(p1);
 
+    // RotatedRect Class
+    RotatedRect rr1(Point2f(40, 30), Size2f(40, 20), 30.f); // degree
+    Point2f pts[4];
+    rr1.points(pts);
+
+    Rect br = rr1.boundingRect();
+    cout << "rr1 points : " << pts << endl;
+    cout << "bounding Rect : " << br << endl;
+
     return 0;
 }
