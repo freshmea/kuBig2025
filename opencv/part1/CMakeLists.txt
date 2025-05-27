@@ -8,3 +8,6 @@ target_link_libraries(hello ${OpenCV_LIBS})
 
 add_executable(basic_op 02_basicOp.cpp)
 target_link_libraries(basic_op ${OpenCV_LIBS})
+
+add_executable(mat_op 03_matOp.cpp)
+target_link_libraries(mat_op ${OpenCV_LIBS})
