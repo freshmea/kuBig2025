@@ -18,9 +18,10 @@ int main()
     }
 
     // cout << img << endl;
-    namedWindow("lenna", WINDOW_AUTOSIZE);
-    Size size(640, 480);
-    resizeWindow("lenna", size);
+    namedWindow("lenna", WINDOW_NORMAL);
+    setWindowProperty("lenna", WND_PROP_FULLSCREEN, WINDOW_FULLSCREEN);
+    // Size size(640, 480);
+    // resizeWindow("lenna", size);
 
     imshow("lenna", img);
     waitKey();
