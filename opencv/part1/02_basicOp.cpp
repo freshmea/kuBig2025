@@ -8,6 +8,7 @@ String folderPath = "/home/aa/kuBig2025/opencv/data/";
 
 int main()
 {
+    // Point class
     Point_<int> p1(1, 2);
     cout << p1 << endl;
     cout << "x :" << p1.x << "y :" << p1.y << endl;
@@ -16,6 +17,33 @@ int main()
     Point2f p3(3.12, 4.23);
     Point2d p4(1.1, 2.2);
     cout << p2 << p3 << p4 << endl;
+
+    bool b1 = (p1 == p2);
+    cout << b1 << endl;
+    int d1 = p1.dot(p2);
+    bool b2 = p2.inside(Rect(1, 1, 5, 5));
+    cout << b2 << endl;
+
+    // Size Class
+    Size sz1;
+    Size2i sz2(10, 20);
+    sz1.width = 10;
+    sz1.height = 20;
+
+    Size2f sz3(3.14, 6.78);
+    cout << "sz1.area() : " << sz1.area() << "sz1.aspectRatio() : " << sz1.aspectRatio() << endl;
+
+    // Rect Class
+    Rect rc1;
+    Rect rc2(10, 10, 20, 20);
+    Rect rc3 = rc1 + Size(50, 40);
+    Rect rc4 = rc2 + Point(10, 10);
+    Rect rc5 = rc3 & rc4;
+    Rect rc6 = rc3 | rc4;
+
+    cout << "rc5: " << rc5 << endl;
+    cout << "rc6: " << rc6 << endl;
+    cout << rc6.contains(p1);
 
     return 0;
 }
