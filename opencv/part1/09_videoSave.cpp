@@ -12,25 +12,34 @@ int main()
     if (!cap.isOpened())
     {
         cerr << "동영상 파일이 없습니다!" << endl;
-        // cerr << "장치가 없습니다!" << endl;
+        return -1;
     }
-    cout << "Frame width: " << cvRound(cap.get(CAP_PROP_FRAME_WIDTH)) << endl;
-    cout << "Frame height: " << cvRound(cap.get(CAP_PROP_FRAME_HEIGHT)) << endl;
-    auto fps = cap.get(CAP_PROP_FPS);
-    cout << "fps : " << cvRound(fps) << endl;
+    int w = cvRound(cap.get(CAP_PROP_FRAME_WIDTH));
+    int h = cvRound(cap.get(CAP_PROP_FRAME_HEIGHT));
+    double fps = cap.get(CAP_PROP_FPS);
+    int fourcc = VideoWriter::fourcc('D', 'I', 'V', 'X');
 
+    VideoWriter outputVideo(folderPath + "inverse_vtest.avi", fourcc, fps, Size(w, h));
+    if (!outputVideo.isOpened())
+    {
+        cerr << "파일 생성 실패!" << endl;
+        return -1;
+    }
     Mat frame;
     while (true)
     {
         cap >> frame;
+        frame = ~frame;
         if (frame.empty())
             break; // 마지막 프레임 처리
+        outputVideo << frame;
         imshow("frame", frame);
         if (waitKey(1000 / fps) == 27) // fps 조절 숫자.
             break;
     }
 
     cap.release();
+    outputVideo.release();
     destroyAllWindows();
 
     return 0;
