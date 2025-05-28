@@ -4,34 +4,41 @@
 using namespace std;
 using namespace cv;
 
-String folderPath = "/home/aa/kuBig2025/opencv/data/";
-
 int main()
 {
-    VideoCapture cap(0);
+    // 디버깅 로그 활성화
+    setenv("OPENCV_LOG_LEVEL", "DEBUG", 1);
+
+    // GStreamer 파이프라인
+    VideoCapture cap("v4l2src device=/dev/video0 ! image/jpeg,width=1280,height=720,framerate=30/1 ! jpegdec ! videoconvert ! appsink", cv::CAP_GSTREAMER);
     if (!cap.isOpened())
     {
-        cerr << "동영상 파일이 없습니다!" << endl;
-        // cerr << "장치가 없습니다!" << endl;
+        cerr << "카메라를 열 수 없습니다!" << endl;
+        return -1;
     }
-    cout << "Frame width: " << cvRound(cap.get(CAP_PROP_FRAME_WIDTH)) << endl;
-    cout << "Frame height: " << cvRound(cap.get(CAP_PROP_FRAME_HEIGHT)) << endl;
-    auto fps = cap.get(CAP_PROP_FPS);
-    cout << "fps : " << cvRound(fps) << endl;
+
+    // 설정값 확인
+    cout << "Frame width: " << cap.get(CAP_PROP_FRAME_WIDTH) << endl;
+    cout << "Frame height: " << cap.get(CAP_PROP_FRAME_HEIGHT) << endl;
+    double fps = cap.get(CAP_PROP_FPS);
+    cout << "FPS: " << fps << endl;
 
     Mat frame;
     while (true)
     {
         cap >> frame;
-        if (frame.empty())
-            break; // 마지막 프레임 처리
+        if (frame.empty() || frame.cols != 1280 || frame.rows != 720)
+        {
+            cerr << "잘못된 프레임: " << frame.cols << "x" << frame.rows << endl;
+            continue;
+        }
+
         imshow("frame", frame);
-        if (waitKey(1000 / fps) == 27) // fps 조절 숫자.
+        if (waitKey(1000 / (fps > 0 ? fps : 30)) == 27) // ESC 키로 종료
             break;
     }
 
     cap.release();
     destroyAllWindows();
-
     return 0;
 }
