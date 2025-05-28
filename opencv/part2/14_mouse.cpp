@@ -7,37 +7,54 @@ using namespace cv;
 
 String folderPath = "/home/aa/kuBig2025/opencv/data/";
 
-void on_mouse(int event, int x, int y, int flags, void *);
+void on_mouse(int event, int x, int y, int flags, void *data);
 
 int main()
 {
     Mat img = imread(folderPath + "lenna.bmp");
     namedWindow("img");
-    setMouseCallback("img", on_mouse);
+
+    setMouseCallback("img", on_mouse, (void *)&img);
     auto i = getTickCount();
     int keycode;
     while (true)
     {
-        cout << "keycode: " << keycode << endl;
-        cout << "i: " << i << endl;
-        cout << "fps: " << getTickFrequency() / (getTickCount() - i) << endl;
+        // cout << "keycode: " << keycode << endl;
+        // cout << "i: " << i << endl;
+        // cout << "fps: " << getTickFrequency() / (getTickCount() - i) << endl;
         i = getTickCount();
         imshow("img", img);
         keycode = waitKey(33);
+        if (keycode == 27)
+            break;
     }
     destroyAllWindows();
     return 0;
 }
 
-void on_mouse(int event, int x, int y, int flags, void *)
+void on_mouse(int event, int x, int y, int flags, void *data)
 {
+    static Point ptOld;
+    static bool pushed;
+    Mat *img = (Mat *)data;
     switch (event)
     {
     case EVENT_LBUTTONDOWN:
-        cout << "마우스 왼쪽 버튼이 눌렸다!" << endl;
+        ptOld = Point(x, y);
+        pushed = true;
+        break;
+    case EVENT_LBUTTONUP:
+        pushed = false;
+        break;
+    case EVENT_MOUSEMOVE:
+        if (pushed)
+        {
+            line(*img, ptOld, Point(x, y), red, 2);
+            ptOld = Point(x, y);
+        }
         break;
     default:
-        cout << "마우스 이벤트!!" << endl;
+        // cout << "마우스 이벤트!!" << endl;
         break;
     }
 }
