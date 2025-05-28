@@ -24,6 +24,7 @@ int main()
     fs << "name" << name;
     fs << "age" << age;
     fs << "point" << pt1;
+    fs << "scores" << scores;
     fs << "data" << mat1;
     // fs << "array" << array; // 빌드 통과 못함!
 
