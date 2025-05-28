@@ -29,9 +29,9 @@ int main()
     while (true)
     {
         cap >> frame;
-        frame = ~frame;
         if (frame.empty())
             break; // 마지막 프레임 처리
+        frame = ~frame;
         outputVideo << frame;
         imshow("frame", frame);
         if (waitKey(1000 / fps) == 27) // fps 조절 숫자.
