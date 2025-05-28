@@ -19,9 +19,9 @@ int main()
     int keycode;
     while (true)
     {
-        // cout << "keycode: " << keycode << endl;
-        // cout << "i: " << i << endl;
-        // cout << "fps: " << getTickFrequency() / (getTickCount() - i) << endl;
+        cout << "keycode: " << keycode << endl;
+        cout << "i: " << i << endl;
+        cout << "fps: " << getTickFrequency() / (getTickCount() - i) << endl;
         i = getTickCount();
         imshow("img", img);
         keycode = waitKey(33);
