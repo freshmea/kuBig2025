@@ -6,27 +6,18 @@ using namespace cv;
 
 int main()
 {
-    setenv("OPENCV_LOG_LEVEL", "DEBUG", 1); // 디버깅 로그 활성화
-
-    VideoCapture cap(0, cv::CAP_V4L2); // V4L2 백엔드 사용
+    VideoCapture cap(0); // V4L2 백엔드 사용
     if (!cap.isOpened())
     {
         cerr << "카메라를 열 수 없습니다! V4L2 백엔드 실패" << endl;
-        // 대체로 기본 백엔드 시도
-        cap.open(0);
-        if (!cap.isOpened())
-        {
-            cerr << "기본 백엔드도 실패!" << endl;
-            return -1;
-        }
     }
 
     // YUYV 포맷 및 해상도 설정
-    cap.set(CAP_PROP_FOURCC, VideoWriter::fourcc('Y', 'U', 'Y', 'V'));
-    cap.set(CAP_PROP_FRAME_WIDTH, 640);
-    cap.set(CAP_PROP_FRAME_HEIGHT, 480);
-    cap.set(CAP_PROP_FPS, 30);
-    cap.set(CAP_PROP_BUFFERSIZE, 1);
+    // cap.set(CAP_PROP_FOURCC, VideoWriter::fourcc('Y', 'U', 'Y', 'V'));
+    // cap.set(CAP_PROP_FRAME_WIDTH, 640);
+    // cap.set(CAP_PROP_FRAME_HEIGHT, 480);
+    // cap.set(CAP_PROP_FPS, 30);
+    // cap.set(CAP_PROP_BUFFERSIZE, 1);
 
     // 설정값 확인
     cout << "Frame width: " << cap.get(CAP_PROP_FRAME_WIDTH) << endl;
@@ -39,16 +30,17 @@ int main()
     int frame_count = 0;
     while (frame_count < 100) // 최대 100프레임 시도
     {
-        if (!cap.read(frame))
-        {
-            cerr << "프레임 읽기 실패!" << endl;
-            continue;
-        }
-        if (frame.empty() || frame.cols != 640 || frame.rows != 480)
-        {
-            cerr << "잘못된 프레임: " << frame.cols << "x" << frame.rows << endl;
-            continue;
-        }
+        // if (!cap.read(frame))
+        // {
+        //     cerr << "프레임 읽기 실패!" << endl;
+        //     continue;
+        // }
+        // if (frame.empty() || frame.cols != 640 || frame.rows != 480)
+        // {
+        //     cerr << "잘못된 프레임: " << frame.cols << "x" << frame.rows << endl;
+        //     continue;
+        // }
+        cap >> frame;
 
         imshow("frame", frame);
         if (waitKey(1000 / (fps > 0 ? fps : 30)) == 27) // ESC 키로 종료
