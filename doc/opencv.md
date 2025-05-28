@@ -22,6 +22,46 @@
   - OpenCV의 이미지 입출력 - imwrite jpeg
 - 4교시
   - 기본 클래스 Point_<> 클래스
+  - 기본 클래스 Size_<> 클래스
+- 5교시
+  - 기본 클래스 Rect_<> 클래스
+  - 기본 클래스 Scalar_<> 클래스
+  - InputArray, OutputArray, InputOutputArray
+- 6교시
+  - Mat 클래스
+    - Mat 클래스의 생성자
+    - Mat 클래스의 속성 (rows, cols, channels, type)
+    - Mat 클래스의 데이터 접근 (at, ptr)
+    - Mat 클래스의 복사 및 할당
+- 7교시
+  - Mat 클래스의 연산
+    - Mat 클래스의 연산자 오버로딩
+    - Mat 클래스의 기본 연산 (덧셈, 뺄셈, 곱셈, 나눗셈)
+    - Mat 클래스의 비교 연산
+- 8교시
+  - 간단한 video 처리
+    - VideoCapture, VideoWriter
+    - imshow, waitKey
+    - 동영상 재생 및 저장
+  - 정리
+
+---
+
+## 2025-05-28
+
+---
+
+- 1교시
+  - 복습
+  - Video 처리 - 에러 처리, release, 동영상 저장(VideoWriter), fourcc
+- 2교시
+  - drawing
+    - 선 (line), 원(circle), 사각형(rectangle), 타원(ellipse)
+- 3교시
+  - 글자 (putText)
+  - 한글글자 (freetype) - 래퍼함수 작성
+- 4교시
+  - a
 - 5교시
   - a
 - 6교시
