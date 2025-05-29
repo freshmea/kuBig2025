@@ -25,11 +25,12 @@ int main()
     cout << "fps : " << cvRound(fps) << endl;
 
     Mat frame;
-    Mat filter_frame;
+    Mat filter_frame, rc_frame;
 
     float data[] = {-1, -1, 0, -1, 0, 1, 0, 1, 1};
     Mat emboss(3, 3, CV_32FC1, data);
-    Rect rc(100, 100, 100, 100);
+    Rect rc(500, 100, 500, 500);
+    float alpha = 3.f;
 
     while (true)
     {
@@ -38,8 +39,11 @@ int main()
             break; // 마지막 프레임 처리
         // cvtColor(frame, frame, COLOR_BGR2GRAY);
         // filter2D(frame, filter_frame, -1, emboss, Point(-1, -1), 0, BORDER_REPLICATE);
-        filter_frame = frame(rc);
-        blur(filter_frame, filter_frame, Size(15, 15), Point(-1, -1), BORDER_REPLICATE);
+        rc_frame = frame(rc);
+        // blur(filter_frame, filter_frame, Size(15, 15), Point(-1, -1), BORDER_REPLICATE);
+        GaussianBlur(rc_frame, filter_frame, Size(0, 0), 7);
+        filter_frame = (1 + alpha) * rc_frame - alpha * filter_frame;
+        filter_frame.copyTo(rc_frame);
         imshow("frame", filter_frame);
         imshow("frame_org", frame);
         if (waitKey(1000 / fps) == 27) // fps 조절 숫자.
