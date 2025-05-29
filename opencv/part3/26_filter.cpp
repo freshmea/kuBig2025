@@ -29,15 +29,19 @@ int main()
 
     float data[] = {-1, -1, 0, -1, 0, 1, 0, 1, 1};
     Mat emboss(3, 3, CV_32FC1, data);
+    Rect rc(100, 100, 100, 100);
 
     while (true)
     {
         cap >> frame;
         if (frame.empty())
             break; // 마지막 프레임 처리
-        cvtColor(frame, frame, COLOR_BGR2GRAY);
-        filter2D(frame, filter_frame, -1, emboss, Point(-1, -1), 0, BORDER_REPLICATE);
+        // cvtColor(frame, frame, COLOR_BGR2GRAY);
+        // filter2D(frame, filter_frame, -1, emboss, Point(-1, -1), 0, BORDER_REPLICATE);
+        filter_frame = frame(rc);
+        blur(filter_frame, filter_frame, Size(15, 15), Point(-1, -1), BORDER_REPLICATE);
         imshow("frame", filter_frame);
+        imshow("frame_org", frame);
         if (waitKey(1000 / fps) == 27) // fps 조절 숫자.
             break;
     }
