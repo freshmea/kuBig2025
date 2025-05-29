@@ -78,3 +78,30 @@
 - 8교시
   - 일경험 안내
   - 정리
+
+---
+
+## 2025-05-29
+
+---
+
+- 1교시
+  - 복습
+  - 마스크 연산
+- 2교시
+  - tickMeter 클래스를 이용한 fps 조절
+- 3교시
+  - 밝기 조절 - 경계값0~255(cast) 자동 적용.
+  - 대비 조절- 중앙 값 기준 곱하기, histostretch, equalizeHist
+- 4교시
+  - 히스토그램 그래프 그리기
+- 5교시
+  - convolution 필터 원리
+  - filter2D, blur, GaussianBlur
+- 6교시
+  - bilateralFilter, medianBlur
+- 7교시
+  - affineTransform, warpAffine
+- 8교시
+  -
+  - 정리
