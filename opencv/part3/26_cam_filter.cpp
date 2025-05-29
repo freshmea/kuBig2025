@@ -41,9 +41,13 @@ int main()
         // filter2D(frame, filter_frame, -1, emboss, Point(-1, -1), 0, BORDER_REPLICATE);
         rc_frame = frame(rc);
         // blur(filter_frame, filter_frame, Size(15, 15), Point(-1, -1), BORDER_REPLICATE);
-        GaussianBlur(rc_frame, filter_frame, Size(0, 0), 7);
-        filter_frame = (1 + alpha) * rc_frame - alpha * filter_frame;
-        filter_frame.copyTo(rc_frame);
+        // shapening
+        // GaussianBlur(rc_frame, filter_frame, Size(0, 0), 7);
+        // filter_frame = (1 + alpha) * rc_frame - alpha * filter_frame;
+        // filter_frame.copyTo(rc_frame);
+        // bilateral
+        bilateralFilter(rc_frame, filter_frame, -1, 10, 10);
+
         imshow("frame", filter_frame);
         imshow("frame_org", frame);
         if (waitKey(1000 / fps) == 27) // fps 조절 숫자.
