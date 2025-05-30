@@ -19,7 +19,8 @@ int main()
     createTrackbar("lowedge", "img1", &low_v, 255);
     createTrackbar("highedge", "img1", &high_v, 255);
     createTrackbar("h_thresh", "img1", &h_thresh, 255);
-    vector<Vec2f> lines;
+    // vector<Vec2f> lines;
+    vector<Vec4i> lines;
     Point pt1, pt2;
     float rho, theta, sin_t, cos_t, y0, x0, alpha;
 
@@ -28,23 +29,26 @@ int main()
     {
         cap >> img;
         Canny(img, edge, low_v, high_v);
-        HoughLines(edge, lines, 1, CV_PI / 180, h_thresh);
+        HoughLinesP(edge, lines, 1, CV_PI / 180, h_thresh, 50, 5);
+        // HoughLines(edge, lines, 1, CV_PI / 180, h_thresh);
         // 극좌표 -> 직교좌표
-        for (size_t i = 0; i < lines.size(); ++i)
-        {
-            rho = lines[i][0];
-            theta = lines[i][1];
-            cos_t = cos(theta);
-            sin_t = sin(theta);
-            x0 = rho * cos_t;
-            y0 = rho * sin_t;
-            alpha = 1000;
-            pt1.x = cvRound(x0 - alpha * sin_t);
-            pt1.y = cvRound(y0 + alpha * cos_t);
-            pt2.x = cvRound(x0 + alpha * sin_t);
-            pt2.y = cvRound(y0 - alpha * cos_t);
-            line(img, pt1, pt2, red, 2, LINE_AA);
-        }
+        // for (size_t i = 0; i < lines.size(); ++i)
+        // {
+        //     rho = lines[i][0];
+        //     theta = lines[i][1];
+        //     cos_t = cos(theta);
+        //     sin_t = sin(theta);
+        //     x0 = rho * cos_t;
+        //     y0 = rho * sin_t;
+        //     alpha = 1000;
+        //     pt1.x = cvRound(x0 - alpha * sin_t);
+        //     pt1.y = cvRound(y0 + alpha * cos_t);
+        //     pt2.x = cvRound(x0 + alpha * sin_t);
+        //     pt2.y = cvRound(y0 - alpha * cos_t);
+        //     line(img, pt1, pt2, red, 2, LINE_AA);
+        // }
+        for (auto l : lines)
+            line(img, Point(l[0], l[1]), Point(l[2], l[3]), red, 2, LINE_AA);
         imshow("img1", edge);
         imshow("img", img);
         if (waitKey(33) == 27)
