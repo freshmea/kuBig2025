@@ -23,9 +23,9 @@ int main()
     cvtColor(img, img, COLOR_BGR2HSV);
     mydata.images.push_back(img);
     mydata.images.emplace_back(Mat());
-    namedWindow("img2");
-    createTrackbar("lower Hue", "img2", &mydata.lower_hue, 179, on_hue_changed, (void *)&mydata);
-    createTrackbar("upper Hue", "img2", &mydata.upper_hue, 179, on_hue_changed, (void *)&mydata);
+    namedWindow("img1");
+    createTrackbar("lower Hue", "img1", &mydata.lower_hue, 179, on_hue_changed, (void *)&mydata);
+    createTrackbar("upper Hue", "img1", &mydata.upper_hue, 179, on_hue_changed, (void *)&mydata);
     // on_hue_changed(0, 0);
     // vector img show 코드
     int i = 1;
