@@ -21,6 +21,7 @@ int main()
     Mydata mydata;
     mydata.images.push_back(img.clone());
     cvtColor(img, img, COLOR_BGR2HSV);
+    mydata.images.push_back(img);
     mydata.images.emplace_back(Mat());
     namedWindow("img2");
     createTrackbar("lower Hue", "img2", &mydata.lower_hue, 179, on_hue_changed, (void *)&mydata);
@@ -44,6 +45,6 @@ void on_hue_changed(int pos, void *data)
     Mydata *mydata = (Mydata *)data;
     Scalar lowerb(mydata->lower_hue, 0, 0);
     Scalar upperb(mydata->upper_hue, 255, 255);
-    inRange(mydata->images[0], lowerb, upperb, mydata->images[1]);
-    imshow("img2", mydata->images[1]);
+    inRange(mydata->images[1], lowerb, upperb, mydata->images[2]);
+    imshow("img3", mydata->images[2]);
 }
