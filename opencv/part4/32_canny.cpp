@@ -12,8 +12,8 @@ String folderPath = "/home/aa/kuBig2025/opencv/data/";
 
 int main()
 {
-    Mat img = imread(folderPath + "lenna.bmp", IMREAD_GRAYSCALE);
-    Mat edge;
+    VideoCapture cap(0);
+    Mat img, edge;
     int low_v, high_v;
     namedWindow("img1");
     createTrackbar("lowedge", "img1", &low_v, 255);
@@ -22,9 +22,11 @@ int main()
     // vector img show 코드
     while (true)
     {
+        cap >> img;
         Canny(img, edge, low_v, high_v);
         imshow("img1", edge);
-        waitKey(33);
+        if (waitKey(33) == 27)
+            break;
     }
     destroyAllWindows();
     return 0;
