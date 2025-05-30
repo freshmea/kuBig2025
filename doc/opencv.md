@@ -103,5 +103,32 @@
 - 7교시
   - affineTransform, warpAffine
 - 8교시
-  -
+  - perspectiveTransform, warpPerspective ( cam 예제 작성)
+  - 정리
+
+---
+
+## 2025-05-30
+
+---
+
+- 1교시
+  - 복습
+  - 엣지 검출
+  - Sobel 마스크 설명
+- 2교시
+  - Sobel 예제 작성
+  - Canny edge detection
+  - cam + trackbar - canny edge 예제 작성
+- 3교시
+  - a
+- 4교시
+  - a
+- 5교시
+  - a
+- 6교시
+  - a
+- 7교시
+  - a
+- 8교시
   - 정리
