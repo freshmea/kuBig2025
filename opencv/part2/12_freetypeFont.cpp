@@ -15,11 +15,18 @@ Ptr<cv::freetype::FreeType2> rapperFreeTypeCenterSetup(const String &fontpath)
     return ft2;
 }
 
-void rapperFreeTypeCenter(Mat &img, Ptr<cv::freetype::FreeType2> ft2, const String &text, const int &textHeight, const int &thickness, const int &line_type, const Scalar &color, const Point &textOrg)
+void rapperFreeTypeCenter(Mat &img, Ptr<cv::freetype::FreeType2> ft2, const String &text, const int &textHeight, const int &thickness, const int &line_type, const Scalar &color, const Point &textOrg, const bool &withRect)
 {
-    Size textSize = ft2->getTextSize(text, textHeight, -1, 0);
-    Point org((textOrg.x - textSize.width) / 2, (textOrg.y - textSize.height) / 2);
-    ft2->putText(img, text, org, textHeight, color, thickness, line_type, true);
+    Size textSize = ft2->getTextSize(text, textHeight, -1, 0) + Size(0, 20);
+    // bottom padding을 위해 높이 20 추가
+    Point top_left((textOrg.x - textSize.width), (textOrg.y - textSize.height));
+    Rect textRect(top_left, textSize);
+    if (withRect)
+    {
+        rectangle(img, textRect, color, 3, line_type); // 텍스트 영역 사각형 그리기
+    }
+
+    ft2->putText(img, text, textRect.tl(), textHeight, color, thickness, line_type, false);
 }
 
 int main()
@@ -33,17 +40,15 @@ int main()
 
     while (true)
     {
-        img.setTo(white); // 배경 그리기
-        rapperFreeTypeCenter(img, ft2, text, 50, 2, LINE_AA, black, Point(600, 300));
-        rapperFreeTypeCenter(img, ft2, "두번째 텍스트입니다.", 50, 2, LINE_AA, black, Point(600, 400));
-        rapperFreeTypeCenter(img, ft2, "세번째 텍스트입니다.", 50, 2, LINE_AA, black, Point(600, 200));
+        img.setTo(white);                         // 배경 그리기
+        circle(img, Point(600, 300), 6, red, -1); // 빨간색 원 그리기
+        rapperFreeTypeCenter(img, ft2, text, 100, 2, LINE_AA, black, Point(600, 300), true);
+        rapperFreeTypeCenter(img, ft2, "두번째 텍스트입니다.", 50, 2, LINE_AA, black, Point(600, 400), true);
+        rapperFreeTypeCenter(img, ft2, "세번째 텍스트입니다.", 50, 2, LINE_AA, black, Point(600, 200), false);
 
         imshow("img", img);
         if (waitKey(33) == 27)
             break;
-        a += 1;
-        b -= 1;
-        c += 3;
     }
     destroyAllWindows();
     return 0;

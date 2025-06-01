@@ -23,11 +23,18 @@ Ptr<cv::freetype::FreeType2> rapperFreeTypeCenterSetup(const String &fontpath)
     return ft2;
 }
 
-void rapperFreeTypeCenter(Mat &img, Ptr<cv::freetype::FreeType2> ft2, const String &text, const int &textHeight, const int &thickness, const int &line_type, const Scalar &color, const Point &textOrg)
+void rapperFreeTypeCenter(Mat &img, Ptr<cv::freetype::FreeType2> ft2, const String &text, const int &textHeight, const int &thickness, const int &line_type, const Scalar &color, const Point &textOrg, const bool &withRect)
 {
-    Size textSize = ft2->getTextSize(text, textHeight, -1, 0);
-    Point org((textOrg.x - textSize.width) / 2, (textOrg.y - textSize.height) / 2);
-    ft2->putText(img, text, org, textHeight, color, thickness, line_type, true);
+    Size textSize = ft2->getTextSize(text, textHeight, -1, 0) + Size(0, 20);
+    // bottom padding을 위해 높이 20 추가
+    Point top_left((textOrg.x - textSize.width), (textOrg.y - textSize.height));
+    Rect textRect(top_left, textSize);
+    if (withRect)
+    {
+        rectangle(img, textRect, color, 3, line_type); // 텍스트 영역 사각형 그리기
+    }
+
+    ft2->putText(img, text, textRect.tl(), textHeight, color, thickness, line_type, false);
 }
 
 int main()
@@ -97,7 +104,7 @@ int main()
             rectangle(frame, Point(x, y), Point(x + width, y + height), Scalar(0, 255, 0), 2);
 
             // putText with FreeType2로 "color-paper" 표시
-            rapperFreeTypeCenter(frame, ft2, "color-paper", 50, 2, LINE_AA, black, Point(x, y - 10));
+            rapperFreeTypeCenter(frame, ft2, "color-paper", 50, 2, LINE_AA, black, Point(x, y), true);
         }
 
         // 결과 화면 표시

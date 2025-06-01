@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(test_ip)
+project(opencv_test)
 
 # 모든 .c 파일 자동 감지/home/aa/kuBig2025/stl/studnet.txt
 file(GLOB EXECUTABLES "${CMAKE_CURRENT_LIST_DIR}/*.c")
