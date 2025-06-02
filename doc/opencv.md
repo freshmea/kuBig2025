@@ -121,9 +121,47 @@
   - Canny edge detection
   - cam + trackbar - canny edge 예제 작성
 - 3교시
-  - a
+  - Hough Transform 개념 설명
+  - HoughLines, HoughLinesP
 - 4교시
-  - a
+  - HoughCircles
+- 5교시
+  - 색상 공간 변환
+    - RGB, HSV, YCrCb, Lab
+  - merge, split, addWeighted 컬러 연산
+  - inrange - 특정 색상 범위 추출(이진화)
+- 6교시
+  - 이진화
+  - threshold, adaptiveThreshold
+- 7교시
+  - morphology 연산
+    - erode, dilate, morphologyEx
+    - morphologyEx - opening, closing, gradient, top hat, black hat
+  - 레이블링 연산
+    - connectedComponents, connectedComponentsWithStats
+  - contours
+    - findContours, drawContours
+- 8교시
+  - inrange 로 물체 따라 다니는 사각형 그리기
+  - 정리
+
+---
+
+## 2025-06-2
+
+---
+
+- 1교시
+  - 복습
+  - 객체 검출 - Haar Cascade
+- 2교시
+  - 객체 검출 - Hog Descriptor
+  - Hog Descriptor 예제 작성
+- 3교시
+  - QR 코드 검출
+  - aruco 검출
+- 4교시
+  - 특징점 검출 Corner
 - 5교시
   - a
 - 6교시
@@ -131,4 +169,5 @@
 - 7교시
   - a
 - 8교시
+  - 시험
   - 정리

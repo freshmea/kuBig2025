@@ -122,3 +122,9 @@
   - OpenCV를 이용한 이미지 및 비디오 처리 방법을 익힌다.
   - OpenCV의 다양한 기능을 활용한 프로젝트를 수행한다.
 - [과정 진행 사항](doc/opencv.md)
+- 참고
+  - [OpenCV 공식 문서](https://docs.opencv.org/4.x/)
+  - [OpenCV 튜토리얼](https://opencv-python-tutroals.readthedocs.io/en/latest/)
+  - [learnOpenCV](https://github.com/spmallick/learnopencv/tree/master)
+  - [OpenCV zoo](https://github.com/opencv/opencv_zoo)
+  - [OpenCV ONNX zoo](https://github.com/onnx/models)
