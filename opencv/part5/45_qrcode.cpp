@@ -21,13 +21,9 @@ int main()
         cap >> img;
         if (img.empty())
             break;
-        info = qrDetector.detectAndDecode(img, points);
+        qrDetector.detect(img, points);
 
-        if (!info.empty())
-        {
-            polylines(img, points, true, red, 2);
-            putText(img, info, Point(10, 30), FONT_HERSHEY_DUPLEX, 1, black);
-        }
+        polylines(img, points, true, red, 2);
 
         imshow("img", img);
         if (waitKey(33) == 27)
