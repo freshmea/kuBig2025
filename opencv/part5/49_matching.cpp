@@ -21,11 +21,17 @@ int main()
     Ptr<DescriptorMatcher> matcher = BFMatcher::create(NORM_HAMMING);
     vector<KeyPoint> keypoints1, keypoints2;
     vector<DMatch> matches;
+    vector<Point2f> pts1, pts2, corners1, corners2;
+    vector<Point> corners2_int;
+    corners1.push_back(Point2f(0, 0));
+    corners1.push_back(Point2f(book_gray.cols - 1.f, 0));
+    corners1.push_back(Point2f(book_gray.cols - 1.f, book_gray.rows - 1.f));
+    corners1.push_back(Point2f(0, book_gray.rows - 1.f));
 
     // book 조사
     feature->detectAndCompute(book_gray, Mat(), keypoints1, desc1);
 
-    Mat img, img_gray, dst;
+    Mat img, img_gray, dst, M;
     while (true)
     {
         cap >> img;
@@ -37,7 +43,22 @@ int main()
         vector<DMatch> good_matches(matches.begin(), matches.begin() + 50);
         drawMatches(book, keypoints1, img, keypoints2, good_matches, dst, Scalar::all(-1), Scalar::all(-1), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
 
+        for (size_t i = 0; i < good_matches.size(); ++i)
+        {
+            pts1.push_back(keypoints1[good_matches[i].queryIdx].pt);
+            pts2.push_back(keypoints2[good_matches[i].trainIdx].pt);
+        }
+        M = findHomography(pts1, pts2, RANSAC);
+        perspectiveTransform(corners1, corners2, M);
+        for (auto &p : corners2)
+            corners2_int.push_back(Point(cvRound(p.x), cvRound(p.y)));
+        polylines(img, corners2_int, true, red, 2, LINE_AA);
+        corners2_int.clear();
+        pts1.clear();
+        pts2.clear();
+
         imshow("dst", dst);
+        imshow("img", img);
         if (waitKey(33) == 27)
             break;
     }
