@@ -1,0 +1,1 @@
+docker build --network host -t opencv49-cmake324:alpine .
