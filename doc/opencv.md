@@ -161,13 +161,13 @@
   - QR 코드 검출
   - aruco 검출
 - 4교시
-  - 특징점 검출 Corner
+  - 특징점 검출 Corner - Harris, FAST, GoodFeaturesToTrack
 - 5교시
-  - a
+  -
 - 6교시
-  - a
+  - ORB 특징점 검출 을 이용한 실시간 cam 객체 추적 예제
 - 7교시
-  - a
+  - 선형 2x+1 에 대한 선형 회귀 분석
 - 8교시
   - 시험
   - 정리
