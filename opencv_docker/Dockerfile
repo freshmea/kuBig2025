@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # Python 관련
     python3-pip \
     python3-dev \
-    # Protobuf (ONNX 등에서 사용 가능)
+    # Protobuf (ONNX 필수)
     protobuf-compiler \
     libprotobuf-dev \
     # OpenCV 빌드 의존성
@@ -51,7 +51,7 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0
     && rm -rf cmake-3.24.0 cmake-3.24.0.tar.gz
 
 # NumPy 및 ONNX 관련 패키지 설치
-RUN pip3 install numpy onnx onnxruntime
+RUN pip3 install numpy onnx onnxruntime onnx-simplifier
 
 # OpenCV 4.11.0 및 opencv_contrib 소스 다운로드
 RUN git clone --branch 4.11.0 https://github.com/opencv/opencv.git /opencv \
@@ -67,7 +67,7 @@ RUN mkdir -p /opencv/build && cd /opencv/build \
     && cmake -D CMAKE_BUILD_TYPE=Release \
     -D CMAKE_INSTALL_PREFIX=/usr/local/opencv-4.11 \
     -D OPENCV_EXTRA_MODULES_PATH=/opencv_contrib/modules \
-    -D BUILD_EXAMPLES=ON \
+    -D BUILD_EXAMPLES=OFF \
     -D BUILD_TESTS=OFF \
     -D BUILD_PERF_TESTS=OFF \
     -D BUILD_DOCS=OFF \
@@ -93,15 +93,14 @@ RUN mkdir -p /opencv/build && cd /opencv/build \
     -D OPENCV_ENABLE_NONFREE=ON \
     -D OPENCV_DNN_CUDA=OFF \
     -D OPENCV_GENERATE_PKGCONFIG=ON \
+    -D OPENCV_DNN_ONNX=ON \
     -D OPENCV_PYTHON3_INSTALL_PATH=${PYTHON3_PACKAGES_PATH} \
     -D PYTHON3_EXECUTABLE=${PYTHON3_EXECUTABLE} \
     -D PYTHON3_INCLUDE_DIR=${PYTHON3_INCLUDE_DIR} \
     -D PYTHON3_LIBRARY=${PYTHON3_LIBRARY} \
     -D PYTHON3_NUMPY_INCLUDE_DIRS=${PYTHON3_NUMPY_INCLUDE_DIRS} \
     -D PYTHON3_PACKAGES_PATH=${PYTHON3_PACKAGES_PATH} \
-    -D BUILD_opencv_dnn=ON \
     -D OPENCV_DNN_OPENCL=ON \
-    -D WITH_ONNX=ON \
     -D CMAKE_CXX_FLAGS="-Wno-undef -Wno-cast-user-defined" .. \
     && make -j$(nproc) \
     && make install \
@@ -110,6 +109,7 @@ RUN mkdir -p /opencv/build && cd /opencv/build \
 # 환경 변수 설정
 ENV LD_LIBRARY_PATH=/usr/local/opencv-4.11/lib:$LD_LIBRARY_PATH
 ENV PKG_CONFIG_PATH=/usr/local/opencv-4.11/lib/pkgconfig:$PKG_CONFIG_PATH
+ENV PYTHONPATH=/usr/local/lib/python3.11/site-packages:$PYTHONPATH
 
 # 작업 디렉토리 설정
 WORKDIR /app
