@@ -1,0 +1,2 @@
+docker build --network host -t opencv411-cmake324:pythonslim .
+docker run -it -d   --name opencv411_cmake324_pythonslim   --env="DISPLAY"   --env="QT_X11_NO_MITSHM=1"   --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"   -v $HOME/.Xauthority:/home/dockeruser/.Xauthority   --net=host   -v $(pwd):/root/opencv   opencv411-cmake324:pythonslim   /bin/bash

@@ -111,8 +111,8 @@
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025",
     "github.copilot.enable": {
-        "*": false,
-        "plaintext": true,
+        "*": true,
+        "plaintext": false,
         "markdown": true,
         "scminput": false
     },

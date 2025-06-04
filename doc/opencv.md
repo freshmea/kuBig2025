@@ -163,7 +163,8 @@
 - 4교시
   - 특징점 검출 Corner - Harris, FAST, GoodFeaturesToTrack
 - 5교시
-  -
+  - 이론 설명 - Keypoint, Descriptor, DMatch 클래스
+  - 객체 추적 순서 - 특징점 검출, 매칭, 추적
 - 6교시
   - ORB 특징점 검출 을 이용한 실시간 cam 객체 추적 예제
 - 7교시

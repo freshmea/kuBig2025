@@ -1,0 +1,16 @@
+poetry install
+ 1710  poetry shell
+ 1711  poetry env activate
+ 1712  poetry env use python3.10
+ 1713  poetry shell
+ 1714  poetry new poetry_test
+ 1715  poetry env activate
+ 1716  poetry shell
+ 1717  ls
+ 1718  source $(poetry env info --path)/bin/activate
+ 1732  pip list | grep requests
+ 1733  poetry add requests==2.28.1
+ 1734  poetry add numpy==1.23.5
+ 1735  poetry show
+ 1736  poetry build
+ 1739  poetry run python3 test_poetry.py

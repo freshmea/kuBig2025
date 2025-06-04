@@ -127,3 +127,15 @@
   - [learnOpenCV](https://github.com/spmallick/learnopencv/tree/master)
   - [OpenCV zoo](https://github.com/opencv/opencv_zoo)
   - [OpenCV ONNX zoo](https://github.com/onnx/models)
+
+---
+
+## ML - 머신러닝
+
+---
+
+- 수업 목표
+- 머신러닝의 기본 개념을 이해하고, 다양한 머신러닝 알고리즘을 익힌다.
+- 머신러닝을 이용한 데이터 분석 및 예측 방법을 익힌다.
+- 프로젝트에 서 머신러닝을 적용하여 실제 문제를 해결하는 방법을 익힌다.
+- [과정 진행 사항](doc/ml.md)
