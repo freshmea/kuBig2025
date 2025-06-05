@@ -14,8 +14,10 @@ const int POSE_PAIRS[14][2] =
     {
         {0, 1}, {1, 2}, {2, 3}, {3, 4}, {1, 5}, {5, 6}, {6, 7}, {1, 14}, {14, 8}, {8, 9}, {9, 10}, {14, 11}, {11, 12}, {12, 13}};
 
-string protoFile = "pose/mpi/pose_deploy_linevec_faster_4_stages.prototxt";
-string weightsFile = "pose/mpi/pose_iter_160000.caffemodel";
+String folderPath = "/home/aa/kuBig2025/opencv/data/";
+
+string protoFile = folderPath + "pose_deploy_linevec_faster_4_stages.prototxt";
+string weightsFile = folderPath + "pose_iter_160000.caffemodel";
 
 int nPoints = 15;
 #endif
@@ -39,7 +41,7 @@ int main(int argc, char **argv)
 
     string device = "cpu";
 
-    string imageFile = "single.jpeg";
+    string imageFile = folderPath + "single.jpeg";
     // Take arguments from commmand line
     if (argc == 2)
     {
