@@ -6,3 +6,4 @@ build/
 .*.cmd
 __pycache__/
 .env
+*.caffemodel
