@@ -1,5 +1,7 @@
 # pip install git+https://github.com/facebookresearch/segment-anything.git
-
+# pip install opencv-python pycocotools matplotlib onnxruntime onnx
+# wget -c https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+# wget https://raw.githubusercontent.com/spmallick/learnopencv/refs/heads/master/Segment-Anything-A-Foundation-Model-for-Image-Segmentation/input/image_4.jpg
 import argparse
 import os
 
