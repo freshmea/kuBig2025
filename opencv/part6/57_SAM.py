@@ -34,8 +34,10 @@ def show_anns(anns):
         ax.imshow(np.dstack((img, m * 0.35)))
 
 
-sam = sam_model_registry["vit_h"](checkpoint="sam_vit_h_4b8939.pth")
-sam.cuda()
+data_foler = "/home/aa/kuBig2025/opencv/data/"
+
+sam = sam_model_registry["vit_h"](checkpoint=data_foler + "sam_vit_h_4b8939.pth")
+# sam.cuda()
 mask_generator = SamAutomaticMaskGenerator(sam)
 
 image_path = args.input
