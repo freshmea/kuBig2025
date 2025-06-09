@@ -48,9 +48,9 @@
 - 4교시
   - a
 - 5교시
-  - a
+  - openCV - 추가 설명
 - 6교시
-  - a
+  - openCV - hand-pose
 - 7교시
   - openCV - open-pose
 - 8교시
@@ -65,13 +65,26 @@
 
 - 1교시
   - 복습
-  - a
+  - data preprocessing
+    - 데이터 전처리의 중요성
+    - data splitting
+      - 훈련 데이터와 테스트 데이터
+      - 검증 데이터의 필요성
+    - normalization과 standardization
 - 2교시
-  - a
+  - KNN regression
+    - KNN 회귀의 개념
+    - KNN 회귀의 원리
+    - KNN 회귀의 장단점
+    - KNN 회귀의 구현
 - 3교시
-  - a
+  - 선형회귀 Linear regression
+    - 선형회귀의 개념
+    - 선형회귀의 원리
+    - 선형회귀의 장단점
+    - 선형회귀의 구현
 - 4교시
-  - a
+  - 다항회귀, 다중회귀
 - 5교시
   - a
 - 6교시
