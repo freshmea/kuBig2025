@@ -138,7 +138,8 @@
     - kaggle 사용법
     - kaggle 대회 참여하기- titanic
 - 5교시
-  - a
+  - titanic - 간단한 예제
+  - [실습] titanic 생존자 예측 결과 올리기
 - 6교시
   - a
 - 7교시
