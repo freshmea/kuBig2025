@@ -139,3 +139,6 @@
 - 머신러닝을 이용한 데이터 분석 및 예측 방법을 익힌다.
 - 프로젝트에 서 머신러닝을 적용하여 실제 문제를 해결하는 방법을 익힌다.
 - [과정 진행 사항](doc/ml.md)
+- 참고:
+  - [Pandas 10분 가이드](https://pandas.pydata.org/docs/user_guide/10min.html)
+  - [Numpy](https://numpy.org/doc/)
