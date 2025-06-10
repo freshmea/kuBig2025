@@ -141,11 +141,20 @@
   - titanic - 간단한 예제
   - [실습] titanic 생존자 예측 결과 올리기
 - 6교시
-  - a
+  - pandas 설명
 - 7교시
-  - a
+  - pandas 실습
+    - Series와 DataFrame
+    - 데이터 읽기와 쓰기
+    - 데이터 선택과 필터링
+    - 데이터 정렬과 그룹화
+    - 통계함수
 - 8교시
-  - a
+  - 비지도 학습 - kmeans
+    - kmeans의 개념
+    - kmeans의 원리
+    - kmeans의 장단점
+    - kmeans의 구현
   - 정리
 
 ---
