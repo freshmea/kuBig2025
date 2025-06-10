@@ -118,13 +118,25 @@
 
 - 1교시
   - 복습
-  - a
+  - wine - logistic regression
+    - 해석의 어려움
 - 2교시
-  - a
+  - decision Tree
+    - 결정 트리의 개념
+    - 결정 트리의 원리
+    - 결정 트리의 장단점
+    - 결정 트리의 구현
 - 3교시
-  - a
+  - ensemble - Random Forest, Gradient Boosting, Extra Trees, XGBoost, LightGBM
+    - 앙상블의 개념
+    - 앙상블의 원리
+    - 앙상블의 장단점
+    - 앙상블의 구현
 - 4교시
-  - a
+  - kaggle
+    - kaggle 소개
+    - kaggle 사용법
+    - kaggle 대회 참여하기- titanic
 - 5교시
   - a
 - 6교시
