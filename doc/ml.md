@@ -165,13 +165,15 @@
 
 - 1교시
   - 복습
-  - a
+  - 비지도 학습 - KMeans
 - 2교시
-  - a
+  - 비지도 학습 - PCA
 - 3교시
-  - a
+  - 비지도 학습 - 계층적 군집홥
+  - dendrogram
 - 4교시
-  - a
+  - orange3 설치
+  - pip install PyQtWebEngine
 - 5교시
   - a
 - 6교시
