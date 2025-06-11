@@ -173,12 +173,15 @@
   - dendrogram
 - 4교시
   - orange3 설치
+  - 그림파일 분석 - covid-19 사진
   - pip install PyQtWebEngine
   - pip install --user --upgrade PyQt5 PyQtWebEngine
 - 5교시
-  - a
+  - orange3 로 데이터 분석하기
+  - BTS 가사 글 분석 - wordcloud, sentiment analysis
+  - 박스 플롯 설명
 - 6교시
-  - a
+  - 심장마비 환자 데이터 - PCA 분석
 - 7교시
   - a
 - 8교시
