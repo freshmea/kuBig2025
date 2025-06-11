@@ -8,3 +8,7 @@ print(corr)
 
 sns.heatmap(corr, annot=True, cmap="coolwarm", vmin=-1, vmax=1)
 plt.show()
+
+from Orange.data import Table
+
+Table.to
