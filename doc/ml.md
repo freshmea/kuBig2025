@@ -174,6 +174,7 @@
 - 4교시
   - orange3 설치
   - pip install PyQtWebEngine
+  - pip install --user --upgrade PyQt5 PyQtWebEngine
 - 5교시
   - a
 - 6교시
