@@ -183,6 +183,34 @@
 - 6교시
   - 심장마비 환자 데이터 - PCA 분석
 - 7교시
+  -
+- 8교시
+  -
+  - 정리
+
+---
+
+## 2025-06-12
+
+---
+
+- 1교시
+  - 복습
+  - healthcare-3 데이터 분석
+- 2교시
+  - get_dummy 를 이용한 범주형 데이터 처리
+  - 분류 모델의 평가지표 - confusion matrix, accuracy, precision, recall, f1-score
+- 3교시
+  - MLP 소개 multi-layer perceptron
+  - MLP 예제 작성
+- 4교시
+  - Orange3 로 회귀 분석 - Linear Regression
+  - house price 문제
+- 5교시
+  - [십슬] House Prices - Advanced Regression Techniques
+- 6교시
+  -
+- 7교시
   - a
 - 8교시
   - 시험
