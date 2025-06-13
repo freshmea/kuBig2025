@@ -208,10 +208,13 @@
   - house price 문제
 - 5교시
   - [십슬] House Prices - Advanced Regression Techniques
+  - 하이퍼파라미터 튜닝 XGBoost
+    - GridSearchCV, RandomizedSearchCV
+  - 스택킹 앙상블 사용하기
 - 6교시
-  -
+  - 비전 트랜스포머 사용하기 - google/vit
 - 7교시
-  - a
+  - wordcloud, network 사용하기
 - 8교시
   - 시험
   - 정리
