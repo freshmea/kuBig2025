@@ -22,25 +22,21 @@
 
 ---
 
-## 2025-06-05
+## 2025-06-16
 
 ---
 
 - 1교시
   - 복습
-  - 넘파이 기초
-    - NumPy 배열 생성 및 기본 연산
-    - NumPy 배열 인덱싱 및 슬라이싱
+  - dropout
 - 2교시
-  - 넘파이
-    - 브로드캐스팅
-    - 인덱싱
+  -
 - 3교시
-  - vstack, hstack, concatinate
+  -
 - 4교시
-  - np 데이터의 저장 및 로드.
+  - CNN - Convolutional Neural Network
 - 5교시
-  - openCV - 추가 설명
+  - Conv2D, MaxPooling2D 을 이용한 이미지 분류
 - 6교시
   - openCV - hand-pose
 - 7교시
