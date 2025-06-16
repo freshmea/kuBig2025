@@ -44,162 +44,111 @@
 - 6교시
   - RNN 설명
   - RNN - IMDB 데이터 분석
+  - RNN - one-hot encoding 으로 처리 메모리 초과로 200개로 낮춤
 - 7교시
-  -
+  - RNN - embedding 으로 처리
 - 8교시
-  -
+  - LSTM 설명 - Long Short Term Memory
+    - LSTM의 구조 - forget gate, input gate, output gate
+    - LSTM의 작동 원리 - 셀 상태와 은닉 상태
   - 정리
 
 ---
 
-## 2025-06-09
+## 2025-06-17
 
 ---
 
 - 1교시
   - 복습
-  - data preprocessing
-    - 데이터 전처리의 중요성
-    - data splitting
-      - 훈련 데이터와 테스트 데이터
-      - 검증 데이터의 필요성
-    - normalization과 standardization
+  - LSTM 실습
 - 2교시
-  - KNN regression
-    - KNN 회귀의 개념
-    - KNN 회귀의 원리
-    - KNN 회귀의 장단점
-    - KNN 회귀의 구현
+  - a
 - 3교시
-  - 선형회귀 Linear regression
-    - 선형회귀의 개념
-    - 선형회귀의 원리
-    - 선형회귀의 장단점
-    - 선형회귀의 구현
+  - a
 - 4교시
-  - 다항회귀, 다중회귀
+  - a
 - 5교시
-  - 분류 - 로지스틱 회귀
+  - a
 - 6교시
-  - 확률적 경사 하강법
-    - 확률적 경사 하강법의 개념
-    - 확률적 경사 하강법의 원리
-    - 확률적 경사 하강법의 장단점
-    - 확률적 경사 하강법의 구현
+  - a
 - 7교시
-  - 미니배치
-    - 미니배치의 개념
-    - 미니배치의 장단점
-    - 미니배치의 구현
+  - a
 - 8교시
-  - 머신러닝 정리
+  - a
   - 정리
 
 ---
 
-## 2025-06-10
+## 2025-06-18
 
 ---
 
 - 1교시
   - 복습
-  - wine - logistic regression
-    - 해석의 어려움
+  - LSTM 실습
 - 2교시
-  - decision Tree
-    - 결정 트리의 개념
-    - 결정 트리의 원리
-    - 결정 트리의 장단점
-    - 결정 트리의 구현
+  - a
 - 3교시
-  - ensemble - Random Forest, Gradient Boosting, Extra Trees, XGBoost, LightGBM
-    - 앙상블의 개념
-    - 앙상블의 원리
-    - 앙상블의 장단점
-    - 앙상블의 구현
+  - a
 - 4교시
-  - kaggle
-    - kaggle 소개
-    - kaggle 사용법
-    - kaggle 대회 참여하기- titanic
+  - a
 - 5교시
-  - titanic - 간단한 예제
-  - [실습] titanic 생존자 예측 결과 올리기
+  - a
 - 6교시
-  - pandas 설명
+  - a
 - 7교시
-  - pandas 실습
-    - Series와 DataFrame
-    - 데이터 읽기와 쓰기
-    - 데이터 선택과 필터링
-    - 데이터 정렬과 그룹화
-    - 통계함수
+  - a
 - 8교시
-  - 비지도 학습 - kmeans
-    - kmeans의 개념
-    - kmeans의 원리
-    - kmeans의 장단점
-    - kmeans의 구현
+  - a
   - 정리
 
 ---
 
-## 2025-06-11
+## 2025-06-19
 
 ---
 
 - 1교시
   - 복습
-  - 비지도 학습 - KMeans
+  - a
 - 2교시
-  - 비지도 학습 - PCA
+  - a
 - 3교시
-  - 비지도 학습 - 계층적 군집홥
-  - dendrogram
+  - a
 - 4교시
-  - orange3 설치
-  - 그림파일 분석 - covid-19 사진
-  - pip install PyQtWebEngine
-  - pip install --user --upgrade PyQt5 PyQtWebEngine
+  - a
 - 5교시
-  - orange3 로 데이터 분석하기
-  - BTS 가사 글 분석 - wordcloud, sentiment analysis
-  - 박스 플롯 설명
+  - a
 - 6교시
-  - 심장마비 환자 데이터 - PCA 분석
+  - a
 - 7교시
-  -
+  - a
 - 8교시
-  -
+  - a
   - 정리
 
 ---
 
-## 2025-06-12
+## 2025-06-20
 
 ---
 
 - 1교시
   - 복습
-  - healthcare-3 데이터 분석
+  - a
 - 2교시
-  - get_dummy 를 이용한 범주형 데이터 처리
-  - 분류 모델의 평가지표 - confusion matrix, accuracy, precision, recall, f1-score
+  - a
 - 3교시
-  - MLP 소개 multi-layer perceptron
-  - MLP 예제 작성
+  - a
 - 4교시
-  - Orange3 로 회귀 분석 - Linear Regression
-  - house price 문제
+  - a
 - 5교시
-  - [십슬] House Prices - Advanced Regression Techniques
-  - 하이퍼파라미터 튜닝 XGBoost
-    - GridSearchCV, RandomizedSearchCV
-  - 스택킹 앙상블 사용하기
+  - a
 - 6교시
-  - 비전 트랜스포머 사용하기 - google/vit
+  - a
 - 7교시
-  - wordcloud, network 사용하기
+  - a
 - 8교시
-  - 시험
+  - a
   - 정리
