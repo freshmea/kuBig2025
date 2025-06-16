@@ -30,19 +30,24 @@
   - 복습
   - dropout
 - 2교시
-  -
+  - checkpoint_cb 을 이용한 모델 저장
+  - EarlyStopping 을 이용한 조기 종료
 - 3교시
-  -
+  - CNN - Convolutional Neural Network 설명
+    - Convolutional Layer
+    - Pooling Layer
 - 4교시
-  - CNN - Convolutional Neural Network
+  - argmax 함수 이용한 결론 만들기
+  - 함수 API 를 이용한 중간 weights 값 분석
 - 5교시
   - Conv2D, MaxPooling2D 을 이용한 이미지 분류
 - 6교시
-  - openCV - hand-pose
+  - RNN 설명
+  - RNN - IMDB 데이터 분석
 - 7교시
-  - openCV - open-pose
+  -
 - 8교시
-  - openCV - SAM
+  -
   - 정리
 
 ---
