@@ -3,7 +3,7 @@ project(OpenCV_part6)
 
 find_package(OpenCV REQUIRED)
 
-add_executable(59_minist 59_minist.cpp)
-target_link_libraries(59_minist ${OpenCV_LIBS})
+add_executable(59_minist_cnn 59_minist_cnn.cpp)
+target_link_libraries(59_minist_cnn ${OpenCV_LIBS})
 
 
