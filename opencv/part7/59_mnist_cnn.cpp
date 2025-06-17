@@ -25,22 +25,21 @@ int main()
     waitKey(1000);
     while (true)
     {
-        string request_str = "클라이언트에서 간다~ " + to_string(request_count++);
-        message_t request_msg(request_str.begin(), request_str.end());
-        // recv_result_t result = requester.send(request_msg, send_flags::none);
-        // message_t reply_msg;
-        // recv_result_t reply_result = requester.recv(reply_msg, recv_flags::none);
-
-        // if (reply_result && reply_result.value() > 0)
-        // {
-        //     string reply_str = reply_msg.to_string();
-        //     cout << "서버로부터 받은 메시지: " << reply_str << endl;
-        // }
-        // else
-        // {
-        //     cerr << "서버로부터 응답을 받지 못했습니다." << endl;
-        // }
-        waitKey(30);
+        int c = waitKey(30);
+        if (c == 27)
+        {
+            cout << "프로그램을 종료합니다." << endl;
+            break;
+        }
+        else if (c == ' ')
+        {
+            recv_result_t result = requester.send(zmq::buffer(img.data, img.total() * img.elemSize()), send_flags::none);
+            message_t reply_msg;
+            recv_result_t reply_result = requester.recv(reply_msg, recv_flags::none);
+            cout << "그린 숫자의 번호는 " << reply_msg.to_string() << "입니다." << endl;
+            img.setTo(0);
+            imshow("img", img);
+        }
     }
     return 0;
 }

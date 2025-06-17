@@ -27,11 +27,21 @@ def main():
 
     try:
         while True:
-            message = socket.recv()
-            image = cv2.imdecode(np.frombuffer(message, np.uint8), cv2.IMREAD_GRAYSCALE)
+            image = socket.recv()
+            print(f"Received {len(image)} bytes")
+            # 이미지를 28 * 28 로 리사이즈
+            image = np.frombuffer(image, dtype=np.uint8)
+            image = image.reshape(400, 400)
+
+            cv2.imshow("Received Image", image)
+            cv2.waitKey(2)  # OpenCV 창 업데이트를 위해 잠시 대
+            image = cv2.resize(image, (28, 28))
+            # 이미지를 0-1 사이로 정규화
+            image = image.astype(np.float32) / 255.0
             result = model.predict(image.reshape(-1, 28, 28, 1))
-            print(f"예측 결과: {result}")
-            socket.send_string(f"예측 결과: {result}")
+            send_back = np.argmax(result, axis=1)
+            print(f"예측 결과: {send_back}")
+            socket.send_string(f"예측 결과: {send_back}")
     except KeyboardInterrupt:
         print("서버를 종료합니다.")
     finally:
