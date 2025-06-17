@@ -70,14 +70,21 @@
   - Bi-directional LSTM 설명
 - 3교시
   - 분산 처리 모델 실습(zmq 사용)
-    - zmq_server.py 작성
+    - zmq_server.py 작성 -> tensorflow 모델을 서버로 실행
     - zmq_client.py 작성
+    - zmq_image_server.py 작성
+    - zmq_image_client.py 작성
 - 4교시
-  - a
+  - 분산 처리 모델 실습(zmq 사용)
+    - zmq_server.cpp 작성
+    - zmq_client.cpp 작성
 - 5교시
-  - a
+  - GRU - Gated Recurrent Unit
+    - GRU의 구조 - reset gate, update gate
+    - GRU의 작동 원리 - 셀 상태와 은닉 상태
+    - 실습
 - 6교시
-  - a
+  - rnn 에서의 dropout 적용 방법 - GRU
 - 7교시
   - a
 - 8교시
