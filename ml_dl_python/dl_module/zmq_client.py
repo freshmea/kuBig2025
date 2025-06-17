@@ -1,4 +1,5 @@
 import os
+import random
 import time
 
 import zmq
@@ -21,9 +22,9 @@ def main():
     request_count = 0
     try:
         while True:
-            message = f"요청 메시지 {request_count + 1}"
-            socket.send_string(message)
-            print(f"보낸 메시지: {message}")
+            message = [random.randint(0, 100) for _ in range(70)]
+            print(f"요청 메시지 {request_count + 1} : {message}")
+            socket.send_string(" ".join(map(str, message)))
             response = socket.recv_string()
             print(f"받은 응답: {response}")
             request_count += 1

@@ -63,9 +63,15 @@
   - 복습
   - LSTM 실습
 - 2교시
-  - a
+  - custom LSTM 구현
+    - LSTMCell 클래스 작성
+    - LSTM 모델 작성
+    - LSTM 모델 학습 및 평가
+  - Bi-directional LSTM 설명
 - 3교시
-  - a
+  - 분산 처리 모델 실습(zmq 사용)
+    - zmq_server.py 작성
+    - zmq_client.py 작성
 - 4교시
   - a
 - 5교시
