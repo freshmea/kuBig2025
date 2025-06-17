@@ -85,10 +85,12 @@
     - 실습
 - 6교시
   - rnn 에서의 dropout 적용 방법 - GRU
+  - rnn 두 개의 층 적용 방법
 - 7교시
-  - a
+  - OpenCV 에서 tensorflow 사용법
+  - 숫자 인식 모델 훈련
 - 8교시
-  - a
+  - zmq + openCV + tensorflow 예제
   - 정리
 
 ---
@@ -99,21 +101,34 @@
 
 - 1교시
   - 복습
-  - LSTM 실습
+  - 강화 학습 - Reinforcement Learning
+    - 강화 학습의 정의
+    - 강화 학습의 구성 요소 - 에이전트, 환경, 상태, 행동, 보상
+    - 강화 학습의 목표 - 누적 보상 최대화
+    - 강화 학습의 탐색과 활용
 - 2교시
-  - a
+  - 몬테카를로 학습
 - 3교시
-  - a
+  - Q-러닝
 - 4교시
-  - a
+  - 딥 Q-러닝
+    - DQN의 구조 - Q-Network, Replay Buffer, Target Network
+    - DQN의 작동 원리 - Q-value 업데이트, epsilon-greedy 탐색
 - 5교시
-  - a
+  - DQN 실습
+    - OpenAI Gym 환경 설정
+    - DQN 모델 구현
+    - DQN 모델 학습 및 평가
 - 6교시
-  - a
+  - DQN의 하이퍼파라미터 튜닝
 - 7교시
-  - a
+  - DQN의 확장
+    - Double DQN
+    - Dueling DQN
 - 8교시
-  - a
+  - DQN의 응용
+    - Atari 게임에서의 DQN 적용
+    - DQN의 한계와 개선 방안
   - 정리
 
 ---
@@ -124,21 +139,33 @@
 
 - 1교시
   - 복습
-  - a
+  - 생성형 모델 - Generative Model
+    - 생성형 모델의 정의
+    - 생성형 모델의 종류 - GAN, VAE, Flow-based Model
 - 2교시
-  - a
+  - GAN - Generative Adversarial Network
+    - GAN의 구조 - Generator, Discriminator
+    - GAN의 작동 원리 - 적대적 학습
 - 3교시
-  - a
+  - GAN 실습
+    - MNIST 데이터셋을 이용한 GAN 모델 구현
+    - GAN 모델 학습 및 평가
 - 4교시
-  - a
+  - GAN의 하이퍼파라미터 튜닝
 - 5교시
-  - a
+  - GAN의 확장
+    - Conditional GAN
+    - CycleGAN
 - 6교시
-  - a
+  - VAE - Variational Autoencoder
+    - VAE의 구조 - Encoder, Decoder, Latent Space
+    - VAE의 작동 원리 - 재구성 손실과 KL 발산
 - 7교시
-  - a
+  - Transformer 설명
+    - Transformer의 구조 - Self-Attention, Multi-Head Attention, Positional Encoding
+    - Transformer의 작동 원리 - 인코더와 디코더
 - 8교시
-  - a
+  - Attention Mechanism
   - 정리
 
 ---
@@ -149,19 +176,19 @@
 
 - 1교시
   - 복습
-  - a
+  - 인공지능 적용 실습 - 바이브 코딩
 - 2교시
-  - a
+  - VsCode 세팅
 - 3교시
-  - a
+  - 자동완성 가이드 설정
 - 4교시
-  - a
+  - 커밋메세지 가이드 설정
 - 5교시
-  - a
+  - copilot 사용법
 - 6교시
-  - a
+  - agent 사용법
 - 7교시
-  - a
+  - mcp 사용법
 - 8교시
-  - a
+  - agent + mcp 사용법
   - 정리
