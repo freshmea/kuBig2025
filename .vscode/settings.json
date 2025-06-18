@@ -116,5 +116,6 @@
         "markdown": true,
         "scminput": false
     },
-    "chat.tools.autoApprove": true
+    "chat.tools.autoApprove": true,
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc"
 }
