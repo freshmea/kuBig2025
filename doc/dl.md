@@ -113,10 +113,14 @@
     - python3 detect.py --source 0
     - coco 데이터넷 80개 클래스 설명
 - 5교시
-  - DQN 실습
-    - OpenAI Gym 환경 설정
-    - DQN 모델 구현
-    - DQN 모델 학습 및 평가
+  - YOLOv5 커스터마이징
+    - 커스터마이징을 위한 데이터 준비
+      - 데이터셋 구성 - 이미지와 라벨 파일
+      - 라벨링 도구 소개 - LabelImg, Roboflow
+    - 커스터마이징을 위한 환경 설정
+      - YOLOv5 설치 및 의존성 설치
+      - 커스터마이징을 위한 config 파일 수정
+  - [모델 학습](https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data)
 - 6교시
   - DQN의 하이퍼파라미터 튜닝
 - 7교시
