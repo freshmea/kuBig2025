@@ -15,7 +15,7 @@ int main()
     // 모델 파일 로드
     Net net = readNet(
         folderPath + "res10_300x300_ssd_iter_140000_fp16.caffemodel",
-        folderPath + "best-cnn-model.pb");
+        folderPath + "ssd_deploy.prototxt");
 
     ifstream fp(folderPath + "classification_classes_ILSVRC2012.txt");
 
@@ -34,15 +34,27 @@ int main()
     while (true)
     {
         cap >> img;
-        Mat inputBlob = blobFromImage(img, 1, Size(224, 224), Scalar(104, 117, 123));
+        Mat inputBlob = blobFromImage(img, 1, Size(300, 300), Scalar(104, 177, 123));
         net.setInput(inputBlob, "data");
-        Mat prob = net.forward(); // 실제 연산라인.
+        Mat res = net.forward(); // 실제 연산라인.
 
-        double maxVal;
-        Point maxLoc;
-        minMaxLoc(prob, NULL, &maxVal, NULL, &maxLoc);
-        String str = format("%s (%4.2lf%%)", classNames[maxLoc.x].c_str(), maxVal * 100);
-        putText(img, str, Point(10, 30), FONT_HERSHEY_SIMPLEX, 0.8, Scalar(0, 0, 255), 2);
+        Mat detect(res.size[2], res.size[3], CV_32FC1, res.ptr<float>());
+        for (int i = 0; i < detect.rows; i++)
+        {
+            float confidence = detect.at<float>(i, 2);
+            if (confidence < 0.5)
+                break;
+
+            int x1 = cvRound(detect.at<float>(i, 3) * img.cols);
+            int y1 = cvRound(detect.at<float>(i, 4) * img.rows);
+            int x2 = cvRound(detect.at<float>(i, 5) * img.cols);
+            int y2 = cvRound(detect.at<float>(i, 6) * img.rows);
+
+            rectangle(img, Rect(Point(x1, y1), Point(x2, y2)), Scalar(0, 255, 0));
+            String str = format("Face: %4.3f", confidence);
+            putText(img, str, Point(10, 30), FONT_HERSHEY_SIMPLEX, 0.8, Scalar(0, 0, 255), 2);
+        }
+
         imshow("img", img);
         if (waitKey(3) == 27)
             break;
