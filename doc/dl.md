@@ -101,19 +101,17 @@
 
 - 1교시
   - 복습
-  - 강화 학습 - Reinforcement Learning
-    - 강화 학습의 정의
-    - 강화 학습의 구성 요소 - 에이전트, 환경, 상태, 행동, 보상
-    - 강화 학습의 목표 - 누적 보상 최대화
-    - 강화 학습의 탐색과 활용
+  - OpenCV classification - googlenet
 - 2교시
-  - 몬테카를로 학습
+  - OpenCV ssd classification - ssd face detection
 - 3교시
-  - Q-러닝
+  - Yolo 설명
+    - YOLO의 구조 - Backbone, Neck, Head
+    - YOLO의 작동 원리 - Anchor Box, Non-Maximum Suppression
 - 4교시
-  - 딥 Q-러닝
-    - DQN의 구조 - Q-Network, Replay Buffer, Target Network
-    - DQN의 작동 원리 - Q-value 업데이트, epsilon-greedy 탐색
+  - YOLOv5 실습
+    - python3 detect.py --source 0
+    - coco 데이터넷 80개 클래스 설명
 - 5교시
   - DQN 실습
     - OpenAI Gym 환경 설정
