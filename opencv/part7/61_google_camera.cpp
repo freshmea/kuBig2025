@@ -44,7 +44,8 @@ int main()
         String str = format("%s (%4.2lf%%)", classNames[maxLoc.x].c_str(), maxVal * 100);
         putText(img, str, Point(10, 30), FONT_HERSHEY_SIMPLEX, 0.8, Scalar(0, 0, 255), 2);
         imshow("img", img);
-        waitKey(3);
+        if (waitKey(3) == 27)
+            break;
     }
 
     return 0;
