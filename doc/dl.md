@@ -141,33 +141,25 @@
 
 - 1교시
   - 복습
-  - 생성형 모델 - Generative Model
-    - 생성형 모델의 정의
-    - 생성형 모델의 종류 - GAN, VAE, Flow-based Model
+  - 프로젝트
 - 2교시
-  - GAN - Generative Adversarial Network
-    - GAN의 구조 - Generator, Discriminator
-    - GAN의 작동 원리 - 적대적 학습
+  - 프로젝트
 - 3교시
-  - GAN 실습
-    - MNIST 데이터셋을 이용한 GAN 모델 구현
-    - GAN 모델 학습 및 평가
+  - 프로젝트
 - 4교시
-  - GAN의 하이퍼파라미터 튜닝
+  - 프로젝트
 - 5교시
-  - GAN의 확장
-    - Conditional GAN
-    - CycleGAN
+  - 생성형 모델 AE - Autoencoder
+    - AE의 구조 - Encoder, Decoder
+    - AE의 작동 원리 - 재구성 손실
 - 6교시
   - VAE - Variational Autoencoder
     - VAE의 구조 - Encoder, Decoder, Latent Space
     - VAE의 작동 원리 - 재구성 손실과 KL 발산
 - 7교시
-  - Transformer 설명
-    - Transformer의 구조 - Self-Attention, Multi-Head Attention, Positional Encoding
-    - Transformer의 작동 원리 - 인코더와 디코더
+  - tensorboardX 설치 및 사용법
+  - tensorboardX 를 이용한 모델 시각화
 - 8교시
-  - Attention Mechanism
   - 정리
 
 ---
