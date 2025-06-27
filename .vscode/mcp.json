@@ -6,11 +6,7 @@
                 "-y",
                 "--package=task-master-ai",
                 "task-master-ai"
-            ],
-            "env": {
-                "OPENAI_API_KEY": "",
-                "ANTHROPIC_API_KEY": ""
-            }
+            ]
         },
         "github": {
             "command": "docker",
