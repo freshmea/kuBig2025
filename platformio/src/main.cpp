@@ -109,8 +109,8 @@ void setup()
     config.pin_pclk = PCLK_GPIO_NUM;
     config.pin_vsync = VSYNC_GPIO_NUM;
     config.pin_href = HREF_GPIO_NUM;
-    config.pin_sccb_sda = SIOD_GPIO_NUM;
-    config.pin_sccb_scl = SIOC_GPIO_NUM;
+    config.pin_sscb_sda = SIOD_GPIO_NUM;
+    config.pin_sscb_scl = SIOC_GPIO_NUM;
     config.pin_pwdn = PWDN_GPIO_NUM;
     config.pin_reset = RESET_GPIO_NUM;
     config.xclk_freq_hz = 20000000;
@@ -128,9 +128,6 @@ void setup()
         config.jpeg_quality = 12;
         config.fb_count = 1;
     }
-    config.frame_size = FRAMESIZE_QVGA;
-    config.jpeg_quality = 12;
-    config.fb_count = 1;
 
     // 카메라 초기화
     esp_err_t err = esp_camera_init(&config);
@@ -151,13 +148,6 @@ void setup()
     Serial.println("WiFi connected");
 
     Serial.print("Camera Stream Ready! Go to: http://");
-    Serial.print("width, height, quality, and frame count");
-    Serial.print(" : ");
-    Serial.print(config.frame_size);
-    Serial.print(", ");
-    Serial.print(config.jpeg_quality);
-    Serial.print(", ");
-    Serial.print(config.fb_count);
     Serial.println(WiFi.localIP());
 
     startCameraServer();
