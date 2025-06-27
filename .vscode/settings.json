@@ -117,5 +117,11 @@
         "scminput": false
     },
     "chat.tools.autoApprove": true,
-    "C_Cpp.default.compilerPath": "/usr/bin/gcc"
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+    "github.copilot.chat.commitMessageGeneration.instructions": [
+        {
+            "file": "./.github/copilot-commit-guide.md",
+        }
+    ],
 }
