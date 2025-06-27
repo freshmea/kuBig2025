@@ -5,7 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/usr/include/**",
-                "/usr/include/python3.10/**"
+                "/usr/include/python3.10/**",
+                "~/.arduino15/packages/esp32/hardware/esp32/**",
+                "~/.arduino15/packages/esp32/tools/**"
             ],
             "defines": [
                 "__KERNEL__",
@@ -13,9 +15,15 @@
                 "__USE_GNU",
                 "MODULE",
                 "_POSIX_C_SOURCE=200809L",
-                "_GNU_SOURCE"
+                "_GNU_SOURCE",
+                "ARDUINO=10819",
+                "ARDUINO_ESP32_DEV",
+                "ESP32",
+                "BOARD_HAS_PSRAM",
+                "CAMERA_MODEL_AI_THINKER"
             ],
-            "compilerPath": "/usr/bin/gcc",
+            // "compilerPath": "/usr/bin/gcc",
+            "compilerPath": "~/.arduino15/packages/esp32/tools/esp-x32/2411/bin/xtensa-esp32-elf-gcc",
             "cStandard": "c17",
             "cppStandard": "c++23",
             "intelliSenseMode": "linux-gcc-x64"

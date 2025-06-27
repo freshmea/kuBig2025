@@ -1,0 +1,7 @@
+{
+    "board": "esp32:esp32:esp32cam",
+    "sketch": "platformio/arduino/esp32_cam_basic/esp32_cam_basic.ino",
+    "port": "/dev/ttyUSB0",
+    "programmer": "esptool",
+    "configuration": "CPUFreq=240,FlashMode=qio,PartitionScheme=huge_app,FlashFreq=80,DebugLevel=none,EraseFlash=none"
+}

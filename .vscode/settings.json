@@ -106,7 +106,8 @@
         "signal.h": "c",
         "string.h": "c",
         "dlfcn.h": "c",
-        "python.h": "c"
+        "python.h": "c",
+        "*.ino": "cpp"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025",
@@ -124,4 +125,7 @@
             "file": "./.github/copilot-commit-guide.md",
         }
     ],
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.configurationWarnings": "disabled",
 }
