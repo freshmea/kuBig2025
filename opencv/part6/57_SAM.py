@@ -11,7 +11,7 @@ import numpy as np
 from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--input", default="input/image_4.jpg")
+parser.add_argument("--input", default="../data/image_4.jpg")
 args = parser.parse_args()
 
 if not os.path.exists("outputs"):
@@ -34,7 +34,7 @@ def show_anns(anns):
         ax.imshow(np.dstack((img, m * 0.35)))
 
 
-data_foler = "/home/aa/kuBig2025/opencv/data/"
+data_foler = "../data/"
 
 sam = sam_model_registry["vit_h"](checkpoint=data_foler + "sam_vit_h_4b8939.pth")
 # sam.cuda()

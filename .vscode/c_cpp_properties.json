@@ -23,6 +23,25 @@
             "cStandard": "c17",
             "cppStandard": "c++23",
             "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "Arduino",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "ARDUINO=10819",
+                "ARDUINO_AVR_UNO",
+                "ARDUINO_ARCH_AVR",
+                "F_CPU=16000000L",
+                "__AVR__",
+                "__AVR_ATmega328P__"
+            ],
+            "compilerPath": "/usr/bin/avr-gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.vscode-arduino"
         }
     ],
     "version": 4
