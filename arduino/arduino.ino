@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 void setup()
 {
     // 시리얼 통신 초기화 (9600 baud rate)
