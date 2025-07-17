@@ -106,15 +106,26 @@
         "signal.h": "c",
         "string.h": "c",
         "dlfcn.h": "c",
-        "python.h": "c"
+        "python.h": "c",
+        "*.ino": "cpp"
     },
     "ros.distro": "humble",
     "cmake.sourceDirectory": "/home/aa/kuBig2025",
     "github.copilot.enable": {
-        "*": false,
+        "*": true,
         "plaintext": false,
         "markdown": true,
         "scminput": false
     },
-    "chat.tools.autoApprove": true
+    "chat.tools.autoApprove": true,
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+    "github.copilot.chat.commitMessageGeneration.instructions": [
+        {
+            "file": "./.github/copilot-commit-guide.md",
+        }
+    ],
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.configurationWarnings": "disabled",
 }

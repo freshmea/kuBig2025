@@ -25,146 +25,196 @@
     - Colab 환경 설정
     - Colab에서 Jupyter Notebook 사용하기
 - 6교시
-  - Mat 클래스
-    - Mat 클래스의 생성자
-    - Mat 클래스의 속성 (rows, cols, channels, type)
-    - Mat 클래스의 데이터 접근 (at, ptr)
-    - Mat 클래스의 복사 및 할당
+  - 물고기 분류
 - 7교시
-  - Mat 클래스의 연산
-    - Mat 클래스의 연산자 오버로딩
-    - Mat 클래스의 기본 연산 (덧셈, 뺄셈, 곱셈, 나눗셈)
-    - Mat 클래스의 비교 연산
+  - kNN
+    - kNN의 개념
+    - kNN의 원리
+    - kNN의 장단점
+    - kNN의 구현
 - 8교시
-  - 간단한 video 처리
-    - VideoCapture, VideoWriter
-    - imshow, waitKey
-    - 동영상 재생 및 저장
+  - numpy 소개
   - 정리
 
 ---
 
-## 2025-05-28
+## 2025-06-05
 
 ---
 
 - 1교시
   - 복습
-  - Video 처리 - 에러 처리, release, 동영상 저장(VideoWriter), fourcc
+  - 넘파이 기초
+    - NumPy 배열 생성 및 기본 연산
+    - NumPy 배열 인덱싱 및 슬라이싱
 - 2교시
-  - drawing
-    - 선 (line), 원(circle), 사각형(rectangle), 타원(ellipse)
+  - 넘파이
+    - 브로드캐스팅
+    - 인덱싱
 - 3교시
-  - 글자 (putText)
-  - 한글글자 (freetype) - 래퍼함수 작성
+  - vstack, hstack, concatinate
 - 4교시
-  - 마우스 이벤트(setMouseCallback)
-    - 마우스 이벤트의 종류 및 처리 방법
-    - 마우스 이벤트를 선 그리기
+  - np 데이터의 저장 및 로드.
 - 5교시
-  - 트랙바 (trackbar)
-    - 트랙바의 생성 및 사용법
-    - 트랙바를 이용한 이미지 필터링
+  - openCV - 추가 설명
 - 6교시
-  - 파일저장 fileStorage
-    - XML, YAML 파일 저장
-    - FileStorage 클래스의 사용법
+  - openCV - hand-pose
 - 7교시
-  - 웹캠 abko 설정
-  - 캠-사각형 그리기 코드 작성
+  - openCV - open-pose
 - 8교시
-  - 일경험 안내
+  - openCV - SAM
   - 정리
 
 ---
 
-## 2025-05-29
+## 2025-06-09
 
 ---
 
 - 1교시
   - 복습
-  - 마스크 연산
+  - data preprocessing
+    - 데이터 전처리의 중요성
+    - data splitting
+      - 훈련 데이터와 테스트 데이터
+      - 검증 데이터의 필요성
+    - normalization과 standardization
 - 2교시
-  - tickMeter 클래스를 이용한 fps 조절
+  - KNN regression
+    - KNN 회귀의 개념
+    - KNN 회귀의 원리
+    - KNN 회귀의 장단점
+    - KNN 회귀의 구현
 - 3교시
-  - 밝기 조절 - 경계값0~255(cast) 자동 적용.
-  - 대비 조절- 중앙 값 기준 곱하기, histostretch, equalizeHist
+  - 선형회귀 Linear regression
+    - 선형회귀의 개념
+    - 선형회귀의 원리
+    - 선형회귀의 장단점
+    - 선형회귀의 구현
 - 4교시
-  - 히스토그램 그래프 그리기
+  - 다항회귀, 다중회귀
 - 5교시
-  - convolution 필터 원리
-  - filter2D, blur, GaussianBlur
+  - 분류 - 로지스틱 회귀
 - 6교시
-  - bilateralFilter, medianBlur
+  - 확률적 경사 하강법
+    - 확률적 경사 하강법의 개념
+    - 확률적 경사 하강법의 원리
+    - 확률적 경사 하강법의 장단점
+    - 확률적 경사 하강법의 구현
 - 7교시
-  - affineTransform, warpAffine
+  - 미니배치
+    - 미니배치의 개념
+    - 미니배치의 장단점
+    - 미니배치의 구현
 - 8교시
-  - perspectiveTransform, warpPerspective ( cam 예제 작성)
+  - 머신러닝 정리
   - 정리
 
 ---
 
-## 2025-05-30
+## 2025-06-10
 
 ---
 
 - 1교시
   - 복습
-  - 엣지 검출
-  - Sobel 마스크 설명
+  - wine - logistic regression
+    - 해석의 어려움
 - 2교시
-  - Sobel 예제 작성
-  - Canny edge detection
-  - cam + trackbar - canny edge 예제 작성
+  - decision Tree
+    - 결정 트리의 개념
+    - 결정 트리의 원리
+    - 결정 트리의 장단점
+    - 결정 트리의 구현
 - 3교시
-  - Hough Transform 개념 설명
-  - HoughLines, HoughLinesP
+  - ensemble - Random Forest, Gradient Boosting, Extra Trees, XGBoost, LightGBM
+    - 앙상블의 개념
+    - 앙상블의 원리
+    - 앙상블의 장단점
+    - 앙상블의 구현
 - 4교시
-  - HoughCircles
+  - kaggle
+    - kaggle 소개
+    - kaggle 사용법
+    - kaggle 대회 참여하기- titanic
 - 5교시
-  - 색상 공간 변환
-    - RGB, HSV, YCrCb, Lab
-  - merge, split, addWeighted 컬러 연산
-  - inrange - 특정 색상 범위 추출(이진화)
+  - titanic - 간단한 예제
+  - [실습] titanic 생존자 예측 결과 올리기
 - 6교시
-  - 이진화
-  - threshold, adaptiveThreshold
+  - pandas 설명
 - 7교시
-  - morphology 연산
-    - erode, dilate, morphologyEx
-    - morphologyEx - opening, closing, gradient, top hat, black hat
-  - 레이블링 연산
-    - connectedComponents, connectedComponentsWithStats
-  - contours
-    - findContours, drawContours
+  - pandas 실습
+    - Series와 DataFrame
+    - 데이터 읽기와 쓰기
+    - 데이터 선택과 필터링
+    - 데이터 정렬과 그룹화
+    - 통계함수
 - 8교시
-  - inrange 로 물체 따라 다니는 사각형 그리기
+  - 비지도 학습 - kmeans
+    - kmeans의 개념
+    - kmeans의 원리
+    - kmeans의 장단점
+    - kmeans의 구현
   - 정리
 
 ---
 
-## 2025-06-2
+## 2025-06-11
 
 ---
 
 - 1교시
   - 복습
-  - 객체 검출 - Haar Cascade
+  - 비지도 학습 - KMeans
 - 2교시
-  - 객체 검출 - Hog Descriptor
-  - Hog Descriptor 예제 작성
+  - 비지도 학습 - PCA
 - 3교시
-  - QR 코드 검출
-  - aruco 검출
+  - 비지도 학습 - 계층적 군집홥
+  - dendrogram
 - 4교시
-  - 특징점 검출 Corner - Harris, FAST, GoodFeaturesToTrack
+  - orange3 설치
+  - 그림파일 분석 - covid-19 사진
+  - pip install PyQtWebEngine
+  - pip install --user --upgrade PyQt5 PyQtWebEngine
 - 5교시
+  - orange3 로 데이터 분석하기
+  - BTS 가사 글 분석 - wordcloud, sentiment analysis
+  - 박스 플롯 설명
+- 6교시
+  - 심장마비 환자 데이터 - PCA 분석
+- 7교시
   -
+- 8교시
+  -
+  - 정리
+
+---
+
+## 2025-06-12
+
+---
+
+- 1교시
+  - 복습
+  - healthcare-3 데이터 분석
+- 2교시
+  - get_dummy 를 이용한 범주형 데이터 처리
+  - 분류 모델의 평가지표 - confusion matrix, accuracy, precision, recall, f1-score
+- 3교시
+  - MLP 소개 multi-layer perceptron
+  - MLP 예제 작성
+- 4교시
+  - Orange3 로 회귀 분석 - Linear Regression
+  - house price 문제
+- 5교시
+  - [십슬] House Prices - Advanced Regression Techniques
+  - 하이퍼파라미터 튜닝 XGBoost
+    - GridSearchCV, RandomizedSearchCV
+  - 스택킹 앙상블 사용하기
 - 6교시
-  - ORB 특징점 검출 을 이용한 실시간 cam 객체 추적 예제
+  - 비전 트랜스포머 사용하기 - google/vit
 - 7교시
-  - 선형 2x+1 에 대한 선형 회귀 분석
+  - wordcloud, network 사용하기
 - 8교시
   - 시험
   - 정리
