@@ -22,6 +22,7 @@ static char board[7][50] = {
     "-------------------------------------------",
 };
 
+// 보드 출력 함수
 void printBoard(Score *player)
 {
     // 화면 지우기 명령 활성화
@@ -34,6 +35,7 @@ void printBoard(Score *player)
     }
 }
 
+// 점수 설정 함수 - frame과 bow에 따라 보드 업데이트
 void setScore(int frame, int bow, Score *player)
 {
     for (int i = 1; i <= frame; i++)
@@ -78,6 +80,7 @@ void setScore(int frame, int bow, Score *player)
             board[3][1 + (10 - 1) * 4 + (3 - 1) * 2] = player->score[10][3] + '0';
 }
 
+// 프레임 점수 설정 함수 - 각 프레임의 총점이 보드에 표시되도록 업데이트
 void setFrameScore(int frame, Score *player)
 {
     char buf[4];

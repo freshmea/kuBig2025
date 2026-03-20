@@ -3,6 +3,7 @@ project(MainProject)
 
 # add_subdirectory(c_example/sqlQuery)
 add_subdirectory(c_example/bowling)
+add_subdirectory(c_example/bowlingRay)
 # add_subdirectory(c_example/part1)
 # add_subdirectory(c_example/part2)
 # add_subdirectory(c_example/part3)
